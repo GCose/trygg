@@ -13,7 +13,8 @@ import {
 } from '@/data/dashboard-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
 import styles from '@/src/styles/Dashboard.module.css';
-import DashboardLayout from '@/components/AdminLayout';
+import DashboardLayout from '@/components/DashboardLayout';
+import { SuperAdminPageMeta } from '@/pageMeta/meta';
 
 const DashboardPage = () => {
   //  Transaction Columns
@@ -162,7 +163,7 @@ const DashboardPage = () => {
   ];
 
   return (
-    <DashboardLayout title="Dashboard">
+    <DashboardLayout title="Dashboard" meta={SuperAdminPageMeta.dashboardPage}>
       <div className={styles.dashboard}>
         {/*==================== Stats Cards ====================*/}
         <div className={styles.stats__grid}>

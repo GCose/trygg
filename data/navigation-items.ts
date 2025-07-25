@@ -31,4 +31,16 @@ export const navigationItems: NavigationItem[] = [
     href: '/rides',
     icon: 'Route',
   },
+  {
+    id: 'subadmins',
+    label: 'SubAdmins',
+    href: '/sub-admin',
+    icon: 'User',
+  },
+  {
+    id: 'settings',
+    label: 'Settings',
+    href: '/settings',
+    icon: 'Settings',
+  },
 ];

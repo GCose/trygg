@@ -13,3 +13,9 @@ export interface SweetAlertProps {
 export interface User {
   token?: string;
 }
+
+export type Meta = {
+  title: string;
+  description?: string;
+  icon?: string;
+};

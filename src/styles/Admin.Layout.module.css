@@ -59,7 +59,7 @@
 
 .navigation {
   flex: 1;
-  gap: 2px;
+  gap: 1.5rem;
   display: flex;
   padding: 16px 12px;
   flex-direction: column;

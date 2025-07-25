@@ -1,37 +1,37 @@
+import { Meta } from "@/types";
+
 export interface NavigationItem {
-  readonly id: string;
-  readonly label: string;
-  readonly href: string;
-  readonly icon: string;
+  id: string;
+  label: string;
+  href: string;
+  icon: string;
 }
 
 export interface DashboardLayoutProps {
-  readonly children: React.ReactNode;
-  readonly title?: string;
+  children?: React.ReactNode;
+  title?: string;
+  meta: Meta;
 }
 
 export interface StatsCardProps {
-  readonly title: string;
-  readonly value: string | number;
-  readonly icon: string;
-  readonly trend?: {
-    readonly value: number;
-    readonly isPositive: boolean;
+  title: string;
+  value: string | number;
+  icon: string;
+  trend?: {
+    value: number;
+    isPositive: boolean;
   };
 }
 
 export interface TableColumn {
-  readonly key: string;
-  readonly label: string;
-  readonly render?: (
-    value: unknown,
-    row: Record<string, unknown>
-  ) => React.ReactNode;
+  key: string;
+  label: string;
+  render?: (value: unknown, row: Record<string, unknown>) => React.ReactNode;
 }
 
 export interface ListTableProps {
-  readonly columns: TableColumn[];
-  readonly data: Record<string, unknown>[];
-  readonly title?: string;
-  readonly maxHeight?: string;
+  columns: TableColumn[];
+  data: Record<string, unknown>[];
+  title?: string;
+  maxHeight?: string;
 }
