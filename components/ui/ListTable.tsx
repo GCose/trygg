@@ -5,7 +5,7 @@ const ListTable = ({
   columns,
   data,
   title,
-  maxHeight = '400px',
+  maxHeight = '500px',
 }: ListTableProps) => {
   return (
     <div className={styles.table__container}>

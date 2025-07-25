@@ -60,6 +60,14 @@ const AdminLayout = ({ children, title }: AdminLayoutProps) => {
               </button>
             );
           })}
+
+          <button
+            onClick={handleLogout}
+            className={`${styles.nav__item} ${styles.logout__nav}`}
+          >
+            {!isSidebarCollapsed && <span>Log out</span>}
+            <Icons.LogOut size={18} />
+          </button>
         </nav>
         {/*==================== End of Navigation ====================*/}
       </aside>
@@ -85,9 +93,6 @@ const AdminLayout = ({ children, title }: AdminLayoutProps) => {
                 <span className={styles.admin__name}>Admin User</span>
                 <span className={styles.admin__role}>Administrator</span>
               </div>
-              <button onClick={handleLogout} className={styles.logout__button}>
-                <Icons.LogOut size={18} />
-              </button>
             </div>
           </div>
         </header>

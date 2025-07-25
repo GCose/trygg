@@ -1,0 +1,87 @@
+/**===================
+ * STAT CARD STYLES
+ ===================*/
+.card {
+  gap: 16px;
+  display: flex;
+  border-radius: 10px;
+  background: #ffffff;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 20px 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.icon__wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-shrink: 0;
+  border-radius: 50%;
+  align-items: center;
+  background: #fff8e8;
+  justify-content: center;
+}
+
+.content {
+  width: 100%;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.2;
+  margin: 0 0 8px 0;
+}
+
+.trend {
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  align-items: center;
+  display: inline-flex;
+}
+
+.trend.positive {
+  color: #059669;
+  background: #d1fae5;
+}
+
+.trend.negative {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+/**===================
+ * BREAKPOINT STYLES
+ ===================*/
+@media (max-width: 768px) {
+  .card {
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .icon__wrapper {
+    width: 36px;
+    height: 36px;
+  }
+
+  .value {
+    font-size: 20px;
+  }
+}
