@@ -4,7 +4,20 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  background: #f2f2f2;
+  background: #f7f7f7;
+}
+
+/**================
+ * OVERLAY STYLES
+ ================*/
+.overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /**================
@@ -20,11 +33,19 @@
   position: fixed;
   background: #ffffff;
   flex-direction: column;
-  transition: width 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .sidebar.collapsed {
   width: 80px;
+}
+
+.sidebar.mobile__closed {
+  transform: translateX(-100%);
+}
+
+.sidebar.mobile__open {
+  transform: translateX(0);
 }
 
 .logo__section {
@@ -55,6 +76,7 @@
   font-weight: 600;
   color: #111827;
   white-space: nowrap;
+  transition: opacity 0.3s ease;
 }
 
 .navigation {
@@ -79,6 +101,7 @@
   padding: 10px 12px;
   align-items: center;
   background: transparent;
+  text-decoration: none;
   transition: all 0.15s ease;
 }
 
@@ -105,7 +128,7 @@
 }
 
 .sidebar.collapsed + .main__content {
-  margin-left: 50px;
+  margin-left: 80px;
 }
 
 .header {
@@ -120,16 +143,22 @@
   background: #ffffff;
   width: calc(100% - 250px);
   justify-content: space-between;
+  transition: width 0.3s ease;
+}
+
+.header.header__collapsed {
+  width: calc(100% - 80px);
+}
+
+.header.header__mobile {
+  width: 100%;
+  padding: 0 16px;
 }
 
 .header__left {
   gap: 16px;
   display: flex;
   align-items: center;
-}
-
-.sidebar.collapsed ~ .main__content .header {
-  width: calc(100% - 80px);
 }
 
 .menu__toggle {
@@ -220,15 +249,6 @@
  * BREAKPOINT STYLES
  ===================*/
 @media (max-width: 768px) {
-  .sidebar {
-    width: 280px;
-    transform: translateX(-100%);
-  }
-
-  .sidebar.collapsed {
-    width: 280px;
-  }
-
   .main__content {
     margin-left: 0;
   }
@@ -238,6 +258,7 @@
   }
 
   .header {
+    width: 100%;
     padding: 0 16px;
   }
 
@@ -251,5 +272,31 @@
 
   .profile__info {
     display: none;
+  }
+
+  .page__title {
+    font-size: 18px;
+  }
+
+  .logo__text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page__content {
+    padding: 12px;
+  }
+
+  .header {
+    padding: 0 12px;
+  }
+
+  .page__title {
+    font-size: 16px;
+  }
+
+  .admin__profile {
+    padding: 2px 6px;
   }
 }

@@ -33,7 +33,7 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     id: 'subadmins',
-    label: 'SubAdmins',
+    label: 'Sub Admins',
     href: '/sub-admin',
     icon: 'User',
   },

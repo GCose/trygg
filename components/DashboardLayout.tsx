@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { DashboardLayoutProps } from '@/interfaces/admin-layout';
 import { navigationItems } from '@/data/navigation-items';
 import * as Icons from 'lucide-react';
 import Image from 'next/image';
-import styles from '@/src/styles/Admin.Layout.module.css';
+import styles from '@/src/styles/DashboardLayout.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
 
 const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
   const router = useRouter();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleLogout = () => {
     router.push('/api/logout');
@@ -19,6 +21,40 @@ const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
   const isActiveRoute = (href: string) => {
     return router.pathname === href;
   };
+
+  const handleMenuToggle = () => {
+    if (isMobile) {
+      setIsMobileMenuOpen(!isMobileMenuOpen);
+    } else {
+      setIsSidebarCollapsed(!isSidebarCollapsed);
+    }
+  };
+
+  const handleOverlayClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleNavItemClick = () => {
+    if (isMobile) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (mobile) {
+        setIsSidebarCollapsed(false);
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <>
@@ -31,9 +67,23 @@ const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
       </Head>
 
       <div className={styles.layout}>
+        {/*==================== Mobile Overlay ====================*/}
+        {isMobile && isMobileMenuOpen && (
+          <div className={styles.overlay} onClick={handleOverlayClick} />
+        )}
+        {/*==================== End of Mobile Overlay ====================*/}
+
         {/*==================== Sidebar ====================*/}
         <aside
-          className={`${styles.sidebar} ${isSidebarCollapsed ? styles.collapsed : ''}`}
+          className={`${styles.sidebar} ${
+            isSidebarCollapsed ? styles.collapsed : ''
+          } ${
+            isMobile
+              ? isMobileMenuOpen
+                ? styles.mobile__open
+                : styles.mobile__closed
+              : ''
+          }`}
         >
           {/*==================== Logo Section ====================*/}
           <div className={styles.logo__section}>
@@ -64,6 +114,7 @@ const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
                 <Link
                   key={item.id}
                   href={item.href}
+                  onClick={handleNavItemClick}
                   className={`${styles.nav__item} ${isActive ? styles.active : ''}`}
                 >
                   <IconComponent size={20} />
@@ -87,10 +138,16 @@ const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
         {/*==================== Main Content ====================*/}
         <div className={styles.main__content}>
           {/*==================== Header ====================*/}
-          <header className={styles.header}>
+          <header
+            className={`${styles.header} ${
+              isMobile ? styles.header__mobile : ''
+            } ${
+              !isMobile && isSidebarCollapsed ? styles.header__collapsed : ''
+            }`}
+          >
             <div className={styles.header__left}>
               <button
-                onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+                onClick={handleMenuToggle}
                 className={styles.menu__toggle}
               >
                 <Icons.Menu size={20} />
