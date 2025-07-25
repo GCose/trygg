@@ -1,4 +1,4 @@
-import { StatsCardProps } from '@/interfaces/navigation';
+import { StatsCardProps } from '@/interfaces/admin-layout';
 import { TAppColors } from '@/constants/Colors';
 import * as Icons from 'lucide-react';
 import styles from '@/src/styles/StatsCard.module.css';

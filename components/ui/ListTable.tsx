@@ -1,4 +1,4 @@
-import { ListTableProps } from '@/interfaces/navigation';
+import { ListTableProps } from '@/interfaces/admin-layout';
 import styles from '@/src/styles/ListTable.module.css';
 
 const ListTable = ({

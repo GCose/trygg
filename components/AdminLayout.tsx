@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { AdminLayoutProps } from '@/interfaces/navigation';
+import { AdminLayoutProps } from '@/interfaces/admin-layout';
 import { navigationItems } from '@/data/navigation-items';
 import * as Icons from 'lucide-react';
 import Image from 'next/image';

@@ -8,7 +8,7 @@ import {
   recentTransactions,
   pendingDrivers,
 } from '@/data/dashboard-stats';
-import { TableColumn } from '@/interfaces/navigation';
+import { TableColumn } from '@/interfaces/admin-layout';
 import styles from '@/src/styles/Dashboard.module.css';
 import AdminLayout from '@/components/AdminLayout';
 
