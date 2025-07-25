@@ -14,6 +14,16 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.widgets__grid {
+  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.widget {
+  width: 100%;
+}
+
 .content__grid {
   gap: 24px;
   display: grid;
@@ -73,15 +83,15 @@
   font-size: 11px;
   cursor: pointer;
   font-weight: 500;
-  padding: 4px 8px;
-  border-radius: 4px;
-  transition: all 0.15s ease;
+  padding: 0.7rem 8px;
+  border-radius: 0.4rem;
   text-transform: uppercase;
+  transition: all 0.15s ease;
 }
 
 .approve__btn {
-  background: #dcfce7;
   color: #166534;
+  background: #dcfce7;
 }
 
 .approve__btn:hover {
@@ -89,12 +99,25 @@
 }
 
 .reject__btn {
-  background: #fee2e2;
   color: #991b1b;
+  background: #fee2e2;
 }
 
 .reject__btn:hover {
   background: #fecaca;
+}
+
+/**=======================
+ * DOCUMENT STATUS STYLES
+ =======================*/
+.urgent {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.warning {
+  color: #f59e0b;
+  font-weight: 500;
 }
 
 /**===================
@@ -104,6 +127,10 @@
   .content__grid {
     gap: 20px;
     grid-template-columns: 1fr;
+  }
+
+  .widgets__grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 
   .bottom__section {
@@ -117,6 +144,11 @@
   }
 
   .stats__grid {
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+
+  .widgets__grid {
     gap: 12px;
     grid-template-columns: 1fr;
   }

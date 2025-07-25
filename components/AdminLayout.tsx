@@ -91,7 +91,7 @@ const AdminLayout = ({ children, title }: AdminLayoutProps) => {
             <div className={styles.admin__profile}>
               <div className={styles.profile__info}>
                 <span className={styles.admin__name}>Admin User</span>
-                <span className={styles.admin__role}>Administrator</span>
+                <span className={styles.admin__role}>Super Admin</span>
               </div>
             </div>
           </div>

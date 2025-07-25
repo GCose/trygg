@@ -3,7 +3,7 @@
  ========================*/
 .table__container {
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 1.5rem;
   background: #ffffff;
 }
 
@@ -20,8 +20,14 @@
 }
 
 .table__wrapper {
-  overflow-y: auto;
-  overflow-x: auto;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.table__wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .table {

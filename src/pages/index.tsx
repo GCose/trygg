@@ -7,6 +7,9 @@ import {
   dashboardStats,
   recentTransactions,
   pendingDrivers,
+  driverLeaderboard,
+  documentsExpiring,
+  offlineDrivers,
 } from '@/data/dashboard-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
 import styles from '@/src/styles/Dashboard.module.css';
@@ -22,7 +25,7 @@ const Dashboard = () => {
     { key: 'dateTime', label: 'Date/Time' },
   ];
 
-  // Peanding Driver Columns
+  // Pending Driver Columns
   const pendingDriverColumns: TableColumn[] = [
     {
       key: 'profilePicture',
@@ -40,7 +43,7 @@ const Dashboard = () => {
             width={40}
             height={40}
             alt="Driver"
-            src={(value as string) || '/default-avatar.png'}
+            src={(value as string) || '/profile-1.avif'}
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </div>
@@ -59,6 +62,103 @@ const Dashboard = () => {
         </div>
       ),
     },
+  ];
+
+  // Driver Leaderboard Columns
+  const leaderboardColumns: TableColumn[] = [
+    {
+      key: 'profilePicture',
+      label: 'Photo',
+      render: (value) => (
+        <div
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            width={40}
+            height={40}
+            alt="Driver"
+            src={(value as string) || '/profile-1.avif'}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      ),
+    },
+    { key: 'name', label: 'Driver Name' },
+    { key: 'rides', label: 'Rides' },
+    { key: 'rating', label: 'Rating' },
+  ];
+
+  // Documents Expiring Columns
+  const documentsColumns: TableColumn[] = [
+    {
+      key: 'profilePicture',
+      label: 'Photo',
+      render: (value) => (
+        <div
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            width={40}
+            height={40}
+            alt="Driver"
+            src={(value as string) || '/profile-1.avif'}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      ),
+    },
+    { key: 'driverName', label: 'Driver Name' },
+    { key: 'documentType', label: 'Document' },
+    { key: 'expiryDate', label: 'Expires' },
+    {
+      key: 'daysLeft',
+      label: 'Days Left',
+      render: (value) => (
+        <span
+          className={(value as number) <= 7 ? styles.urgent : styles.warning}
+        >
+          {String(value)} days
+        </span>
+      ),
+    },
+  ];
+
+  // Offline Drivers Columns
+  const offlineColumns: TableColumn[] = [
+    {
+      key: 'profilePicture',
+      label: 'Photo',
+      render: (value) => (
+        <div
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            width={40}
+            height={40}
+            alt="Driver"
+            src={(value as string) || '/profile-1.avif'}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      ),
+    },
+    { key: 'name', label: 'Driver Name' },
+    { key: 'lastSeen', label: 'Last Seen' },
   ];
 
   return (
@@ -105,6 +205,44 @@ const Dashboard = () => {
           </div>
           {/*==================== End of Right Side Content ====================*/}
         </div>
+        {/*==================== End of Main Content Grid ====================*/}
+
+        {/*==================== Three Widget Grid ====================*/}
+        <div className={styles.widgets__grid}>
+          {/*==================== Driver Leaderboard ====================*/}
+          <div className={styles.widget}>
+            <ListTable
+              maxHeight="300px"
+              data={driverLeaderboard}
+              columns={leaderboardColumns}
+              title="Top Drivers This Month"
+            />
+          </div>
+          {/*==================== End of Driver Leaderboard ====================*/}
+
+          {/*==================== Documents Expiring ====================*/}
+          <div className={styles.widget}>
+            <ListTable
+              maxHeight="300px"
+              data={documentsExpiring}
+              columns={documentsColumns}
+              title="Driver Documents Expiring Soon"
+            />
+          </div>
+          {/*==================== End of Documents Expiring ====================*/}
+
+          {/*==================== Offline Drivers ====================*/}
+          <div className={styles.widget}>
+            <ListTable
+              maxHeight="300px"
+              data={offlineDrivers}
+              title="Offline Drivers"
+              columns={offlineColumns}
+            />
+          </div>
+          {/*==================== End of Offline Drivers ====================*/}
+        </div>
+        {/*==================== End of Three Widget Grid ====================*/}
       </div>
     </AdminLayout>
   );

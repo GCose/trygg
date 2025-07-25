@@ -184,11 +184,41 @@ export const pendingDrivers = [
  * Driver Leaderboard Data.
  ==========================*/
 export const driverLeaderboard = [
-  { id: '1', name: 'Mike Johnson', rides: 84, rating: 4.9 },
-  { id: '2', name: 'David Brown', rides: 78, rating: 4.8 },
-  { id: '3', name: 'James Miller', rides: 72, rating: 4.7 },
-  { id: '4', name: 'Robert Garcia', rides: 69, rating: 4.8 },
-  { id: '5', name: 'William Jones', rides: 65, rating: 4.6 },
+  {
+    id: '1',
+    profilePicture: '/profiles/profile-8.avif',
+    name: 'Mike Johnson',
+    rides: 84,
+    rating: 4.9,
+  },
+  {
+    id: '2',
+    profilePicture: '/profiles/profile-3.avif',
+    name: 'David Brown',
+    rides: 78,
+    rating: 4.8,
+  },
+  {
+    id: '3',
+    profilePicture: '/profiles/profile-10.avif',
+    name: 'James Miller',
+    rides: 72,
+    rating: 4.7,
+  },
+  {
+    id: '4',
+    profilePicture: '/profiles/profile-4.avif',
+    name: 'Robert Garcia',
+    rides: 69,
+    rating: 4.8,
+  },
+  {
+    id: '5',
+    profilePicture: '/profiles/profile-1.avif',
+    name: 'William Jones',
+    rides: 65,
+    rating: 4.6,
+  },
 ];
 
 /**===========================
@@ -197,6 +227,7 @@ export const driverLeaderboard = [
 export const documentsExpiring = [
   {
     id: '1',
+    profilePicture: '/profiles/profile-6.avif',
     driverName: 'Carlos Martinez',
     documentType: 'License',
     expiryDate: '2025-02-15',
@@ -204,6 +235,7 @@ export const documentsExpiring = [
   },
   {
     id: '2',
+    profilePicture: '/profiles/profile-2.avif',
     driverName: 'Ahmed Hassan',
     documentType: 'Insurance',
     expiryDate: '2025-02-08',
@@ -211,7 +243,16 @@ export const documentsExpiring = [
   },
   {
     id: '3',
+    profilePicture: '/profiles/profile-9.avif',
     driverName: 'John Parker',
+    documentType: 'Registration',
+    expiryDate: '2025-01-30',
+    daysLeft: 5,
+  },
+  {
+    id: '4',
+    profilePicture: '/profiles/profile-7.avif',
+    driverName: 'Liam Johnson',
     documentType: 'Registration',
     expiryDate: '2025-01-30',
     daysLeft: 5,
@@ -222,8 +263,28 @@ export const documentsExpiring = [
  * Offline Drivers Data.
  =======================*/
 export const offlineDrivers = [
-  { id: '1', name: 'Lisa Thompson', lastSeen: '2 hours ago' },
-  { id: '2', name: 'Mark Wilson', lastSeen: '4 hours ago' },
-  { id: '3', name: 'Sarah Davis', lastSeen: '6 hours ago' },
-  { id: '4', name: 'Tom Anderson', lastSeen: '8 hours ago' },
+  {
+    id: '1',
+    profilePicture: '/profiles/profile-4.avif',
+    name: 'Lisa Thompson',
+    lastSeen: '2 hours ago',
+  },
+  {
+    id: '2',
+    profilePicture: '/profiles/profile-7.avif',
+    name: 'Mark Wilson',
+    lastSeen: '4 hours ago',
+  },
+  {
+    id: '3',
+    profilePicture: '/profiles/profile-3.avif',
+    name: 'Sarah Davis',
+    lastSeen: '6 hours ago',
+  },
+  {
+    id: '4',
+    profilePicture: '/profiles/profile-10.avif',
+    name: 'Tom Anderson',
+    lastSeen: '8 hours ago',
+  },
 ];
