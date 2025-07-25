@@ -5,7 +5,7 @@ export interface NavigationItem {
   readonly icon: string;
 }
 
-export interface AdminLayoutProps {
+export interface DashboardLayoutProps {
   readonly children: React.ReactNode;
   readonly title?: string;
 }

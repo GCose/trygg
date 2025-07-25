@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { AdminLayoutProps } from '@/interfaces/admin-layout';
+import { DashboardLayoutProps } from '@/interfaces/admin-layout';
 import { navigationItems } from '@/data/navigation-items';
 import * as Icons from 'lucide-react';
 import Image from 'next/image';
 import styles from '@/src/styles/Admin.Layout.module.css';
 
-const AdminLayout = ({ children, title }: AdminLayoutProps) => {
+const DashboardLayout = ({ children, title }: DashboardLayoutProps) => {
   const router = useRouter();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
@@ -107,4 +107,4 @@ const AdminLayout = ({ children, title }: AdminLayoutProps) => {
   );
 };
 
-export default AdminLayout;
+export default DashboardLayout;

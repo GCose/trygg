@@ -13,9 +13,9 @@ import {
 } from '@/data/dashboard-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
 import styles from '@/src/styles/Dashboard.module.css';
-import AdminLayout from '@/components/AdminLayout';
+import DashboardLayout from '@/components/AdminLayout';
 
-const Dashboard = () => {
+const DashboardPage = () => {
   //  Transaction Columns
   const transactionColumns: TableColumn[] = [
     { key: 'id', label: 'S/N' },
@@ -162,7 +162,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <AdminLayout title="Dashboard">
+    <DashboardLayout title="Dashboard">
       <div className={styles.dashboard}>
         {/*==================== Stats Cards ====================*/}
         <div className={styles.stats__grid}>
@@ -244,11 +244,11 @@ const Dashboard = () => {
         </div>
         {/*==================== End of Three Widget Grid ====================*/}
       </div>
-    </AdminLayout>
+    </DashboardLayout>
   );
 };
 
-export default Dashboard;
+export default DashboardPage;
 
 export const getServerSideProps = async ({ req }: { req: NextApiRequest }) => {
   const userData = isLoggedIn(req);
