@@ -1,0 +1,402 @@
+/**===================
+ * DASHBOARD STYLES
+ ===================*/
+.dashboard {
+  gap: 24px;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1400px;
+  flex-direction: column;
+}
+
+.stats__grid {
+  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.content__grid {
+  gap: 24px;
+  display: grid;
+  align-items: start;
+  grid-template-columns: 2fr 1fr;
+}
+
+/**======================
+ * TRANSACTION SECTION
+ ======================*/
+.transactions__section {
+  width: 100%;
+}
+
+.right__panel {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pending__drivers {
+  width: 100%;
+}
+
+.activerides__card {
+  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card__header {
+  gap: 12px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card__header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.rides__stats {
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ride__stat {
+  display: flex;
+  padding: 12px 16px;
+  border-radius: 8px;
+  align-items: center;
+  background: #f8fafc;
+  justify-content: space-between;
+}
+
+.ride__number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.ride__label {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/**========================
+ * BOTTOM SECTION STYLES
+ ========================*/
+.bottom__section {
+  gap: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.driverstatus__card,
+.issues__card {
+  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.status__grid {
+  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.status__item {
+  gap: 8px;
+  padding: 12px;
+  display: flex;
+  border-radius: 8px;
+  align-items: center;
+  background: #f8fafc;
+}
+
+.status__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.status__dot.online {
+  background: #10b981;
+}
+
+.status__dot.busy {
+  background: #f59e0b;
+}
+
+.status__dot.offline {
+  background: #6b7280;
+}
+
+.status__dot.pending {
+  background: #3b82f6;
+}
+
+.status__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/**======================
+ * ISSUES SECTION STYLES
+ ======================*/
+.issues__list {
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.issue__item {
+  gap: 12px;
+  display: flex;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f8fafc;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.issue__content {
+  flex: 1;
+  gap: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.issue__type {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.issue__description {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.issue__right {
+  gap: 4px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.priority {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.priority.high {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.priority.medium {
+  color: #d97706;
+  background: #fef3c7;
+}
+
+.priority.low {
+  color: #16a34a;
+  background: #dcfce7;
+}
+
+.issue__time {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/**======================
+ * ACTION BUTTON STYLES
+ ======================*/
+.action__buttons {
+  gap: 8px;
+  display: flex;
+}
+
+.approve__btn,
+.reject__btn {
+  border: none;
+  font-size: 11px;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.approve__btn {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.approve__btn:hover {
+  background: #bbf7d0;
+}
+
+.reject__btn {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.reject__btn:hover {
+  background: #fecaca;
+}
+
+/**===================
+ * BREAKPOINT STYLES
+ ===================*/
+@media (max-width: 1200px) {
+  .content__grid {
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .bottom__section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    gap: 16px;
+  }
+
+  .stats__grid {
+    gap: 16px;
+    grid-template-columns: 1fr;
+  }
+
+  .rides__stats {
+    gap: 8px;
+  }
+
+  .ride__stat {
+    padding: 10px 12px;
+  }
+
+  .ride__number {
+    font-size: 18px;
+  }
+
+  .status__grid {
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+
+  .issue__item {
+    gap: 8px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .issue__right {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/**===================
+ * STAT CARD STYLES
+ ===================*/
+.card {
+  gap: 16px;
+  padding: 24px;
+  display: flex;
+  border-radius: 12px;
+  align-items: center;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.icon__wrapper {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  border-radius: 12px;
+  background: #fef9e7;
+  justify-content: center;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0 0 4px 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+  margin: 0 0 8px 0;
+}
+
+.trend {
+  gap: 4px;
+  display: flex;
+  font-size: 12px;
+  font-weight: 600;
+  align-items: center;
+}
+
+.trend.positive {
+  color: #059669;
+}
+
+.trend.negative {
+  color: #dc2626;
+}
+
+/**===================
+ * BREAKPOINT STYLES
+ ===================*/
+@media (max-width: 768px) {
+  .card {
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .icon__wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .value {
+    font-size: 24px;
+  }
+}
