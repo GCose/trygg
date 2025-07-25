@@ -179,20 +179,61 @@ const DashboardPage = () => {
         {/*==================== End of Stats Cards ====================*/}
 
         {/*==================== Main Content Grid ====================*/}
-        <div className={styles.content__grid}>
-          {/*==================== Recent Transactions ====================*/}
-          <div className={styles.transactions__section}>
-            <ListTable
-              maxHeight="500px"
-              data={recentTransactions}
-              title="Recent Transactions"
-              columns={transactionColumns}
-            />
-          </div>
-          {/*==================== End of Recent Transactions ====================*/}
+        <div className={styles.main__grid}>
+          {/*==================== Left Column ====================*/}
+          <div className={styles.left__column}>
+            {/*==================== Top Widgets Row ====================*/}
+            <div className={styles.top__widgets}>
+              {/*==================== Driver Leaderboard ====================*/}
+              <div className={styles.widget}>
+                <ListTable
+                  maxHeight="300px"
+                  data={driverLeaderboard}
+                  columns={leaderboardColumns}
+                  title="Top Drivers This Month"
+                />
+              </div>
+              {/*==================== End of Driver Leaderboard ====================*/}
 
-          {/*==================== Right Side Content ====================*/}
-          <div className={styles.right__panel}>
+              {/*==================== Offline Drivers ====================*/}
+              <div className={styles.widget}>
+                <ListTable
+                  maxHeight="300px"
+                  data={offlineDrivers}
+                  title="Offline Drivers"
+                  columns={offlineColumns}
+                />
+              </div>
+              {/*==================== End of Offline Drivers ====================*/}
+            </div>
+            {/*==================== End of Top Widgets Row ====================*/}
+
+            {/*==================== Recent Transactions ====================*/}
+            <div className={styles.transactions__section}>
+              <ListTable
+                maxHeight="500px"
+                data={recentTransactions}
+                title="Recent Transactions"
+                columns={transactionColumns}
+              />
+            </div>
+            {/*==================== End of Recent Transactions ====================*/}
+          </div>
+          {/*==================== End of Left Column ====================*/}
+
+          {/*==================== Right Column ====================*/}
+          <div className={styles.right__column}>
+            {/*==================== Documents Expiring ====================*/}
+            <div className={styles.widget}>
+              <ListTable
+                maxHeight="300px"
+                data={documentsExpiring}
+                columns={documentsColumns}
+                title="Driver Documents Expiring Soon"
+              />
+            </div>
+            {/*==================== End of Documents Expiring ====================*/}
+
             {/*==================== Pending Driver Applications ====================*/}
             <div className={styles.pending__drivers}>
               <ListTable
@@ -204,46 +245,9 @@ const DashboardPage = () => {
             </div>
             {/*==================== End of Pending Driver Applications ====================*/}
           </div>
-          {/*==================== End of Right Side Content ====================*/}
+          {/*==================== End of Right Column ====================*/}
         </div>
         {/*==================== End of Main Content Grid ====================*/}
-
-        {/*==================== Three Widget Grid ====================*/}
-        <div className={styles.widgets__grid}>
-          {/*==================== Driver Leaderboard ====================*/}
-          <div className={styles.widget}>
-            <ListTable
-              maxHeight="300px"
-              data={driverLeaderboard}
-              columns={leaderboardColumns}
-              title="Top Drivers This Month"
-            />
-          </div>
-          {/*==================== End of Driver Leaderboard ====================*/}
-
-          {/*==================== Documents Expiring ====================*/}
-          <div className={styles.widget}>
-            <ListTable
-              maxHeight="300px"
-              data={documentsExpiring}
-              columns={documentsColumns}
-              title="Driver Documents Expiring Soon"
-            />
-          </div>
-          {/*==================== End of Documents Expiring ====================*/}
-
-          {/*==================== Offline Drivers ====================*/}
-          <div className={styles.widget}>
-            <ListTable
-              maxHeight="300px"
-              data={offlineDrivers}
-              title="Offline Drivers"
-              columns={offlineColumns}
-            />
-          </div>
-          {/*==================== End of Offline Drivers ====================*/}
-        </div>
-        {/*==================== End of Three Widget Grid ====================*/}
       </div>
     </DashboardLayout>
   );

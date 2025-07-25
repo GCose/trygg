@@ -14,21 +14,39 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
-.widgets__grid {
-  gap: 16px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-.widget {
-  width: 100%;
-}
-
-.content__grid {
+/**=====================
+ * MAIN CONTENT LAYOUT
+ =====================*/
+.main__grid {
   gap: 24px;
   display: grid;
   align-items: start;
   grid-template-columns: 2fr 1fr;
+}
+
+.left__column {
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.right__column {
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/**====================
+ * TOP WIDGETS SECTION
+ ====================*/
+.top__widgets {
+  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.widget {
+  width: 100%;
 }
 
 /**======================
@@ -36,12 +54,6 @@
  ======================*/
 .transactions__section {
   width: 100%;
-}
-
-.right__panel {
-  gap: 16px;
-  display: flex;
-  flex-direction: column;
 }
 
 .pending__drivers {
@@ -124,16 +136,12 @@
  * BREAKPOINT STYLES
  ===================*/
 @media (max-width: 1200px) {
-  .content__grid {
+  .main__grid {
     gap: 20px;
     grid-template-columns: 1fr;
   }
 
-  .widgets__grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
-
-  .bottom__section {
+  .top__widgets {
     grid-template-columns: 1fr;
   }
 }
@@ -148,8 +156,16 @@
     grid-template-columns: 1fr;
   }
 
-  .widgets__grid {
+  .main__grid {
+    gap: 16px;
+  }
+
+  .left__column,
+  .right__column {
+    gap: 16px;
+  }
+
+  .top__widgets {
     gap: 12px;
-    grid-template-columns: 1fr;
   }
 }
