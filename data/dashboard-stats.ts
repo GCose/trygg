@@ -1,6 +1,6 @@
-/**=======================
- * Dashboard Statistics.
- =======================*/
+/**=============================
+ * Dashboard Statistical Data.
+ =============================*/
 export const dashboardStats = [
   {
     title: 'Transaction Value',
@@ -104,32 +104,126 @@ export const recentTransactions = [
   },
 ];
 
-/**===============================
- * Pending Driver Applications.
- ===============================*/
+/**==================================
+ * Pending Driver Applications Data.
+ ==================================*/
 export const pendingDrivers = [
   {
     id: '1',
+    profilePicture: '/profiles/profile-1.avif',
     name: 'Alex Rodriguez',
     appliedDate: '2025-01-23',
     vehicleType: 'Toyota Camry',
   },
   {
     id: '2',
+    profilePicture: '/profiles/profile-2.avif',
     name: 'Maria Santos',
     appliedDate: '2025-01-23',
     vehicleType: 'Honda Civic',
   },
   {
     id: '3',
+    profilePicture: '/profiles/profile-3.avif',
     name: 'Peter Kim',
     appliedDate: '2025-01-22',
     vehicleType: 'Ford Focus',
   },
   {
     id: '4',
+    profilePicture: '/profiles/profile-4.avif',
     name: 'Jennifer Lopez',
     appliedDate: '2025-01-22',
     vehicleType: 'Nissan Altima',
   },
+  {
+    id: '5',
+    profilePicture: '/profiles/profile-5.avif',
+    name: 'Samuel Osei',
+    appliedDate: '2025-01-21',
+    vehicleType: 'Hyundai Elantra',
+  },
+  {
+    id: '6',
+    profilePicture: '/profiles/profile-6.avif',
+    name: 'Chloe Dubois',
+    appliedDate: '2025-01-21',
+    vehicleType: 'Peugeot 208',
+  },
+  {
+    id: '7',
+    profilePicture: '/profiles/profile-7.avif',
+    name: 'Liam Johnson',
+    appliedDate: '2025-01-20',
+    vehicleType: 'Chevrolet Malibu',
+  },
+  {
+    id: '8',
+    profilePicture: '/profiles/profile-8.avif',
+    name: 'Fatima Diallo',
+    appliedDate: '2025-01-20',
+    vehicleType: 'Kia Optima',
+  },
+  {
+    id: '9',
+    profilePicture: '/profiles/profile-9.avif',
+    name: 'Ivan Petrov',
+    appliedDate: '2025-01-19',
+    vehicleType: 'Skoda Octavia',
+  },
+  {
+    id: '10',
+    profilePicture: '/profiles/profile-10.avif',
+    name: 'Nora Ahmed',
+    appliedDate: '2025-01-19',
+    vehicleType: 'Mazda 6',
+  },
+];
+
+/**==========================
+ * Driver Leaderboard Data.
+ ==========================*/
+export const driverLeaderboard = [
+  { id: '1', name: 'Mike Johnson', rides: 84, rating: 4.9 },
+  { id: '2', name: 'David Brown', rides: 78, rating: 4.8 },
+  { id: '3', name: 'James Miller', rides: 72, rating: 4.7 },
+  { id: '4', name: 'Robert Garcia', rides: 69, rating: 4.8 },
+  { id: '5', name: 'William Jones', rides: 65, rating: 4.6 },
+];
+
+/**===========================
+ * Document Expiring Data.
+ ===========================*/
+export const documentsExpiring = [
+  {
+    id: '1',
+    driverName: 'Carlos Martinez',
+    documentType: 'License',
+    expiryDate: '2025-02-15',
+    daysLeft: 21,
+  },
+  {
+    id: '2',
+    driverName: 'Ahmed Hassan',
+    documentType: 'Insurance',
+    expiryDate: '2025-02-08',
+    daysLeft: 14,
+  },
+  {
+    id: '3',
+    driverName: 'John Parker',
+    documentType: 'Registration',
+    expiryDate: '2025-01-30',
+    daysLeft: 5,
+  },
+];
+
+/**=======================
+ * Offline Drivers Data.
+ =======================*/
+export const offlineDrivers = [
+  { id: '1', name: 'Lisa Thompson', lastSeen: '2 hours ago' },
+  { id: '2', name: 'Mark Wilson', lastSeen: '4 hours ago' },
+  { id: '3', name: 'Sarah Davis', lastSeen: '6 hours ago' },
+  { id: '4', name: 'Tom Anderson', lastSeen: '8 hours ago' },
 ];

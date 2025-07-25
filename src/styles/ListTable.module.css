@@ -65,8 +65,7 @@
 }
 
 .tr:hover {
-  transform: translateY(-1px);
-  background: #f7f7f7 !important;
+  background: #fff0c8 !important;
 }
 
 .td {

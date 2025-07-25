@@ -1,5 +1,6 @@
 import { isLoggedIn } from '@/utils/auth';
 import { NextApiRequest } from 'next';
+import Image from 'next/image';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
 import {
@@ -23,6 +24,28 @@ const Dashboard = () => {
 
   // Peanding Driver Columns
   const pendingDriverColumns: TableColumn[] = [
+    {
+      key: 'profilePicture',
+      label: 'Photo',
+      render: (value) => (
+        <div
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            width={40}
+            height={40}
+            alt="Driver"
+            src={(value as string) || '/default-avatar.png'}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      ),
+    },
     { key: 'name', label: 'Driver Name' },
     { key: 'vehicleType', label: 'Vehicle' },
     { key: 'appliedDate', label: 'Applied' },
