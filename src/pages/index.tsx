@@ -3,25 +3,81 @@ import { NextApiRequest } from 'next';
 import Image from 'next/image';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
+import TopPerformerWidget from '@/components/ui/TopPerformerWidget';
+import DriverStatusWidget from '@/components/ui/DriverStatusWidget';
+import AlertsSummaryWidget from '@/components/ui/AlertsSummaryWidget';
 import {
   dashboardStats,
   recentTransactions,
   pendingDrivers,
-  driverLeaderboard,
   documentsExpiring,
-  offlineDrivers,
 } from '@/data/dashboard-stats';
+import {
+  topPerformerData,
+  driverStatusData,
+  alertsSummaryData,
+} from '@/data/widgets-data';
 import { TableColumn } from '@/interfaces/admin-layout';
 import styles from '@/src/styles/dashboard/Dashboard.module.css';
 import DashboardLayout from '@/components/DashboardLayout';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 
 const DashboardPage = () => {
-  //  Transaction Columns
+  // Transaction Columns
   const transactionColumns: TableColumn[] = [
-    { key: 'id', label: 'S/N' },
-    { key: 'passenger', label: 'Passenger' },
-    { key: 'driver', label: 'Driver' },
+    { key: 'id', label: 'Driver ID' },
+    {
+      key: 'passenger',
+      label: 'Passenger',
+      render: (value) => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              flexShrink: 0,
+            }}
+          >
+            <Image
+              width={32}
+              height={32}
+              alt="Passenger"
+              src="/profiles/profile-1.avif"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
+          <span>{value as string}</span>
+        </div>
+      ),
+    },
+    {
+      key: 'driver',
+      label: 'Driver',
+      render: (value) => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              flexShrink: 0,
+            }}
+          >
+            <Image
+              width={32}
+              height={32}
+              alt="Driver"
+              src="/profiles/profile-2.avif"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
+          <span>{value as string}</span>
+        </div>
+      ),
+    },
     { key: 'amount', label: 'Amount' },
     { key: 'dateTime', label: 'Date/Time' },
   ];
@@ -65,35 +121,6 @@ const DashboardPage = () => {
     },
   ];
 
-  // Driver Leaderboard Columns
-  const leaderboardColumns: TableColumn[] = [
-    {
-      key: 'profilePicture',
-      label: 'Photo',
-      render: (value) => (
-        <div
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '50%',
-            overflow: 'hidden',
-          }}
-        >
-          <Image
-            width={40}
-            height={40}
-            alt="Driver"
-            src={(value as string) || '/profile-1.avif'}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-        </div>
-      ),
-    },
-    { key: 'name', label: 'Driver Name' },
-    { key: 'rides', label: 'Rides' },
-    { key: 'rating', label: 'Rating' },
-  ];
-
   // Documents Expiring Columns
   const documentsColumns: TableColumn[] = [
     {
@@ -134,34 +161,6 @@ const DashboardPage = () => {
     },
   ];
 
-  // Offline Drivers Columns
-  const offlineColumns: TableColumn[] = [
-    {
-      key: 'profilePicture',
-      label: 'Photo',
-      render: (value) => (
-        <div
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '50%',
-            overflow: 'hidden',
-          }}
-        >
-          <Image
-            width={40}
-            height={40}
-            alt="Driver"
-            src={(value as string) || '/profile-1.avif'}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
-        </div>
-      ),
-    },
-    { key: 'name', label: 'Driver Name' },
-    { key: 'lastSeen', label: 'Last Seen' },
-  ];
-
   return (
     <DashboardLayout title="Dashboard" meta={SuperAdminPageMeta.dashboardPage}>
       <div className={styles.dashboard}>
@@ -184,25 +183,17 @@ const DashboardPage = () => {
           <div className={styles.left__column}>
             {/*==================== Top Widgets Row ====================*/}
             <div className={styles.top__widgets}>
-              {/*==================== Driver Leaderboard ====================*/}
+              {/*==================== Top Performer Widget ====================*/}
               <div className={styles.widget}>
-                <ListTable
-                  data={driverLeaderboard}
-                  columns={leaderboardColumns}
-                  title="Top Drivers This Month"
-                />
+                <TopPerformerWidget data={topPerformerData} />
               </div>
-              {/*==================== End of Driver Leaderboard ====================*/}
+              {/*==================== End of Top Performer Widget ====================*/}
 
-              {/*==================== Offline Drivers ====================*/}
+              {/*==================== Driver Status Widget ====================*/}
               <div className={styles.widget}>
-                <ListTable
-                  data={offlineDrivers}
-                  title="Offline Drivers"
-                  columns={offlineColumns}
-                />
+                <DriverStatusWidget data={driverStatusData} />
               </div>
-              {/*==================== End of Offline Drivers ====================*/}
+              {/*==================== End of Driver Status Widget ====================*/}
             </div>
             {/*==================== End of Top Widgets Row ====================*/}
 
@@ -220,12 +211,18 @@ const DashboardPage = () => {
 
           {/*==================== Right Column ====================*/}
           <div className={styles.right__column}>
+            {/*==================== Document Alerts Widget ====================*/}
+            <div className={styles.widget}>
+              <AlertsSummaryWidget data={alertsSummaryData} />
+            </div>
+            {/*==================== End of Document Alerts Widget ====================*/}
+
             {/*==================== Documents Expiring ====================*/}
             <div className={styles.widget}>
               <ListTable
                 data={documentsExpiring}
                 columns={documentsColumns}
-                title="Driver Lisence Expiring Soon"
+                title="Driver License Expiring Soon"
               />
             </div>
             {/*==================== End of Documents Expiring ====================*/}
