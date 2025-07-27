@@ -172,7 +172,7 @@ const DriversPage = () => {
   }
 
   return (
-    <DashboardLayout title="Driver" meta={SuperAdminPageMeta.driversPage}>
+    <DashboardLayout title="Drivers" meta={SuperAdminPageMeta.driversPage}>
       <div className={styles.drivers__page}>
         {/*==================== Filters Section ====================*/}
         <DriverFilters

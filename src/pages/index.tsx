@@ -11,7 +11,6 @@ import {
   dashboardStats,
   recentTransactions,
   pendingDrivers,
-  documentsExpiring,
 } from '@/data/dashboard-stats';
 import {
   topDriverData,
@@ -129,51 +128,6 @@ const DashboardPage = () => {
     },
   ];
 
-  // Documents Expiring Columns
-  const documentsColumns: TableColumn[] = [
-    {
-      key: 'driverName',
-      label: 'Driver',
-      render: (value, row) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              overflow: 'hidden',
-              flexShrink: 0,
-            }}
-          >
-            <Image
-              width={40}
-              height={40}
-              alt="Driver"
-              src={(row.profilePicture as string) || '/profiles/profile-1.avif'}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          </div>
-          <span style={{ fontWeight: 500, color: '#111827' }}>
-            {value as string}
-          </span>
-        </div>
-      ),
-    },
-    { key: 'documentType', label: 'Document' },
-    { key: 'expiryDate', label: 'Expires' },
-    {
-      key: 'daysLeft',
-      label: 'Days Left',
-      render: (value) => (
-        <span
-          className={(value as number) <= 7 ? styles.urgent : styles.warning}
-        >
-          {String(value)} days
-        </span>
-      ),
-    },
-  ];
-
   return (
     <DashboardLayout title="Dashboard" meta={SuperAdminPageMeta.dashboardPage}>
       <div className={styles.dashboard}>
@@ -243,16 +197,6 @@ const DashboardPage = () => {
 
           {/*==================== Right Column ====================*/}
           <div className={styles.right__widgets}>
-            {/*==================== Documents Expiring ====================*/}
-            <div className={styles.widget}>
-              <ListTable
-                data={documentsExpiring}
-                columns={documentsColumns}
-                title="Driver License Expiring Soon"
-              />
-            </div>
-            {/*==================== End of Documents Expiring ====================*/}
-
             {/*==================== Pending Driver Applications ====================*/}
             <div className={styles.widget}>
               <ListTable
