@@ -1,0 +1,166 @@
+/**===================
+ * DASHBOARD STYLES
+ ===================*/
+.dashboard {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.stats__grid {
+  display: grid;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+/**===================
+ * ROW 2 LAYOUT
+ ===================*/
+.second__row {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.transactions__section {
+  width: 100%;
+}
+
+.table__with__icon {
+  position: relative;
+}
+
+.table__with__icon > svg {
+  z-index: 10;
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.25rem);
+  right: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.driver__widgets {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+/**===============
+ * ROW 3 LAYOUT
+ ===============*/
+.third__row {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.left__widgets {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.right__widgets {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.widget {
+  width: 100%;
+}
+
+/**======================
+ * ACTION BUTTON STYLES
+ ======================*/
+.action__buttons {
+  gap: 0.375rem;
+  display: flex;
+}
+
+.approve__btn,
+.reject__btn {
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+  font-size: clamp(0.625rem, 1vw, 0.6875rem);
+  padding: clamp(0.5rem, 1vw, 0.7rem) clamp(0.5rem, 1vw, 0.5rem);
+}
+
+.approve__btn {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.approve__btn:hover {
+  background: #bbf7d0;
+}
+
+.reject__btn {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.reject__btn:hover {
+  background: #fecaca;
+}
+
+/**=======================
+ * DOCUMENT STATUS STYLES
+ =======================*/
+.urgent {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.warning {
+  color: #f59e0b;
+  font-weight: 500;
+}
+
+/**===================
+ * BREAKPOINT STYLES
+ ===================*/
+@media (max-width: 75rem) {
+  .second__row {
+    grid-template-columns: 1fr;
+  }
+
+  .driver__widgets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .third__row {
+    grid-template-columns: 1fr;
+  }
+
+  .left__widgets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 48rem) {
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .driver__widgets {
+    grid-template-columns: 1fr;
+  }
+
+  .left__widgets {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 33.75rem) {
+  .stats__grid {
+    grid-template-columns: 1fr;
+  }
+}

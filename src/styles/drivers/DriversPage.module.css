@@ -2,10 +2,10 @@
  * DRIVERS PAGE STYLES
  ===================*/
 .drivers__page {
-  gap: 24px;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
 /**====================
@@ -13,14 +13,14 @@
  ====================*/
 .action__button {
   border: none;
-  padding: 8px;
-  cursor: pointer;
   display: flex;
-  border-radius: 4px;
+  cursor: pointer;
   align-items: center;
+  border-radius: 0.25rem;
   background: transparent;
   justify-content: center;
   transition: all 0.15s ease;
+  padding: clamp(0.375rem, 1vw, 0.5rem);
 }
 
 .action__button:hover {
@@ -31,37 +31,37 @@
  * PAGINATION STYLES
  ======================*/
 .pagination__section {
-  gap: 16px;
   display: flex;
-  margin-top: 20px;
   align-items: center;
   justify-content: space-between;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  margin-top: clamp(0.75rem, 2vw, 1.25rem);
 }
 
 .pagination__info {
-  font-size: 14px;
-  color: #6b7280;
   font-weight: 500;
+  color: #6b7280;
+  font-size: clamp(0.6875rem, 1.2vw, 0.875rem);
 }
 
 .pagination__controls {
-  gap: 8px;
+  gap: clamp(0.25rem, 1vw, 0.5rem);
   display: flex;
   align-items: center;
 }
 
 .pagination__button {
   border: none;
-  width: 36px;
-  height: 36px;
   cursor: pointer;
-  font-size: 14px;
   font-weight: 500;
   color: #374151;
-  border-radius: 6px;
   background: #ffffff;
+  border-radius: 0.375rem;
   transition: all 0.15s ease;
-  border: 1px solid #e5e7eb;
+  border: 0.0625rem solid #e5e7eb;
+  width: clamp(1.625rem, 3vw, 2.25rem);
+  height: clamp(1.625rem, 3vw, 2.25rem);
+  font-size: clamp(0.625rem, 1.2vw, 0.875rem);
 }
 
 .pagination__button:hover {
@@ -71,8 +71,8 @@
 
 .pagination__button:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
   color: #9ca3af;
+  cursor: not-allowed;
   border-color: #e5e7eb;
 }
 
@@ -90,27 +90,29 @@
 /**===================
  * BREAKPOINT STYLES
  ===================*/
-@media (max-width: 768px) {
-  .drivers__page {
-    gap: 16px;
-  }
-
+@media (max-width: 48rem) {
   .pagination__section {
-    gap: 12px;
+    align-items: stretch;
     flex-direction: column;
   }
 
   .pagination__controls {
-    gap: 4px;
-  }
-
-  .pagination__button {
-    width: 32px;
-    height: 32px;
-    font-size: 12px;
+    justify-content: center;
   }
 
   .pagination__info {
-    font-size: 12px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 33.75rem) {
+  .pagination__controls {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 30rem) {
+  .pagination__controls {
+    gap: 0.0625rem;
   }
 }

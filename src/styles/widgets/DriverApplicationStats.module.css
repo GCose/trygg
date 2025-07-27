@@ -1,6 +1,6 @@
-/**=====================
- * DRIVER STATUS WIDGET
- =====================*/
+/**================================
+ * DRIVER APPLICATION STATS WIDGET
+ ================================*/
 .widget {
   padding: 20px;
   border-radius: 1.5rem;
@@ -39,9 +39,9 @@
 }
 
 .count {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
-  color: #dc2626;
+  color: #111827;
 }
 
 .label {
@@ -50,7 +50,7 @@
 }
 
 .breakdown {
-  gap: 8px;
+  gap: 12px;
   display: flex;
   flex-direction: column;
 }
@@ -59,22 +59,19 @@
   gap: 8px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.indicator__critical {
-  width: 8px;
-  height: 8px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: #dc2626;
+.stat__section {
+  gap: 8px;
+  display: flex;
+  align-items: center;
 }
 
-.indicator__warning {
-  width: 8px;
-  height: 8px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: #f59e0b;
+.stat__count {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
 }
 
 .breakdown__text {
@@ -83,12 +80,9 @@
 }
 
 .view__details {
-  gap: 6px;
-  display: flex;
   cursor: pointer;
   padding-top: 12px;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   transition: color 0.15s ease;
   border-top: 1px solid #f3f4f6;
 }
@@ -96,11 +90,11 @@
 .view__details span {
   font-size: 12px;
   font-weight: 500;
-  color: #6b7280;
+  color: #fbbf24;
 }
 
 .view__details:hover span {
-  color: #fbbf24;
+  color: #f59e0b;
 }
 
 /**===================
@@ -112,7 +106,11 @@
   }
 
   .count {
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .stat__count {
+    font-size: 14px;
   }
 }
 
@@ -122,32 +120,18 @@
   }
 
   .count {
-    font-size: 24px;
+    font-size: 20px;
   }
 
-  .label {
+  .breakdown {
+    gap: 8px;
+  }
+
+  .stat__count {
     font-size: 13px;
   }
 
   .breakdown__text {
     font-size: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .widget {
-    padding: 10px;
-  }
-
-  .count {
-    font-size: 20px;
-  }
-
-  .label {
-    font-size: 12px;
-  }
-
-  .breakdown__text {
-    font-size: 11px;
   }
 }

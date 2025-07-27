@@ -1,8 +1,9 @@
-import { Star, TrendingUp } from 'lucide-react';
-import { TopPerformerWidgetProps } from '@/interfaces/widgets';
-import styles from '@/src/styles/widgets/TopPerformer.module.css';
+import Image from 'next/image';
+import { Star, Crown } from 'lucide-react';
+import { TopDriverWidgetProps } from '@/interfaces/widgets';
+import styles from '@/src/styles/widgets/TopDriver.module.css';
 
-const TopPerformerWidget = ({ data }: TopPerformerWidgetProps) => {
+const TopDriverWidget = ({ data }: TopDriverWidgetProps) => {
   const renderStars = (rating: number) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -23,14 +24,29 @@ const TopPerformerWidget = ({ data }: TopPerformerWidgetProps) => {
     <div className={styles.widget}>
       {/*==================== Header ====================*/}
       <div className={styles.header}>
-        <h3 className={styles.title}>Top Performer This Month</h3>
-        <TrendingUp size={20} color="#fbbf24" />
+        <h3 className={styles.title}>Top Driver This Month</h3>
+        <Crown size={20} color="#fbbf24" />
       </div>
       {/*==================== End of Header ====================*/}
 
       {/*==================== Content ====================*/}
       <div className={styles.content}>
-        <div className={styles.performer}>
+        <div className={styles.driver}>
+          <div className={styles.avatar__section}>
+            <div className={styles.avatar__wrapper}>
+              <Image
+                width={60}
+                height={60}
+                alt={data.name}
+                src={data.avatar}
+                className={styles.avatar__image}
+              />
+              <div className={styles.crown__badge}>
+                <Crown size={16} color="#fbbf24" fill="#fbbf24" />
+              </div>
+            </div>
+          </div>
+
           <div className={styles.name}>{data.name}</div>
 
           <div className={styles.rating__section}>
@@ -53,4 +69,4 @@ const TopPerformerWidget = ({ data }: TopPerformerWidgetProps) => {
   );
 };
 
-export default TopPerformerWidget;
+export default TopDriverWidget;

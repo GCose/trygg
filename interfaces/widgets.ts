@@ -1,5 +1,6 @@
-export interface TopPerformerData {
+export interface TopDriverData {
   name: string;
+  avatar: string;
   rating: number;
   rides: number;
 }
@@ -16,8 +17,15 @@ export interface AlertsSummaryData {
   warningAlerts: number;
 }
 
-export interface TopPerformerWidgetProps {
-  data: TopPerformerData;
+export interface DriverApplicationStatsData {
+  totalApplications: number;
+  approved: number;
+  pending: number;
+  rejected: number;
+}
+
+export interface TopDriverWidgetProps {
+  data: TopDriverData;
 }
 
 export interface DriverStatusWidgetProps {
@@ -26,4 +34,8 @@ export interface DriverStatusWidgetProps {
 
 export interface AlertsSummaryWidgetProps {
   data: AlertsSummaryData;
+}
+
+export interface DriverApplicationStatsWidgetProps {
+  data: DriverApplicationStatsData;
 }
