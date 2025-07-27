@@ -22,11 +22,6 @@ export interface StarRatingProps {
   maxStars?: number;
 }
 
-export interface DriversTableProps {
-  drivers: Driver[];
-  onViewDetails: (driverId: string) => void;
-}
-
 export interface DriverFiltersProps {
   filters: DriversFilterState;
   onFilterChange: (key: keyof DriversFilterState, value: string) => void;

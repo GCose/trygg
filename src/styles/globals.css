@@ -3,9 +3,9 @@
   --foreground: #444444;
 }
 
-/**=======================
+/**====================
  * SCROLLBAR STYLES
-=======================*/
+====================*/
 ::-webkit-scrollbar {
   width: 0.4rem;
   background: transparent;

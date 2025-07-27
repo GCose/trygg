@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import Image from 'next/image';
 import DashboardLayout from '@/components/DashboardLayout';
 import DriverFilters from '@/components/ui/DriverFilters';
-import DriversTable from '@/components/ui/DriversTable';
+import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { DriversFilterState } from '@/interfaces/drivers';
 import { driversData } from '@/data/drivers-data';
+import { TableColumn } from '@/interfaces/admin-layout';
+import { MoreHorizontal, Star, StarHalf } from 'lucide-react';
 import styles from '@/src/styles/drivers/DriversPage.module.css';
 
 const DriversPage = () => {
@@ -16,7 +19,7 @@ const DriversPage = () => {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
-  const entriesPerPage = 7;
+  const entriesPerPage = 15;
 
   const handleFilterChange = (key: keyof DriversFilterState, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
@@ -41,7 +44,83 @@ const DriversPage = () => {
     setCurrentPage(page);
   };
 
-  // Filter drivers based on current filters
+  const renderStarRating = (rating: number) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<Star key={i} size={16} fill="#fbbf24" color="#fbbf24" />);
+    }
+
+    if (hasHalfStar) {
+      stars.push(
+        <StarHalf key="half" size={16} fill="#fbbf24" color="#fbbf24" />
+      );
+    }
+
+    const emptyStars = 5 - Math.ceil(rating);
+    for (let i = 0; i < emptyStars; i++) {
+      stars.push(<Star key={`empty-${i}`} size={16} color="#e5e7eb" />);
+    }
+
+    return <div style={{ display: 'flex', gap: '2px' }}>{stars}</div>;
+  };
+
+  const driversColumns: TableColumn[] = [
+    { key: 'driverId', label: 'Driver ID' },
+    {
+      key: 'avatar',
+      label: 'Photo',
+      render: (value) => (
+        <div
+          style={{
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            width={40}
+            height={40}
+            alt="Driver"
+            src={(value as string) || '/profiles/profile-1.avif'}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      ),
+    },
+    { key: 'name', label: 'Driver Name' },
+    { key: 'mobileNumber', label: 'Mobile Number' },
+    {
+      key: 'rating',
+      label: 'Ratings',
+      render: (value) => renderStarRating(value as number),
+    },
+    { key: 'totalTrips', label: 'Total Trips' },
+    {
+      key: 'totalEarning',
+      label: 'Total Earning',
+      render: (value) => `$${(value as number).toLocaleString()}.00`,
+    },
+    {
+      key: 'action',
+      label: 'Action',
+      render: () => (
+        <button
+          onClick={() => handleViewDetails('driverId')}
+          className={styles.action__button}
+        >
+          <MoreHorizontal size={18} color="#6b7280" />
+        </button>
+      ),
+    },
+  ];
+
+  {
+    /*==================== Filter Logic ====================*/
+  }
   const filteredDrivers = driversData.filter((driver) => {
     const matchesSearch =
       !filters.search ||
@@ -56,8 +135,13 @@ const DriversPage = () => {
 
     return matchesSearch && matchesRating && matchesStatus;
   });
+  {
+    /*==================== End of Filter Logic ====================*/
+  }
 
-  // Pagination logic
+  {
+    /*==================== Pagination Logic ====================*/
+  }
   const totalEntries = filteredDrivers.length;
   const totalPages = Math.ceil(totalEntries / entriesPerPage);
   const startIndex = (currentPage - 1) * entriesPerPage;
@@ -83,9 +167,12 @@ const DriversPage = () => {
 
     return buttons;
   };
+  {
+    /*==================== End of Pagination Logic ====================*/
+  }
 
   return (
-    <DashboardLayout title="Drivers" meta={SuperAdminPageMeta.driversPage}>
+    <DashboardLayout title="Driver" meta={SuperAdminPageMeta.driversPage}>
       <div className={styles.drivers__page}>
         {/*==================== Filters Section ====================*/}
         <DriverFilters
@@ -96,9 +183,11 @@ const DriversPage = () => {
         {/*==================== End of Filters Section ====================*/}
 
         {/*==================== Drivers Table ====================*/}
-        <DriversTable
-          drivers={currentDrivers}
-          onViewDetails={handleViewDetails}
+        <ListTable
+          maxHeight="800px"
+          title="Drivers List"
+          data={currentDrivers}
+          columns={driversColumns}
         />
         {/*==================== End of Drivers Table ====================*/}
 

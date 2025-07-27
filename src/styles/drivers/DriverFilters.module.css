@@ -40,7 +40,7 @@
 
 .search__input:focus {
   outline: none;
-  border-color: #ff6b35;
+  border-color: #fbbf24;
   box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
 }
 
@@ -69,7 +69,7 @@
 
 .filter__select:focus {
   outline: none;
-  border-color: #ff6b35;
+  border-color: #fbbf24;
   box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
 }
 
@@ -91,7 +91,7 @@
 
 .date__input:focus {
   outline: none;
-  border-color: #ff6b35;
+  border-color: #fbbf24;
   box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
 }
 
@@ -112,7 +112,7 @@
   color: #ffffff;
   padding: 12px 20px;
   border-radius: 8px;
-  background: #ff6b35;
+  background: #fbbf24;
   transition: all 0.2s ease;
 }
 

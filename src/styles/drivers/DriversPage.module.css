@@ -1,25 +1,47 @@
-/**========================
+/**===================
  * DRIVERS PAGE STYLES
- ========================*/
+ ===================*/
 .drivers__page {
   gap: 24px;
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
 }
 
-.pagination__section {
+/**====================
+ * ACTION BUTTON STYLES
+ ====================*/
+.action__button {
+  border: none;
+  padding: 8px;
+  cursor: pointer;
   display: flex;
-  padding: 20px 24px;
+  border-radius: 4px;
   align-items: center;
-  background: #ffffff;
+  background: transparent;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.action__button:hover {
+  background: #f3f4f6;
+}
+
+/**======================
+ * PAGINATION STYLES
+ ======================*/
+.pagination__section {
+  gap: 16px;
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #e5e7eb;
-  border-radius: 0 0 1.5rem 1.5rem;
 }
 
 .pagination__info {
   font-size: 14px;
   color: #6b7280;
+  font-weight: 500;
 }
 
 .pagination__controls {
@@ -29,32 +51,40 @@
 }
 
 .pagination__button {
+  border: none;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   font-size: 14px;
-  color: #374151;
   font-weight: 500;
-  padding: 8px 12px;
+  color: #374151;
   border-radius: 6px;
   background: #ffffff;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   border: 1px solid #e5e7eb;
 }
 
 .pagination__button:hover {
-  background: #f3f4f6;
-  border-color: #d1d5db;
-}
-
-.pagination__button.active {
-  background: #ff6b35;
-  border-color: #ff6b35;
-  color: #ffffff;
+  color: #fbbf24;
+  border-color: #fbbf24;
 }
 
 .pagination__button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  background: #f9fafb;
+  color: #9ca3af;
+  border-color: #e5e7eb;
+}
+
+.pagination__button:disabled:hover {
+  color: #9ca3af;
+  border-color: #e5e7eb;
+}
+
+.pagination__button.active {
+  color: #ffffff;
+  background: #fbbf24;
+  border-color: #fbbf24;
 }
 
 /**===================
@@ -67,16 +97,20 @@
 
   .pagination__section {
     gap: 12px;
-    padding: 16px 20px;
     flex-direction: column;
   }
 
   .pagination__controls {
-    gap: 6px;
+    gap: 4px;
   }
 
   .pagination__button {
-    font-size: 13px;
-    padding: 6px 10px;
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .pagination__info {
+    font-size: 12px;
   }
 }
