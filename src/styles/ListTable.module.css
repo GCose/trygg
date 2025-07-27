@@ -20,14 +20,7 @@
 }
 
 .table__wrapper {
-  overflow-y: scroll;
-  overflow-x: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.table__wrapper::-webkit-scrollbar {
-  display: none;
+  overflow-x: auto;
 }
 
 .table {

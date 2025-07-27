@@ -1,12 +1,7 @@
 import { ListTableProps } from '@/interfaces/admin-layout';
 import styles from '@/src/styles/ListTable.module.css';
 
-const ListTable = ({
-  columns,
-  data,
-  title,
-  maxHeight = '500px',
-}: ListTableProps) => {
+const ListTable = ({ columns, data, title }: ListTableProps) => {
   return (
     <div className={styles.table__container}>
       {/*==================== Table Header ====================*/}
@@ -17,7 +12,7 @@ const ListTable = ({
       )}
 
       {/*==================== Table Content ====================*/}
-      <div className={styles.table__wrapper} style={{ maxHeight }}>
+      <div className={styles.table__wrapper}>
         <table className={styles.table}>
           <thead className={styles.thead}>
             <tr>

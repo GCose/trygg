@@ -184,7 +184,6 @@ const DriversPage = () => {
 
         {/*==================== Drivers Table ====================*/}
         <ListTable
-          maxHeight="800px"
           title="Drivers List"
           data={currentDrivers}
           columns={driversColumns}

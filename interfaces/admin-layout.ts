@@ -1,4 +1,4 @@
-import { Meta } from "@/types";
+import { Meta } from '@/types';
 
 export interface NavigationItem {
   id: string;
@@ -33,5 +33,4 @@ export interface ListTableProps {
   columns: TableColumn[];
   data: Record<string, unknown>[];
   title?: string;
-  maxHeight?: string;
 }

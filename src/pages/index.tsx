@@ -187,7 +187,6 @@ const DashboardPage = () => {
               {/*==================== Driver Leaderboard ====================*/}
               <div className={styles.widget}>
                 <ListTable
-                  maxHeight="300px"
                   data={driverLeaderboard}
                   columns={leaderboardColumns}
                   title="Top Drivers This Month"
@@ -198,7 +197,6 @@ const DashboardPage = () => {
               {/*==================== Offline Drivers ====================*/}
               <div className={styles.widget}>
                 <ListTable
-                  maxHeight="300px"
                   data={offlineDrivers}
                   title="Offline Drivers"
                   columns={offlineColumns}
@@ -211,7 +209,6 @@ const DashboardPage = () => {
             {/*==================== Recent Transactions ====================*/}
             <div className={styles.transactions__section}>
               <ListTable
-                maxHeight="500px"
                 data={recentTransactions}
                 title="Recent Transactions"
                 columns={transactionColumns}
@@ -226,7 +223,6 @@ const DashboardPage = () => {
             {/*==================== Documents Expiring ====================*/}
             <div className={styles.widget}>
               <ListTable
-                maxHeight="300px"
                 data={documentsExpiring}
                 columns={documentsColumns}
                 title="Driver Lisence Expiring Soon"
@@ -237,7 +233,6 @@ const DashboardPage = () => {
             {/*==================== Pending Driver Applications ====================*/}
             <div className={styles.pending__drivers}>
               <ListTable
-                maxHeight="600px"
                 data={pendingDrivers}
                 columns={pendingDriverColumns}
                 title="Pending Driver Applications"
