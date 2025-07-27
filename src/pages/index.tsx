@@ -12,7 +12,7 @@ import {
   offlineDrivers,
 } from '@/data/dashboard-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
-import styles from '@/src/styles/Dashboard.module.css';
+import styles from '@/src/styles/dashboard/Dashboard.module.css';
 import DashboardLayout from '@/components/DashboardLayout';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 
@@ -229,7 +229,7 @@ const DashboardPage = () => {
                 maxHeight="300px"
                 data={documentsExpiring}
                 columns={documentsColumns}
-                title="Driver Documents Expiring Soon"
+                title="Driver Lisence Expiring Soon"
               />
             </div>
             {/*==================== End of Documents Expiring ====================*/}

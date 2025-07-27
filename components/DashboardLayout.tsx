@@ -4,7 +4,7 @@ import { DashboardLayoutProps } from '@/interfaces/admin-layout';
 import { navigationItems } from '@/data/navigation-items';
 import * as Icons from 'lucide-react';
 import Image from 'next/image';
-import styles from '@/src/styles/DashboardLayout.module.css';
+import styles from '@/src/styles/dashboard/DashboardLayout.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
 

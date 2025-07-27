@@ -1,0 +1,82 @@
+/**========================
+ * DRIVERS PAGE STYLES
+ ========================*/
+.drivers__page {
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pagination__section {
+  display: flex;
+  padding: 20px 24px;
+  align-items: center;
+  background: #ffffff;
+  justify-content: space-between;
+  border-top: 1px solid #e5e7eb;
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+
+.pagination__info {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.pagination__controls {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.pagination__button {
+  cursor: pointer;
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.pagination__button:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.pagination__button.active {
+  background: #ff6b35;
+  border-color: #ff6b35;
+  color: #ffffff;
+}
+
+.pagination__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f9fafb;
+}
+
+/**===================
+ * BREAKPOINT STYLES
+ ===================*/
+@media (max-width: 768px) {
+  .drivers__page {
+    gap: 16px;
+  }
+
+  .pagination__section {
+    gap: 12px;
+    padding: 16px 20px;
+    flex-direction: column;
+  }
+
+  .pagination__controls {
+    gap: 6px;
+  }
+
+  .pagination__button {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
