@@ -236,9 +236,9 @@ const PassengersPage = () => {
           {passengerStats.map((stat, index) => (
             <StatsCard
               key={index}
+              icon={stat.icon}
               title={stat.title}
               value={stat.value}
-              icon={stat.icon}
             />
           ))}
         </div>

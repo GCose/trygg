@@ -58,14 +58,13 @@
 .final__row {
   display: grid;
   align-items: start;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
 .stats__widgets {
   display: grid;
   gap: clamp(0.5rem, 1.5vw, 1rem);
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 }
 
 .pending__section {
