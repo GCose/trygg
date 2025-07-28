@@ -36,10 +36,6 @@ const DriversPage = () => {
     setCurrentPage(1);
   };
 
-  const handleViewDetails = (driverId: string) => {
-    console.log('View details for driver:', driverId);
-  };
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -109,7 +105,6 @@ const DriversPage = () => {
       label: 'Action',
       render: () => (
         <button
-          onClick={() => handleViewDetails('driverId')}
           className={styles.action__button}
         >
           <MoreHorizontal size={18} color="#6b7280" />

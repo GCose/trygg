@@ -1,6 +1,6 @@
-/**===============================
- * Transactions Data (100 entries)
- ===============================*/
+/**===================
+ * Transactions Data
+ ===================*/
 export const transactionsData = [
   {
     id: '1',
@@ -328,43 +328,4 @@ export const transactionsData = [
     dateTime: '2025-01-27 16:10',
     rideId: 'RID025',
   },
-  // I'll add abbreviated entries for the remaining 75 to keep the file reasonable size
-  // In a real implementation, you'd have all 100 full entries
-  //   ...Array.from({ length: 75 }, (_, index) => {
-  //     const id = (index + 26).toString();
-  //     const transactionId = `TXN${(index + 26).toString().padStart(3, '0')}`;
-  //     const amounts = [
-  //       15.5, 22.3, 35.8, 41.9, 28.75, 33.4, 19.85, 47.2, 29.6, 38.15,
-  //     ];
-  //     const statuses = ['COMPLETED', 'PENDING', 'FAILED'] as const;
-  //     const paymentMethods = ['Credit Card', 'Digital Wallet', 'Cash'];
-  //     const passengers = [
-  //       'John Doe',
-  //       'Jane Smith',
-  //       'Alex Brown',
-  //       'Sam Wilson',
-  //       'Pat Johnson',
-  //     ];
-  //     const drivers = [
-  //       'Mike Driver',
-  //       'Lisa Car',
-  //       'Tom Ride',
-  //       'Anna Drive',
-  //       'Ben Motor',
-  //     ];
-
-  //     return {
-  //       id,
-  //       transactionId,
-  //       amount: amounts[index % amounts.length],
-  //       status: statuses[index % statuses.length],
-  //       paymentMethod: paymentMethods[index % paymentMethods.length],
-  //       passenger: passengers[index % passengers.length],
-  //       passengerAvatar: `/profiles/profile-${(index % 10) + 1}.avif`,
-  //       driver: drivers[index % drivers.length],
-  //       driverAvatar: `/profiles/profile-${((index + 5) % 10) + 1}.avif`,
-  //       dateTime: `2025-01-${27 - Math.floor(index / 10)} ${14 + (index % 10)}:${(index % 60).toString().padStart(2, '0')}`,
-  //       rideId: `RID${(index + 26).toString().padStart(3, '0')}`,
-  //     };
-  //   }),
 ];

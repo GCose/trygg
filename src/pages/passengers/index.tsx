@@ -41,9 +41,6 @@ const PassengersPage = () => {
     setCurrentPage(1);
   };
 
-  //   const handleViewDetails = (passengerId: string) => {
-  //     console.log('View details for passenger:', passengerId);
-  //   };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);

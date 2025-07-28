@@ -53,9 +53,6 @@ const TransactionsPage = () => {
     setCurrentPage(1);
   };
 
-  //   const handleViewDetails = (transactionId: string) => {
-  //     console.log('View details for transaction:', transactionId);
-  //   };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
