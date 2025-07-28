@@ -8,6 +8,7 @@
   flex-direction: column;
   align-items: flex-start;
   transition: all 0.3s ease-in-out;
+  border: 0.0625rem solid #e5e7eb;
   gap: clamp(0.5rem, 1.5vw, 1rem);
   padding: clamp(0.75rem, 2vw, 1rem) clamp(0.75rem, 2vw, 1.25rem)
     clamp(0.625rem, 1.5vw, 0.625rem);

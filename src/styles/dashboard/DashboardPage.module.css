@@ -52,9 +52,9 @@
   right: clamp(1.25rem, 2vw, 1.5rem);
 }
 
-/**===============
+/**==================
  * ROW 4: FINAL ROW
- ===============*/
+ ==================*/
 .final__row {
   display: grid;
   align-items: start;
