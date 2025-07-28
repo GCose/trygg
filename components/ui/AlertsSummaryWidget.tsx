@@ -1,6 +1,6 @@
 import { AlertTriangle, FileText } from 'lucide-react';
-import { AlertsSummaryWidgetProps } from '@/interfaces/widgets';
 import styles from '@/src/styles/widgets/AlertsSummary.module.css';
+import { AlertsSummaryWidgetProps } from '@/interfaces/widgets';
 
 const AlertsSummaryWidget = ({ data }: AlertsSummaryWidgetProps) => {
   return (

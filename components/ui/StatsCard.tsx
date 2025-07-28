@@ -1,7 +1,7 @@
-import { StatsCardProps } from '@/interfaces/admin-layout';
-import { TAppColors } from '@/constants/Colors';
 import * as Icons from 'lucide-react';
 import styles from '@/src/styles/StatsCard.module.css';
+import { TAppColors } from '@/constants/Colors';
+import { StatsCardProps } from '@/interfaces/admin-layout';
 
 const StatsCard = ({ title, value, icon, trend }: StatsCardProps) => {
   const IconComponent = Icons[

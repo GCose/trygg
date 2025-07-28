@@ -8,8 +8,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { TrendingUp } from 'lucide-react';
-import { RevenueChartProps, TooltipProps } from '@/interfaces/chart';
 import styles from '@/src/styles/charts/RevenueChart.module.css';
+import { RevenueChartProps, TooltipProps } from '@/interfaces/chart';
 
 const RevenueChart = ({ data, title }: RevenueChartProps) => {
   const formatRevenue = (value: number) => {

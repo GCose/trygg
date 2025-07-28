@@ -5,6 +5,7 @@
   overflow: hidden;
   border-radius: 1.5rem;
   background: #ffffff;
+  border: 0.0625rem solid #e5e7eb;
 }
 
 .table__header {

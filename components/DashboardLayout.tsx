@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { DashboardLayoutProps } from '@/interfaces/admin-layout';
-import { navigationItems } from '@/data/navigation-items';
 import * as Icons from 'lucide-react';
 import Image from 'next/image';
 import styles from '@/src/styles/dashboard/DashboardLayout.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
+import { navigationItems } from '@/data/navigation-items';
+import { DashboardLayoutProps } from '@/interfaces/admin-layout';
 
 const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
   const router = useRouter();

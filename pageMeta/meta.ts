@@ -11,7 +11,7 @@ export const SuperAdminPageMeta = {
 
   passengersPage: {
     title: 'Trygg Admin | Passengers',
-    description: 'Track all Trygg drivers.',
+    description: 'Track all Trygg passengers.',
   },
 
   transactionPage: {

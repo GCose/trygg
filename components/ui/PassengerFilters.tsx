@@ -1,12 +1,12 @@
 import { Search, Calendar } from 'lucide-react';
-import styles from '@/src/styles/drivers/DriverFilters.module.css';
-import { DriverFiltersProps } from '@/interfaces/drivers';
+import styles from '@/src/styles/passengers/PassengerFilters.module.css';
+import { PassengerFiltersProps } from '@/interfaces/passengers';
 
-const DriverFilters = ({
+const PassengerFilters = ({
   filters,
   onFilterChange,
   onResetFilters,
-}: DriverFiltersProps) => {
+}: PassengerFiltersProps) => {
   return (
     <div className={styles.filters__section}>
       <div className={styles.filters__row}>
@@ -44,10 +44,9 @@ const DriverFilters = ({
             className={styles.filter__select}
           >
             <option value="">Status</option>
-            <option value="APPROVED">Approved</option>
-            <option value="PENDING_APPROVAL">Pending</option>
+            <option value="ACTIVE">Active</option>
+            <option value="INACTIVE">Inactive</option>
             <option value="SUSPENDED">Suspended</option>
-            <option value="REJECTED">Rejected</option>
           </select>
 
           <div className={styles.date__wrapper}>
@@ -71,4 +70,4 @@ const DriverFilters = ({
   );
 };
 
-export default DriverFilters;
+export default PassengerFilters;

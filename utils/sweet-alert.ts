@@ -1,4 +1,4 @@
-import { SweetAlertProps } from '@/types';
+import { SweetAlertProps } from '@/src/types';
 import Swal from 'sweetalert2';
 
 export const showAlert = ({

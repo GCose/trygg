@@ -1,4 +1,4 @@
-import { User } from '@/types';
+import { User } from '@/src/types';
 import { parse } from 'cookie';
 import { NextApiRequest } from 'next';
 

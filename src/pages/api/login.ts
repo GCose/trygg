@@ -1,6 +1,6 @@
-import { User } from '@/types';
-import { getErrorMessage } from '@/utils/error';
-import { BASE_URL } from '@/utils/url';
+import { User } from '@/src/types';
+import { getErrorMessage } from '@/src/utils/error';
+import { BASE_URL } from '@/src/utils/url';
 import axios from 'axios';
 import { serialize } from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';

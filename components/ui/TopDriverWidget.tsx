@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Star, Crown } from 'lucide-react';
-import { TopDriverWidgetProps } from '@/interfaces/widgets';
 import styles from '@/src/styles/widgets/TopDriver.module.css';
+import { TopDriverWidgetProps } from '@/interfaces/widgets';
 
 const TopDriverWidget = ({ data }: TopDriverWidgetProps) => {
   const renderStars = (rating: number) => {

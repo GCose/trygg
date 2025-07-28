@@ -1,4 +1,4 @@
-import { RevenueData } from '@/interfaces/chart';
+import { RevenueData } from '@/src/interfaces/chart';
 
 /**========================
  * Monthly Revenue Data

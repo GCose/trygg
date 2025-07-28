@@ -1,4 +1,4 @@
-import { Meta } from '@/types';
+import { Meta } from '@/src/types';
 
 export interface NavigationItem {
   id: string;
