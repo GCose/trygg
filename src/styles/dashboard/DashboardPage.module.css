@@ -14,17 +14,30 @@
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
-/**===================
- * ROW 2 LAYOUT
- ===================*/
-.second__row {
+/**=====================
+ * ROW 2: CHART LAYOUT
+ =====================*/
+.chart__row {
   display: grid;
-  align-items: start;
+  align-items: stretch;
   grid-template-columns: 2fr 1fr;
   gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
-.transactions__section {
+.chart__section {
+  width: 100%;
+}
+
+.driver__widgets {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+/**===================
+ * ROW 3: FULL WIDTH
+ ===================*/
+.full__width__section {
   width: 100%;
 }
 
@@ -39,32 +52,35 @@
   right: clamp(1.25rem, 2vw, 1.5rem);
 }
 
-.driver__widgets {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.5rem, 1.5vw, 1rem);
-}
-
 /**===============
- * ROW 3 LAYOUT
+ * ROW 4: FINAL ROW
  ===============*/
-.third__row {
+.final__row {
   display: grid;
   align-items: start;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 1fr;
   gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
-.left__widgets {
-  display: flex;
-  flex-direction: column;
+.stats__widgets {
+  display: grid;
   gap: clamp(0.5rem, 1.5vw, 1rem);
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
 }
 
-.right__widgets {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.5rem, 1.5vw, 1rem);
+.pending__section {
+  width: 100%;
+}
+
+.table__with__pending__icon {
+  position: relative;
+}
+
+.table__with__pending__icon > svg {
+  z-index: 10;
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.25rem);
+  right: clamp(1.25rem, 2vw, 1.5rem);
 }
 
 .widget {
@@ -75,8 +91,8 @@
  * ACTION BUTTON STYLES
  ======================*/
 .action__buttons {
-  gap: 0.375rem;
   display: flex;
+  gap: clamp(0.25rem, 1vw, 0.375rem);
 }
 
 .approve__btn,
@@ -109,9 +125,9 @@
   background: #fecaca;
 }
 
-/**=======================
+/**=========================
  * DOCUMENT STATUS STYLES
- =======================*/
+ =========================*/
 .urgent {
   color: #dc2626;
   font-weight: 600;
@@ -126,7 +142,7 @@
  * BREAKPOINT STYLES
  ===================*/
 @media (max-width: 75rem) {
-  .second__row {
+  .chart__row {
     grid-template-columns: 1fr;
   }
 
@@ -135,13 +151,12 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .third__row {
+  .final__row {
     grid-template-columns: 1fr;
   }
 
-  .left__widgets {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  .stats__widgets {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -154,7 +169,7 @@
     grid-template-columns: 1fr;
   }
 
-  .left__widgets {
+  .stats__widgets {
     grid-template-columns: 1fr;
   }
 }

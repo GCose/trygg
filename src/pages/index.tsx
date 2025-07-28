@@ -3,6 +3,7 @@ import { NextApiRequest } from 'next';
 import Image from 'next/image';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
+import RevenueChart from '@/components/ui/RevenueChart';
 import TopDriverWidget from '@/components/ui/TopDriverWidget';
 import DriverStatusWidget from '@/components/ui/DriverStatusWidget';
 import AlertsSummaryWidget from '@/components/ui/AlertsSummaryWidget';
@@ -18,8 +19,9 @@ import {
   alertsSummaryData,
   driverApplicationStatsData,
 } from '@/data/widgets-data';
+import { monthlyRevenueData } from '@/data/chart-data';
 import { TableColumn } from '@/interfaces/admin-layout';
-import { ArrowLeftRight } from 'lucide-react';
+import { ArrowLeftRight, Clock } from 'lucide-react';
 import styles from '@/src/styles/dashboard/DashboardPage.module.css';
 import DashboardLayout from '@/components/DashboardLayout';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
@@ -32,11 +34,11 @@ const DashboardPage = () => {
       key: 'passenger',
       label: 'Passenger',
       render: (value) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div
             style={{
-              width: '32px',
-              height: '32px',
+              width: '2rem',
+              height: '2rem',
               borderRadius: '50%',
               overflow: 'hidden',
               flexShrink: 0,
@@ -58,11 +60,11 @@ const DashboardPage = () => {
       key: 'driver',
       label: 'Driver',
       render: (value) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div
             style={{
-              width: '32px',
-              height: '32px',
+              width: '2rem',
+              height: '2rem',
               borderRadius: '50%',
               overflow: 'hidden',
               flexShrink: 0,
@@ -90,11 +92,11 @@ const DashboardPage = () => {
       key: 'name',
       label: 'Driver',
       render: (value, row) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div
             style={{
-              width: '40px',
-              height: '40px',
+              width: '2.5rem',
+              height: '2.5rem',
               borderRadius: '50%',
               overflow: 'hidden',
               flexShrink: 0,
@@ -144,20 +146,16 @@ const DashboardPage = () => {
         </div>
         {/*==================== End of Row 1: Stats Cards ====================*/}
 
-        {/*==================== Row 2: Transactions Left, Driver Widgets Right ====================*/}
-        <div className={styles.second__row}>
-          {/*==================== Recent Transactions ====================*/}
-          <div className={styles.transactions__section}>
-            <div className={styles.table__with__icon}>
-              <ArrowLeftRight size={20} color="#fbbf24" />
-              <ListTable
-                data={recentTransactions}
-                title="Recent Transactions"
-                columns={transactionColumns}
-              />
-            </div>
+        {/*==================== Row 2: Chart Left, Driver Widgets Right ====================*/}
+        <div className={styles.chart__row}>
+          {/*==================== Revenue Chart ====================*/}
+          <div className={styles.chart__section}>
+            <RevenueChart
+              data={monthlyRevenueData}
+              title="Monthly Revenue Overview"
+            />
           </div>
-          {/*==================== End of Recent Transactions ====================*/}
+          {/*==================== End of Revenue Chart ====================*/}
 
           {/*==================== Driver Widgets Column ====================*/}
           <div className={styles.driver__widgets}>
@@ -177,10 +175,23 @@ const DashboardPage = () => {
         </div>
         {/*==================== End of Row 2 ====================*/}
 
-        {/*==================== Row 3: Application Stats Left, Pending Drivers Right ====================*/}
-        <div className={styles.third__row}>
-          {/*==================== Left Column ====================*/}
-          <div className={styles.left__widgets}>
+        {/*==================== Row 3: Recent Transactions Full Width ====================*/}
+        <div className={styles.full__width__section}>
+          <div className={styles.table__with__icon}>
+            <ArrowLeftRight size={20} color="#fbbf24" />
+            <ListTable
+              data={recentTransactions}
+              title="Recent Transactions"
+              columns={transactionColumns}
+            />
+          </div>
+        </div>
+        {/*==================== End of Row 3: Recent Transactions ====================*/}
+
+        {/*==================== Row 4: Stats Widgets Left, Pending Applications Right ====================*/}
+        <div className={styles.final__row}>
+          {/*==================== Stats Widgets ====================*/}
+          <div className={styles.stats__widgets}>
             {/*==================== Document Alerts Widget ====================*/}
             <div className={styles.widget}>
               <AlertsSummaryWidget data={alertsSummaryData} />
@@ -193,23 +204,22 @@ const DashboardPage = () => {
             </div>
             {/*==================== End of Driver Application Stats Widget ====================*/}
           </div>
-          {/*==================== End of Left Column ====================*/}
+          {/*==================== End of Stats Widgets ====================*/}
 
-          {/*==================== Right Column ====================*/}
-          <div className={styles.right__widgets}>
-            {/*==================== Pending Driver Applications ====================*/}
-            <div className={styles.widget}>
+          {/*==================== Pending Applications Section ====================*/}
+          <div className={styles.pending__section}>
+            <div className={styles.table__with__pending__icon}>
+              <Clock size={20} color="#fbbf24" />
               <ListTable
                 data={pendingDrivers}
                 columns={pendingDriverColumns}
                 title="Pending Driver Applications"
               />
             </div>
-            {/*==================== End of Pending Driver Applications ====================*/}
           </div>
-          {/*==================== End of Right Column ====================*/}
+          {/*==================== End of Pending Applications Section ====================*/}
         </div>
-        {/*==================== End of Row 3 ====================*/}
+        {/*==================== End of Row 4 ====================*/}
       </div>
     </DashboardLayout>
   );
