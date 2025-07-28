@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from '@/src/styles/SignIn.module.css';
 import { useRouter } from 'next/router';
-import { getErrorMessage } from '@/src/utils/error';
-import { showAlert } from '@/src/utils/sweet-alert';
 import axios from 'axios';
 import { NextApiRequest } from 'next';
-import { isLoggedIn } from '@/src/utils/auth';
 import { EyeOff, Eye } from 'lucide-react';
+import { isLoggedIn } from '@/utils/auth';
+import { showAlert } from '@/utils/sweet-alert';
+import { getErrorMessage } from '@/utils/error';
 
 const SignIn = () => {
   const admin_email = useRef<HTMLInputElement>(null);

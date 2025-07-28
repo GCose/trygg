@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import DashboardLayout from '@/components/DashboardLayout';
-import DriverFilters from '@/components/ui/DriverFilters';
+import DriverFilters from '@/components/ui/filters/DriverFilters';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { DriversFilterState } from '@/interfaces/drivers';

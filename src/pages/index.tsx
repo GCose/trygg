@@ -3,7 +3,7 @@ import { NextApiRequest } from 'next';
 import Image from 'next/image';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
-import RevenueChart from '@/components/ui/RevenueChart';
+import RevenueChart from '@/components/ui/charts/RevenueChart';
 import TopDriverWidget from '@/components/ui/TopDriverWidget';
 import DriverStatusWidget from '@/components/ui/DriverStatusWidget';
 import AlertsSummaryWidget from '@/components/ui/AlertsSummaryWidget';

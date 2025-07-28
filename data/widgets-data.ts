@@ -3,7 +3,7 @@ import {
   DriverStatusData,
   AlertsSummaryData,
   DriverApplicationStatsData,
-} from '@/src/interfaces/widgets';
+} from '@/interfaces/widgets';
 
 /**=======================
  * Top Driver Widget Data

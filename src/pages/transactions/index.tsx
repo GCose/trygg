@@ -1,30 +1,39 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import DashboardLayout from '@/components/DashboardLayout';
-import PassengerFilters from '@/components/ui/filters/PassengerFilters';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import { PassengersFilterState } from '@/interfaces/passengers';
-import { passengersData } from '@/data/passenger/passengers-data';
-import { passengerStats } from '@/data/passenger/passenger-stats';
+import { TransactionsFilterState } from '@/interfaces/transactions';
+import { MoreHorizontal } from 'lucide-react';
+import styles from '@/src/styles/transactions/TransactionsPage.module.css';
+import TransactionLineChart from '@/components/ui/charts/TransactionLineChart';
+import TransactionFilters from '@/components/ui/filters/TransactionFilters';
+import {
+  transactionTrendData,
+  transactionVolumeData,
+} from '@/data/transactions/transaction-charts';
+import { transactionsData } from '@/data/transactions/transaction-data';
+import { transactionStats } from '@/data/transactions/transactions-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
-import { MoreHorizontal, Star, StarHalf } from 'lucide-react';
-import styles from '@/src/styles/passengers/PassengersPage.module.css';
+import RevenueChart from '@/components/ui/charts/RevenueChart';
 
-const PassengersPage = () => {
-  const [filters, setFilters] = useState<PassengersFilterState>({
+const TransactionsPage = () => {
+  const [filters, setFilters] = useState<TransactionsFilterState>({
     search: '',
-    rating: '',
     status: '',
-    fromDate: '',
+    paymentMethod: '',
+    dateFrom: '',
+    dateTo: '',
+    amountMin: '',
+    amountMax: '',
   });
 
   const [currentPage, setCurrentPage] = useState(1);
   const entriesPerPage = 15;
 
   const handleFilterChange = (
-    key: keyof PassengersFilterState,
+    key: keyof TransactionsFilterState,
     value: string
   ) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
@@ -34,42 +43,22 @@ const PassengersPage = () => {
   const handleResetFilters = () => {
     setFilters({
       search: '',
-      rating: '',
       status: '',
-      fromDate: '',
+      paymentMethod: '',
+      dateFrom: '',
+      dateTo: '',
+      amountMin: '',
+      amountMax: '',
     });
     setCurrentPage(1);
   };
 
-  //   const handleViewDetails = (passengerId: string) => {
-  //     console.log('View details for passenger:', passengerId);
+  //   const handleViewDetails = (transactionId: string) => {
+  //     console.log('View details for transaction:', transactionId);
   //   };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-  };
-
-  const renderStarRating = (rating: number) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<Star key={i} size={16} fill="#fbbf24" color="#fbbf24" />);
-    }
-
-    if (hasHalfStar) {
-      stars.push(
-        <StarHalf key="half" size={16} fill="#fbbf24" color="#fbbf24" />
-      );
-    }
-
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(<Star key={`empty-${i}`} size={16} color="#e5e7eb" />);
-    }
-
-    return <div style={{ display: 'flex', gap: '2px' }}>{stars}</div>;
   };
 
   const formatCurrency = (amount: number) => {
@@ -80,13 +69,23 @@ const PassengersPage = () => {
     }).format(amount);
   };
 
+  const formatDateTime = (dateTime: string) => {
+    return new Date(dateTime).toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
+
   {
-    /*==================== Passengers Table Columns ====================*/
+    /*==================== Transactions Table Columns ====================*/
   }
-  const passengersColumns: TableColumn[] = [
-    { key: 'passengerId', label: 'Passenger ID' },
+  const transactionsColumns: TableColumn[] = [
+    { key: 'transactionId', label: 'Transaction ID' },
     {
-      key: 'name',
+      key: 'passenger',
       label: 'Passenger',
       render: (value, row) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -103,7 +102,7 @@ const PassengersPage = () => {
               width={32}
               height={32}
               alt="Passenger"
-              src={row.avatar as string}
+              src={row.passengerAvatar as string}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
@@ -111,23 +110,39 @@ const PassengersPage = () => {
         </div>
       ),
     },
-    { key: 'phoneNumber', label: 'Phone Number' },
-    { key: 'totalRides', label: 'Total Rides' },
     {
-      key: 'totalSpent',
-      label: 'Total Spent',
-      render: (value) => formatCurrency(value as number),
+      key: 'driver',
+      label: 'Driver',
+      render: (value, row) => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div
+            style={{
+              width: '2rem',
+              height: '2rem',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              flexShrink: 0,
+            }}
+          >
+            <Image
+              width={32}
+              height={32}
+              alt="Driver"
+              src={row.driverAvatar as string}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
+          <span>{value as string}</span>
+        </div>
+      ),
     },
     {
-      key: 'averageRating',
-      label: 'Average Rating',
+      key: 'amount',
+      label: 'Amount',
       render: (value) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          {renderStarRating(value as number)}
-          <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-            {(value as number).toFixed(1)}
-          </span>
-        </div>
+        <span style={{ fontWeight: '600', color: '#059669' }}>
+          {formatCurrency(value as number)}
+        </span>
       ),
     },
     {
@@ -136,10 +151,10 @@ const PassengersPage = () => {
       render: (value) => {
         const status = value as string;
         const statusClass =
-          status === 'ACTIVE'
+          status === 'COMPLETED'
             ? '#059669'
-            : status === 'INACTIVE'
-              ? '#6b7280'
+            : status === 'PENDING'
+              ? '#f59e0b'
               : '#dc2626';
 
         return (
@@ -155,6 +170,16 @@ const PassengersPage = () => {
         );
       },
     },
+    { key: 'paymentMethod', label: 'Payment Method' },
+    {
+      key: 'dateTime',
+      label: 'Date & Time',
+      render: (value) => (
+        <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
+          {formatDateTime(value as string)}
+        </span>
+      ),
+    },
     {
       key: 'action',
       label: 'Action',
@@ -166,28 +191,43 @@ const PassengersPage = () => {
     },
   ];
   {
-    /*==================== End of Passengers Table Columns ====================*/
+    /*==================== End of Transactions Table Columns ====================*/
   }
 
   {
     /*==================== Filter Logic ====================*/
   }
-  const filteredPassengers = passengersData.filter((passenger) => {
+  const filteredTransactions = transactionsData.filter((transaction) => {
     const matchesSearch =
       !filters.search ||
-      passenger.name.toLowerCase().includes(filters.search.toLowerCase()) ||
-      passenger.passengerId
+      transaction.transactionId
         .toLowerCase()
         .includes(filters.search.toLowerCase()) ||
-      passenger.phoneNumber.includes(filters.search);
-
-    const matchesRating =
-      !filters.rating || passenger.averageRating >= parseFloat(filters.rating);
+      transaction.passenger
+        .toLowerCase()
+        .includes(filters.search.toLowerCase()) ||
+      transaction.driver.toLowerCase().includes(filters.search.toLowerCase());
 
     const matchesStatus =
-      !filters.status || passenger.status === filters.status;
+      !filters.status || transaction.status === filters.status;
 
-    return matchesSearch && matchesRating && matchesStatus;
+    const matchesPaymentMethod =
+      !filters.paymentMethod ||
+      transaction.paymentMethod === filters.paymentMethod;
+
+    const matchesAmountMin =
+      !filters.amountMin || transaction.amount >= parseFloat(filters.amountMin);
+
+    const matchesAmountMax =
+      !filters.amountMax || transaction.amount <= parseFloat(filters.amountMax);
+
+    return (
+      matchesSearch &&
+      matchesStatus &&
+      matchesPaymentMethod &&
+      matchesAmountMin &&
+      matchesAmountMax
+    );
   });
   {
     /*==================== End of Filter Logic ====================*/
@@ -196,11 +236,11 @@ const PassengersPage = () => {
   {
     /*==================== Pagination Logic ====================*/
   }
-  const totalEntries = filteredPassengers.length;
+  const totalEntries = filteredTransactions.length;
   const totalPages = Math.ceil(totalEntries / entriesPerPage);
   const startIndex = (currentPage - 1) * entriesPerPage;
   const endIndex = startIndex + entriesPerPage;
-  const currentPassengers = filteredPassengers.slice(startIndex, endIndex);
+  const currentTransactions = filteredTransactions.slice(startIndex, endIndex);
 
   const getPaginationButtons = () => {
     const buttons = [];
@@ -227,38 +267,54 @@ const PassengersPage = () => {
 
   return (
     <DashboardLayout
-      title="Passengers"
-      meta={SuperAdminPageMeta.passengersPage}
+      title="Transactions"
+      meta={SuperAdminPageMeta.transactionPage}
     >
-      <div className={styles.passengers__page}>
+      <div className={styles.transactions__page}>
         {/*==================== Stats Cards Section ====================*/}
         <div className={styles.stats__section}>
-          {passengerStats.map((stat, index) => (
+          {transactionStats.map((stat, index) => (
             <StatsCard
               key={index}
-              icon={stat.icon}
               title={stat.title}
               value={stat.value}
+              icon={stat.icon}
             />
           ))}
         </div>
         {/*==================== End of Stats Cards Section ====================*/}
 
+        {/*==================== Charts Section ====================*/}
+        <div className={styles.charts__section}>
+          <TransactionLineChart
+            data={transactionTrendData}
+            title="Transaction Trends (This Week)"
+          />
+          <RevenueChart
+            data={transactionVolumeData.map((item) => ({
+              month: item.month,
+              revenue: item.completed + item.pending + item.failed,
+            }))}
+            title="Total Transaction Volume"
+          />
+        </div>
+        {/*==================== End of Charts Section ====================*/}
+
         {/*==================== Filters Section ====================*/}
-        <PassengerFilters
+        <TransactionFilters
           filters={filters}
           onFilterChange={handleFilterChange}
           onResetFilters={handleResetFilters}
         />
         {/*==================== End of Filters Section ====================*/}
 
-        {/*==================== Passengers Table ====================*/}
+        {/*==================== Transactions Table ====================*/}
         <ListTable
-          title="Passengers List"
-          data={currentPassengers}
-          columns={passengersColumns}
+          title="All Transactions"
+          data={currentTransactions}
+          columns={transactionsColumns}
         />
-        {/*==================== End of Passengers Table ====================*/}
+        {/*==================== End of Transactions Table ====================*/}
 
         {/*==================== Pagination Section ====================*/}
         <div className={styles.pagination__section}>
@@ -303,4 +359,4 @@ const PassengersPage = () => {
   );
 };
 
-export default PassengersPage;
+export default TransactionsPage;
