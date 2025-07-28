@@ -3,14 +3,13 @@
  ======================*/
 .sub__admin__page {
   display: flex;
-  margin: 0 auto;
   flex-direction: column;
   gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
-/**==================
+/**===================
  * TWO COLUMN LAYOUT
- ==================*/
+ ===================*/
 .two__column__layout {
   display: grid;
   align-items: start;
@@ -25,6 +24,7 @@
 
 .right__column {
   width: 100%;
+  min-width: 0;
 }
 
 /**=======================
@@ -38,9 +38,9 @@
   border: 0.0625rem solid #e5e7eb;
 }
 
-/**====================
+/**======================
  * ACTION BUTTON STYLES
- ====================*/
+ ======================*/
 .action__button {
   border: none;
   display: flex;
@@ -60,7 +60,7 @@
 /**===================
  * BREAKPOINT STYLES
  ===================*/
-@media (max-width: 768px) {
+@media (max-width: 1368px) {
   .two__column__layout {
     grid-template-columns: 1fr;
     gap: clamp(1.5rem, 3vw, 2rem);

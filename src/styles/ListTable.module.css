@@ -21,7 +21,13 @@
 
 .table__wrapper {
   overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
+}
+
+.table__wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .table {
@@ -94,10 +100,6 @@
     font-size: 16px;
   }
 
-  .table {
-    min-width: 700px;
-  }
-
   .th,
   .td {
     font-size: 13px;
@@ -118,10 +120,6 @@
     font-size: 14px;
   }
 
-  .table {
-    min-width: 600px;
-  }
-
   .th,
   .td {
     font-size: 12px;
@@ -140,10 +138,6 @@
 
   .table__title {
     font-size: 13px;
-  }
-
-  .table {
-    min-width: 550px;
   }
 
   .th,

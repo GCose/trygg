@@ -5,10 +5,12 @@ import DriverFilters from '@/components/filters/DriverFilters';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { DriversFilterState } from '@/interfaces/drivers';
-import { driversData } from '@/data/drivers-data';
+import { driversData } from '@/data/drivers/drivers-data';
 import { TableColumn } from '@/interfaces/admin-layout';
 import { MoreHorizontal, Star, StarHalf } from 'lucide-react';
 import styles from '@/src/styles/drivers/DriversPage.module.css';
+import StatsCard from '@/components/ui/StatsCard';
+import { driverStats } from '@/data/drivers/drivers-stats';
 
 const DriversPage = () => {
   const [filters, setFilters] = useState<DriversFilterState>({
@@ -167,6 +169,19 @@ const DriversPage = () => {
   return (
     <DashboardLayout title="Drivers" meta={SuperAdminPageMeta.driversPage}>
       <div className={styles.drivers__page}>
+        {/*==================== Stats Cards Section ====================*/}
+        <div className={styles.stats__section}>
+          {driverStats.map((stat, index) => (
+            <StatsCard
+              key={index}
+              icon={stat.icon}
+              title={stat.title}
+              value={stat.value}
+            />
+          ))}
+        </div>
+        {/*==================== End of Stats Cards Section ====================*/}
+
         {/*==================== Filters Section ====================*/}
         <DriverFilters
           filters={filters}
