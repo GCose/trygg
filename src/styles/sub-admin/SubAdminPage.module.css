@@ -60,13 +60,7 @@
 /**===================
  * BREAKPOINT STYLES
  ===================*/
-@media (max-width: 64rem) {
-  .two__column__layout {
-    grid-template-columns: 1fr 1.5fr;
-  }
-}
-
-@media (max-width: 48rem) {
+@media (max-width: 768px) {
   .two__column__layout {
     grid-template-columns: 1fr;
     gap: clamp(1.5rem, 3vw, 2rem);
@@ -78,11 +72,5 @@
 
   .right__column {
     order: 2;
-  }
-}
-
-@media (max-width: 33.75rem) {
-  .sub__admin__page {
-    gap: clamp(1rem, 2vw, 1.25rem);
   }
 }
