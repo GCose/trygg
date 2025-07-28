@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import DashboardLayout from '@/components/DashboardLayout';
-import DriverFilters from '@/components/ui/filters/DriverFilters';
+import DriverFilters from '@/components/filters/DriverFilters';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { DriversFilterState } from '@/interfaces/drivers';
@@ -104,9 +104,7 @@ const DriversPage = () => {
       key: 'action',
       label: 'Action',
       render: () => (
-        <button
-          className={styles.action__button}
-        >
+        <button className={styles.action__button}>
           <MoreHorizontal size={18} color="#6b7280" />
         </button>
       ),

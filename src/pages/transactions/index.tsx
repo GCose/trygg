@@ -7,8 +7,8 @@ import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { TransactionsFilterState } from '@/interfaces/transactions';
 import { MoreHorizontal } from 'lucide-react';
 import styles from '@/src/styles/transactions/TransactionsPage.module.css';
-import TransactionLineChart from '@/components/ui/charts/TransactionLineChart';
-import TransactionFilters from '@/components/ui/filters/TransactionFilters';
+import TransactionLineChart from '@/components/charts/TransactionLineChart';
+import TransactionFilters from '@/components/filters/TransactionFilters';
 import {
   transactionTrendData,
   transactionVolumeData,
@@ -16,7 +16,7 @@ import {
 import { transactionsData } from '@/data/transactions/transaction-data';
 import { transactionStats } from '@/data/transactions/transactions-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
-import RevenueChart from '@/components/ui/charts/RevenueChart';
+import RevenueChart from '@/components/charts/RevenueChart';
 
 const TransactionsPage = () => {
   const [filters, setFilters] = useState<TransactionsFilterState>({

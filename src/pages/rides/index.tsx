@@ -8,7 +8,7 @@ import { RidesFilterState } from '@/interfaces/rides';
 import { TableColumn } from '@/interfaces/admin-layout';
 import { MoreHorizontal } from 'lucide-react';
 import styles from '@/src/styles/rides/RidesPage.module.css';
-import RideFilters from '@/components/ui/filters/RideFilters';
+import RideFilters from '@/components/filters/RideFilters';
 import { ridesData } from '@/data/rides/rides-data';
 import { rideStats } from '@/data/rides/rides-stats';
 

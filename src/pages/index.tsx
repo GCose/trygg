@@ -1,13 +1,3 @@
-import { isLoggedIn } from '@/utils/auth';
-import { NextApiRequest } from 'next';
-import Image from 'next/image';
-import StatsCard from '@/components/ui/StatsCard';
-import ListTable from '@/components/ui/ListTable';
-import RevenueChart from '@/components/ui/charts/RevenueChart';
-import TopDriverWidget from '@/components/ui/TopDriverWidget';
-import DriverStatusWidget from '@/components/ui/DriverStatusWidget';
-import AlertsSummaryWidget from '@/components/ui/AlertsSummaryWidget';
-import DriverApplicationStatsWidget from '@/components/ui/DriverApplicationStatsWidget';
 import {
   dashboardStats,
   recentTransactions,
@@ -19,12 +9,22 @@ import {
   alertsSummaryData,
   driverApplicationStatsData,
 } from '@/data/widgets-data';
+import Image from 'next/image';
+import { NextApiRequest } from 'next';
+import { isLoggedIn } from '@/utils/auth';
+import StatsCard from '@/components/ui/StatsCard';
+import ListTable from '@/components/ui/ListTable';
+import { ArrowLeftRight, Clock } from 'lucide-react';
+import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { monthlyRevenueData } from '@/data/chart-data';
 import { TableColumn } from '@/interfaces/admin-layout';
-import { ArrowLeftRight, Clock } from 'lucide-react';
-import styles from '@/src/styles/dashboard/DashboardPage.module.css';
 import DashboardLayout from '@/components/DashboardLayout';
-import { SuperAdminPageMeta } from '@/pageMeta/meta';
+import TopDriverWidget from '@/components/TopDriverWidget';
+import RevenueChart from '@/components/charts/RevenueChart';
+import DriverStatusWidget from '@/components/DriverStatusWidget';
+import AlertsSummaryWidget from '@/components/AlertsSummaryWidget';
+import styles from '@/src/styles/dashboard/DashboardPage.module.css';
+import DriverApplicationStatsWidget from '@/components/DriverApplicationStatsWidget';
 
 const DashboardPage = () => {
   // Transaction Columns

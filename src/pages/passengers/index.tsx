@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import DashboardLayout from '@/components/DashboardLayout';
-import PassengerFilters from '@/components/ui/filters/PassengerFilters';
+import PassengerFilters from '@/components/filters/PassengerFilters';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
@@ -40,7 +40,6 @@ const PassengersPage = () => {
     });
     setCurrentPage(1);
   };
-
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
