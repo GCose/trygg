@@ -1,4 +1,4 @@
-import { Search, Calendar } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { RideFiltersProps } from '@/types/interfaces/rides';
 import styles from '@/src/styles/rides/RideFilters.module.css';
 
@@ -39,12 +39,11 @@ const RideFilters = ({
           <div className={styles.date__wrapper}>
             <input
               type="date"
-              value={filters.dateFrom}
-              onChange={(e) => onFilterChange('dateFrom', e.target.value)}
-              className={styles.date__input}
               placeholder="From Date"
+              value={filters.dateFrom}
+              className={styles.date__input}
+              onChange={(e) => onFilterChange('dateFrom', e.target.value)}
             />
-            <Calendar size={18} className={styles.date__icon} />
           </div>
 
           <div className={styles.date__wrapper}>
@@ -55,7 +54,6 @@ const RideFilters = ({
               className={styles.date__input}
               placeholder="To Date"
             />
-            <Calendar size={18} className={styles.date__icon} />
           </div>
 
           <button onClick={onResetFilters} className={styles.reset__button}>

@@ -1,4 +1,4 @@
-import { Search, Calendar } from 'lucide-react';
+import { Search } from 'lucide-react';
 import styles from '@/src/styles/passengers/PassengerFilters.module.css';
 import { PassengerFiltersProps } from '@/types/interfaces/passengers';
 
@@ -52,12 +52,11 @@ const PassengerFilters = ({
           <div className={styles.date__wrapper}>
             <input
               type="date"
-              value={filters.fromDate}
-              onChange={(e) => onFilterChange('fromDate', e.target.value)}
-              className={styles.date__input}
               placeholder="From Date"
+              value={filters.fromDate}
+              className={styles.date__input}
+              onChange={(e) => onFilterChange('fromDate', e.target.value)}
             />
-            <Calendar size={18} className={styles.date__icon} />
           </div>
 
           <button onClick={onResetFilters} className={styles.reset__button}>

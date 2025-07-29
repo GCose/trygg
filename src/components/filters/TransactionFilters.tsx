@@ -1,4 +1,4 @@
-import { Search, Calendar } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { TransactionFiltersProps } from '@/types/interfaces/transactions';
 import styles from '@/src/styles/transactions/TransactionFilters.module.css';
 
@@ -15,10 +15,10 @@ const TransactionFilters = ({
           <Search size={20} className={styles.search__icon} />
           <input
             type="text"
-            placeholder="Search transactions..."
             value={filters.search}
-            onChange={(e) => onFilterChange('search', e.target.value)}
             className={styles.search__input}
+            placeholder="Search transactions..."
+            onChange={(e) => onFilterChange('search', e.target.value)}
           />
         </div>
         {/*==================== End of Search Input ====================*/}
@@ -38,8 +38,8 @@ const TransactionFilters = ({
 
           <select
             value={filters.paymentMethod}
-            onChange={(e) => onFilterChange('paymentMethod', e.target.value)}
             className={styles.filter__select}
+            onChange={(e) => onFilterChange('paymentMethod', e.target.value)}
           >
             <option value="">Payment Method</option>
             <option value="Credit Card">Credit Card</option>
@@ -50,12 +50,11 @@ const TransactionFilters = ({
           <div className={styles.date__wrapper}>
             <input
               type="date"
-              value={filters.dateFrom}
-              onChange={(e) => onFilterChange('dateFrom', e.target.value)}
-              className={styles.date__input}
               placeholder="From Date"
+              value={filters.dateFrom}
+              className={styles.date__input}
+              onChange={(e) => onFilterChange('dateFrom', e.target.value)}
             />
-            <Calendar size={18} className={styles.date__icon} />
           </div>
 
           <button onClick={onResetFilters} className={styles.reset__button}>
