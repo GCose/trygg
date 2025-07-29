@@ -18,13 +18,13 @@ import { ArrowLeftRight, Clock } from 'lucide-react';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { monthlyRevenueData } from '@/mocks/chart-data';
 import { TableColumn } from '@/types/interfaces/admin-layout';
-import DashboardLayout from '@/src/components/DashboardLayout';
-import TopDriverWidget from '@/src/components/TopDriverWidget';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import TopDriverWidget from '@/src/components/widgets/TopDriverWidget';
 import RevenueChart from '@/src/components/charts/RevenueChart';
 import styles from '@/src/styles/dashboard/DashboardPage.module.css';
-import DriverStatusWidget from '@/src/components/DriverStatusWidget';
-import AlertsSummaryWidget from '@/src/components/AlertsSummaryWidget';
-import DriverApplicationStatsWidget from '@/src/components/DriverApplicationStatsWidget';
+import DriverStatusWidget from '@/src/components/widgets/DriverStatusWidget';
+import AlertsSummaryWidget from '@/src/components/widgets/AlertsSummaryWidget';
+import DriverApplicationStatsWidget from '@/src/components/widgets/DriverApplicationStatsWidget';
 import { User } from '@/types';
 
 const DashboardPage = () => {
@@ -132,7 +132,11 @@ const DashboardPage = () => {
   ];
 
   return (
-    <DashboardLayout title="Dashboard" meta={SuperAdminPageMeta.dashboardPage}>
+    <DashboardLayout
+      role="SUPER"
+      title="Dashboard"
+      meta={SuperAdminPageMeta.dashboardPage}
+    >
       <div className={styles.dashboard}>
         {/*==================== Row 1: Stats Cards ====================*/}
         <div className={styles.stats__grid}>
@@ -242,23 +246,18 @@ export const getServerSideProps = async ({ req }: { req: NextApiRequest }) => {
 
   const user = userData as User;
 
-  if (user.role === 'SUB') {
+  if (user.role !== 'SUPER') {
     return {
       redirect: {
-        destination: '/sub-admin',
-        permanent: false,
-      },
-    };
-  } else if (user.role === 'SUPER') {
-    return {
-      redirect: {
-        destination: '/super-admin',
+        destination: '/',
         permanent: false,
       },
     };
   }
 
   return {
-    props: {},
+    props: {
+      userData,
+    },
   };
 };

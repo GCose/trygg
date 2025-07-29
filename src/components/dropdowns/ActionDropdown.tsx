@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { MoreHorizontal } from 'lucide-react';
 import { ActionDropdownProps } from '@/types/interfaces/sub-admin';
 import styles from '@/src/styles/Dropdown.module.css';
-import Dropdown from './ui/Dropdown';
+import Dropdown from '../ui/Dropdown';
 
 const ActionDropdown = ({
   onViewDetails,
@@ -27,7 +27,7 @@ const ActionDropdown = ({
   return (
     <Dropdown
       trigger={
-        <button className={styles.action__button}>
+        <button title="Button" className={styles.action__button}>
           <MoreHorizontal size={18} color="#6b7280" />
         </button>
       }

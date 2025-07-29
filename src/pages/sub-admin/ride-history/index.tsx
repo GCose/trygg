@@ -1,23 +1,23 @@
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import PassengersPageComponent from '@/src/components/shared/passengers/passengers';
-import { NextApiRequest } from 'next';
+import { AdminPageMeta } from '@/pageMeta/meta';
+import RidesPageComponent from '@/src/components/shared/rides/rides';
 import { isLoggedIn } from '@/utils/auth';
+import { NextApiRequest } from 'next';
 import { User } from '@/types';
 
-const PassengersPage = () => {
+const RidesPage = () => {
   return (
     <DashboardLayout
-      role="SUPER"
-      title="Passengers"
-      meta={SuperAdminPageMeta.passengersPage}
+      role="SUB"
+      title="Ride History"
+      meta={AdminPageMeta.ridesPage}
     >
-      <PassengersPageComponent />
+      <RidesPageComponent />
     </DashboardLayout>
   );
 };
 
-export default PassengersPage;
+export default RidesPage;
 
 export const getServerSideProps = async ({ req }: { req: NextApiRequest }) => {
   const userData = isLoggedIn(req);
@@ -33,7 +33,7 @@ export const getServerSideProps = async ({ req }: { req: NextApiRequest }) => {
 
   const user = userData as User;
 
-  if (user.role !== 'SUPER') {
+  if (user.role !== 'SUB') {
     return {
       redirect: {
         destination: '/',

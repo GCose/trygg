@@ -1,4 +1,4 @@
-export const SuperAdminPageMeta = {
+export const AdminPageMeta = {
   dashboardPage: {
     title: 'Trygg Admin | Dashboard',
     description: 'Track all Trygg recent activites.',
@@ -14,23 +14,27 @@ export const SuperAdminPageMeta = {
     description: 'Track all Trygg passengers.',
   },
 
-  transactionPage: {
-    title: 'Trygg Admin | Transactions',
-    description: 'Track all Trygg transactions.',
-  },
-
   ridesPage: {
     title: 'Trygg Admin | Ride History',
     description: 'Track all Trygg rides.',
   },
 
-  subAdminsPage: {
-    title: 'Trygg Admin | Sub Admins',
-    description: 'Track all Trygg Sub Admins.',
-  },
-
   settingsPage: {
     title: 'Trygg Admin | Settings',
     description: 'Change your Trygg admin dashboard settings.',
+  },
+};
+
+export const SuperAdminPageMeta = {
+  ...AdminPageMeta,
+
+  transactionPage: {
+    title: 'Trygg Admin | Transactions',
+    description: 'Track all Trygg transactions.',
+  },
+
+  subAdminsPage: {
+    title: 'Trygg Admin | Sub Admins',
+    description: 'Track all Trygg Sub Admins.',
   },
 };

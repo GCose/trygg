@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import DashboardLayout from '@/src/components/DashboardLayout';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import StatsCard from '@/src/components/ui/StatsCard';
 import ListTable from '@/src/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
@@ -14,10 +14,13 @@ import {
   transactionVolumeData,
 } from '@/mocks/transactions/transaction-charts';
 import RevenueChart from '@/src/components/charts/RevenueChart';
-import { StatusBadge } from '@/utils/status';
 import { TableColumn } from '@/types/interfaces/admin-layout';
 import { transactionsData } from '@/mocks/transactions/transaction-data';
 import { transactionStats } from '@/mocks/transactions/transactions-stats';
+import StatusBadge from '@/src/components/shared/status';
+import { NextApiRequest } from 'next';
+import { isLoggedIn } from '@/utils/auth';
+import { User } from '@/types';
 
 const TransactionsPage = () => {
   const [filters, setFilters] = useState<TransactionsFilterState>({
@@ -157,7 +160,7 @@ const TransactionsPage = () => {
       key: 'action',
       label: 'Action',
       render: () => (
-        <button className={styles.action__button}>
+        <button title="Button" className={styles.action__button}>
           <EyeIcon size={18} color="#6b7280" />
         </button>
       ),
@@ -240,6 +243,7 @@ const TransactionsPage = () => {
 
   return (
     <DashboardLayout
+      role="SUPER"
       title="Transactions"
       meta={SuperAdminPageMeta.transactionPage}
     >
@@ -336,3 +340,33 @@ const TransactionsPage = () => {
 };
 
 export default TransactionsPage;
+
+export const getServerSideProps = async ({ req }: { req: NextApiRequest }) => {
+  const userData = isLoggedIn(req);
+
+  if (!userData) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    };
+  }
+
+  const user = userData as User;
+
+  if (user.role !== 'SUPER') {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      userData,
+    },
+  };
+};

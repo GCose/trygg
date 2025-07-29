@@ -42,7 +42,7 @@ const SignIn = () => {
         });
 
         if (data.role === 'SUB') {
-          router.push('/sub');
+          router.push('/sub-admin');
         } else if (data.role === 'SUPER') {
           router.push('/super-admin');
         }
@@ -182,7 +182,7 @@ export const getServerSideProps = async ({ req }: { req: NextApiRequest }) => {
     if (user.role === 'SUB') {
       return {
         redirect: {
-          destination: '/sub',
+          destination: '/sub-admin',
           permanent: false,
         },
       };

@@ -5,10 +5,18 @@ import Image from 'next/image';
 import styles from '@/src/styles/dashboard/DashboardLayout.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
-import { navigationItems } from '@/mocks/navigation-items';
+import {
+  adminNavigationItems,
+  superAdminNavigationItems,
+} from '@/mocks/navigation-items';
 import { DashboardLayoutProps } from '@/types/interfaces/admin-layout';
 
-const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
+const DashboardLayout = ({
+  children,
+  title,
+  meta,
+  role,
+}: DashboardLayoutProps) => {
   const router = useRouter();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -55,6 +63,9 @@ const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  const navigationItems =
+    role === 'SUPER' ? superAdminNavigationItems : adminNavigationItems;
 
   return (
     <>
@@ -147,6 +158,7 @@ const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
           >
             <div className={styles.header__left}>
               <button
+                title="Button"
                 onClick={handleMenuToggle}
                 className={styles.menu__toggle}
               >

@@ -9,13 +9,13 @@ import ListTable from '@/src/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { TableColumn } from '@/types/interfaces/admin-layout';
 import { SubAdminFormData, SubAdmin } from '@/types/interfaces/sub-admin';
-import CreateSubAdminForm from '@/src/components/subAdminForm';
-import DashboardLayout from '@/src/components/DashboardLayout';
+import CreateSubAdminForm from '@/src/components/forms/subAdminForm';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import SubAdminDetailsModal from '@/src/components/modals/SubAdminDetailsModal';
 import EditSubAdminModal from '@/src/components/modals/EditSubAdminModal';
 import DeleteConfirmModal from '@/src/components/modals/DeleteConfirmModal';
 import styles from '@/src/styles/sub-admin/SubAdminPage.module.css';
-import ActionDropdown from '@/src/components/ActionDropdown';
+import ActionDropdown from '@/src/components/dropdowns/ActionDropdown';
 import { UserIcon } from 'lucide-react';
 
 const SubAdminsPage = () => {
@@ -175,7 +175,11 @@ const SubAdminsPage = () => {
   }
 
   return (
-    <DashboardLayout title="Sub Admins" meta={SuperAdminPageMeta.subAdminsPage}>
+    <DashboardLayout
+      role="SUPER"
+      title="Sub Admins"
+      meta={SuperAdminPageMeta.subAdminsPage}
+    >
       <div className={styles.sub__admin__page}>
         {/*==================== Two Column Layout ====================*/}
         <div className={styles.two__column__layout}>
