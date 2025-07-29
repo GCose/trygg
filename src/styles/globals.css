@@ -1,6 +1,7 @@
 :root {
   --background: #ffffff;
   --foreground: #444444;
+  --selection-color: #ffe864;
 }
 
 /**====================
@@ -22,7 +23,8 @@
 }
 
 ::selection {
-  background-color: var(--white-alpha-8);
+  color: #444444;
+  background-color: var(--selection-color);
 }
 
 * {

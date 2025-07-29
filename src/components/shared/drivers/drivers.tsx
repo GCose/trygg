@@ -67,28 +67,33 @@ const DriversPageComponent = () => {
   const driversColumns: TableColumn[] = [
     { key: 'driverId', label: 'Driver ID' },
     {
-      key: 'avatar',
-      label: 'Photo',
-      render: (value) => (
-        <div
-          style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '50%',
-            overflow: 'hidden',
-          }}
-        >
-          <Image
-            width={40}
-            height={40}
-            alt="Driver"
-            src={(value as string) || '/profiles/profile-1.avif'}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
+      key: 'name',
+      label: 'Driver Name',
+      render: (value, row) => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div
+            style={{
+              width: '2.5rem',
+              height: '2.5rem',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              flexShrink: 0,
+            }}
+          >
+            <Image
+              width={40}
+              height={40}
+              alt="Driver"
+              src={(row.avatar as string) || '/profiles/profile-1.avif'}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
+          <span style={{ fontWeight: 500, color: '#111827' }}>
+            {value as string}
+          </span>
         </div>
       ),
     },
-    { key: 'name', label: 'Driver Name' },
     { key: 'mobileNumber', label: 'Mobile Number' },
     {
       key: 'rating',
