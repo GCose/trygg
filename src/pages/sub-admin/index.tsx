@@ -7,7 +7,7 @@ import { TableColumn } from '@/interfaces/admin-layout';
 import { SubAdminFormData, SubAdmin } from '@/interfaces/sub-admin';
 import CreateSubAdminForm from '@/components/subAdminForm';
 import DashboardLayout from '@/components/DashboardLayout';
-import SubAdminDetailsModal from '@/components/modals/subAdminDetailsModal';
+import SubAdminDetailsModal from '@/components/modals/SubAdminDetailsModal';
 import EditSubAdminModal from '@/components/modals/EditSubAdminModal';
 import DeleteConfirmModal from '@/components/modals/DeleteConfirmModal';
 import styles from '@/src/styles/sub-admin/SubAdminPage.module.css';
@@ -199,8 +199,6 @@ const SubAdminPage = () => {
           isOpen={isDetailsModalOpen}
           onClose={handleCloseDetailsModal}
           admin={selectedAdmin}
-          onUpdate={() => {}}
-          onDelete={() => {}}
         />
         {/*==================== End of Sub Admin Details Modal ====================*/}
 

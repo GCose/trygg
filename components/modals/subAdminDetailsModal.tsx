@@ -8,8 +8,6 @@ const SubAdminDetailsModal = ({
   isOpen,
   onClose,
   admin,
-  onUpdate,
-  onDelete,
 }: SubAdminDetailsModalProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -29,16 +27,6 @@ const SubAdminDetailsModal = ({
         hour12: false,
       })
     );
-  };
-
-  const handleUpdateDetails = () => {
-    onUpdate(admin.adminId);
-    onClose();
-  };
-
-  const handleDelete = () => {
-    onDelete(admin.adminId);
-    onClose();
   };
 
   return (
@@ -75,54 +63,46 @@ const SubAdminDetailsModal = ({
 
             {/*==================== Admin Info Fields ====================*/}
             <div className={styles.info__fields}>
-              {/*==================== Email Field ====================*/}
-              <div className={styles.field__group}>
-                <label className={styles.field__label}>Email</label>
-                <div className={styles.field__value}>{admin.email}</div>
-              </div>
-              {/*==================== End of Email Field ====================*/}
-
-              {/*==================== Password Field ====================*/}
-              <div className={styles.field__group}>
-                <label className={styles.field__label}>Password</label>
-                <div className={styles.password__field}>
-                  <span className={styles.password__value}>
-                    {showPassword ? 'rgt$sas' : '••••••••'}
-                  </span>
-                  <button
-                    onClick={() => setShowPassword(!showPassword)}
-                    className={styles.password__toggle}
-                  >
-                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                  </button>
+              {/*==================== Email and Password Row ====================*/}
+              <div className={styles.email__password__row}>
+                {/*==================== Email Field ====================*/}
+                <div className={styles.field__group}>
+                  <label className={styles.field__label}>Email</label>
+                  <div className={styles.field__value}>{admin.email}</div>
                 </div>
-              </div>
-              {/*==================== End of Password Field ====================*/}
+                {/*==================== End of Email Field ====================*/}
 
-              {/*==================== Created Date Field ====================*/}
-              <div className={styles.field__group}>
-                <label className={styles.field__label}>Created Date</label>
-                <div className={styles.field__value}>
+                {/*==================== Password Field ====================*/}
+                <div className={styles.field__group}>
+                  <label className={styles.field__label}>Password</label>
+                  <div className={styles.password__container}>
+                    <span className={styles.field__value}>
+                      {showPassword ? 'rgt$sas' : '••••••••'}
+                    </span>
+                    <button
+                      onClick={() => setShowPassword(!showPassword)}
+                      className={styles.password__toggle}
+                    >
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+                {/*==================== End of Password Field ====================*/}
+              </div>
+              {/*==================== End of Email and Password Row ====================*/}
+
+              {/*==================== Created Date Section ====================*/}
+              <div className={styles.created__date__section}>
+                <label className={styles.created__date__label}>
+                  Created Date
+                </label>
+                <div className={styles.created__date__value}>
                   {formatDateTime(admin.createdAt)}
                 </div>
               </div>
-              {/*==================== End of Created Date Field ====================*/}
+              {/*==================== End of Created Date Section ====================*/}
             </div>
             {/*==================== End of Admin Info Fields ====================*/}
-
-            {/*==================== Action Buttons ====================*/}
-            <div className={styles.action__buttons}>
-              <button onClick={handleDelete} className={styles.delete__button}>
-                Delete
-              </button>
-              <button
-                onClick={handleUpdateDetails}
-                className={styles.update__button}
-              >
-                Update Details
-              </button>
-            </div>
-            {/*==================== End of Action Buttons ====================*/}
           </div>
           {/*==================== End of Modal Content ====================*/}
         </div>
