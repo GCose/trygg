@@ -1,53 +1,81 @@
 import { NavigationItem } from '@/types/interfaces/admin-layout';
 
-export const subAdminNavigationItems: NavigationItem[] = [];
-
-export const adminNavigationItems: NavigationItem[] = [
-  {
+export const subAdminNavigationItems: NavigationItem[] = [
+{
     id: 'dashboard',
     label: 'Dashboard',
-    href: '/',
+    href: '/sub-admin',
     icon: 'LayoutDashboard',
   },
   {
     id: 'drivers',
     label: 'Drivers',
-    href: '/drivers',
+    href: '/sub-admin/drivers',
     icon: 'Car',
   },
   {
     id: 'passengers',
     label: 'Passengers',
-    href: '/passengers',
+    href: '/sub-admin/passengers',
     icon: 'Users',
   },
 
   {
     id: 'rides',
     label: 'Ride History',
-    href: '/ride-history',
+    href: '/sub-admin/ride-history',
     icon: 'Route',
   },
   {
     id: 'settings',
     label: 'Settings',
-    href: '/settings',
+    href: '/sub-admin/settings',
     icon: 'Settings',
   },
 ];
 
 export const superAdminNavigationItems: NavigationItem[] = [
-  ...adminNavigationItems,
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    href: '/super-admin',
+    icon: 'LayoutDashboard',
+  },
+  {
+    id: 'drivers',
+    label: 'Drivers',
+    href: '/super-admin/drivers',
+    icon: 'Car',
+  },
+  {
+    id: 'passengers',
+    label: 'Passengers',
+    href: '/super-admin/passengers',
+    icon: 'Users',
+  },
+
+  {
+    id: 'rides',
+    label: 'Ride History',
+    href: '/super-admin/ride-history',
+    icon: 'Route',
+  },
+  {
+    id: 'settings',
+    label: 'Settings',
+    href: '/super-admin/settings',
+    icon: 'Settings',
+  },
   {
     id: 'transactions',
     label: 'Transactions',
-    href: '/transactions',
+    href: '/super-admin/transactions',
     icon: 'CreditCard',
   },
   {
     id: 'subadmins',
     label: 'Sub Admins',
-    href: '/sub-admins',
+    href: '/super-admin/sub-admins',
     icon: 'User',
   },
 ];
