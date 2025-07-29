@@ -7,8 +7,8 @@ import { TableColumn } from '@/types/interfaces/admin-layout';
 import { MoreHorizontal, Route } from 'lucide-react';
 import styles from '@/src/styles/rides/RidesPage.module.css';
 import RideFilters from '@/src/components/filters/RideFilters';
-import { ridesData } from '@/mocks/rides/rides-data';
-import { rideStats } from '@/mocks/rides/rides-stats';
+import { ridesData } from '@/mocks/ride-history/ride-history-data';
+import { rideStats } from '@/mocks/ride-history/ride-history-stats';
 import StatusBadge from '@/src/components/shared/status';
 
 const RidesPageComponent = () => {
