@@ -1,7 +1,7 @@
 import { NavigationItem } from '@/types/interfaces/admin-layout';
 
 export const subAdminNavigationItems: NavigationItem[] = [
-{
+  {
     id: 'dashboard',
     label: 'Dashboard',
     href: '/sub-admin',
@@ -61,12 +61,6 @@ export const superAdminNavigationItems: NavigationItem[] = [
     icon: 'Route',
   },
   {
-    id: 'settings',
-    label: 'Settings',
-    href: '/super-admin/settings',
-    icon: 'Settings',
-  },
-  {
     id: 'transactions',
     label: 'Transactions',
     href: '/super-admin/transactions',
@@ -77,5 +71,11 @@ export const superAdminNavigationItems: NavigationItem[] = [
     label: 'Sub Admins',
     href: '/super-admin/sub-admins',
     icon: 'User',
+  },
+  {
+    id: 'settings',
+    label: 'Settings',
+    href: '/super-admin/settings',
+    icon: 'Settings',
   },
 ];

@@ -8,7 +8,7 @@ import Link from 'next/link';
 import {
   subAdminNavigationItems,
   superAdminNavigationItems,
-} from '@/mocks/navigation-items';
+} from '@/src/constants/navigation-items';
 import { DashboardLayoutProps } from '@/types/interfaces/admin-layout';
 
 const DashboardLayout = ({
