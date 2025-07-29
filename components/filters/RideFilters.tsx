@@ -1,5 +1,5 @@
 import { Search, Calendar } from 'lucide-react';
-import { RideFiltersProps } from '@/interfaces/rides';
+import { RideFiltersProps } from '@/types/interfaces/rides';
 import styles from '@/styles/rides/RideFilters.module.css';
 
 const RideFilters = ({

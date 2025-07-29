@@ -1,6 +1,6 @@
 import { Search, Calendar } from 'lucide-react';
 import styles from '@/styles/drivers/DriverFilters.module.css';
-import { DriverFiltersProps } from '@/interfaces/drivers';
+import { DriverFiltersProps } from '@/types/interfaces/drivers';
 
 const DriverFilters = ({
   filters,

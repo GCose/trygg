@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { MoreHorizontal } from 'lucide-react';
-import { ActionDropdownProps } from '@/interfaces/sub-admin';
+import { ActionDropdownProps } from '@/types/interfaces/sub-admin';
 import styles from '@/styles/Dropdown.module.css';
 import Dropdown from './ui/Dropdown';
 

@@ -12,7 +12,7 @@ import styles from '@/styles/charts/TransactionLineChart.module.css';
 import {
   TransactionLineChartProps,
   TransactionTooltipProps,
-} from '@/interfaces/transactions';
+} from '@/types/interfaces/transactions';
 
 const TransactionLineChart = ({ data, title }: TransactionLineChartProps) => {
   const formatRevenue = (value: number) => {

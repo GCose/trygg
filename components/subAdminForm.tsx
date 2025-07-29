@@ -2,7 +2,10 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Eye, EyeOff, Upload } from 'lucide-react';
 import styles from '@/styles/sub-admin/SubAdminForm.module.css';
-import { SubAdminFormProps, SubAdminFormData } from '@/interfaces/sub-admin';
+import {
+  SubAdminFormProps,
+  SubAdminFormData,
+} from '@/types/interfaces/sub-admin';
 
 const CreateSubAdminForm = ({ onCreateAdmin }: SubAdminFormProps) => {
   const [formData, setFormData] = useState<SubAdminFormData>({

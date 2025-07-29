@@ -1,4 +1,4 @@
-import { NavigationItem } from '@/interfaces/admin-layout';
+import { NavigationItem } from '@/types/interfaces/admin-layout';
 
 export const navigationItems: NavigationItem[] = [
   {
@@ -27,8 +27,8 @@ export const navigationItems: NavigationItem[] = [
   },
   {
     id: 'rides',
-    label: 'Rides',
-    href: '/rides',
+    label: 'Ride History',
+    href: '/ride-history',
     icon: 'Route',
   },
   {

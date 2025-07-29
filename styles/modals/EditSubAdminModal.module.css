@@ -79,7 +79,7 @@
   background: #ffffff;
   box-sizing: border-box;
   transition: all 0.2s ease;
-  border: 0.0625rem solid #e5e7eb;
+  border: 0.0625rem solid transparent;
   padding: clamp(0.75rem, 1.5vw, 0.875rem);
 }
 

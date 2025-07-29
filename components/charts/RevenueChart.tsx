@@ -9,7 +9,7 @@ import {
 } from 'recharts';
 import { TrendingUp } from 'lucide-react';
 import styles from '@/styles/charts/RevenueChart.module.css';
-import { RevenueChartProps, TooltipProps } from '@/interfaces/chart';
+import { RevenueChartProps, TooltipProps } from '@/types/interfaces/chart';
 
 const RevenueChart = ({ data, title }: RevenueChartProps) => {
   const formatRevenue = (value: number) => {

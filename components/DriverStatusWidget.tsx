@@ -1,6 +1,6 @@
 import { Users, Clock } from 'lucide-react';
 import styles from '@/styles/widgets/DriverStatus.module.css';
-import { DriverStatusWidgetProps } from '@/interfaces/widgets';
+import { DriverStatusWidgetProps } from '@/types/interfaces/widgets';
 
 const DriverStatusWidget = ({ data }: DriverStatusWidgetProps) => {
   return (

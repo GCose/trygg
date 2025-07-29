@@ -1,6 +1,6 @@
 import { UserCheck, Clock, UserX, Users } from 'lucide-react';
 import styles from '@/styles/widgets/DriverApplicationStats.module.css';
-import { DriverApplicationStatsWidgetProps } from '@/interfaces/widgets';
+import { DriverApplicationStatsWidgetProps } from '@/types/interfaces/widgets';
 
 const DriverApplicationStatsWidget = ({
   data,

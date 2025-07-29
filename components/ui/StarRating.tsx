@@ -1,4 +1,4 @@
-import { StarRatingProps } from '@/interfaces/drivers';
+import { StarRatingProps } from '@/types/interfaces/drivers';
 import styles from '@/styles/StarRating.module.css';
 
 const StarRating = ({ rating, maxStars = 5 }: StarRatingProps) => {

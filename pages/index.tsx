@@ -17,13 +17,13 @@ import ListTable from '@/components/ui/ListTable';
 import { ArrowLeftRight, Clock } from 'lucide-react';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { monthlyRevenueData } from '@/data/chart-data';
-import { TableColumn } from '@/interfaces/admin-layout';
+import { TableColumn } from '@/types/interfaces/admin-layout';
 import DashboardLayout from '@/components/DashboardLayout';
 import TopDriverWidget from '@/components/TopDriverWidget';
 import RevenueChart from '@/components/charts/RevenueChart';
+import styles from '@/styles/dashboard/DashboardPage.module.css';
 import DriverStatusWidget from '@/components/DriverStatusWidget';
 import AlertsSummaryWidget from '@/components/AlertsSummaryWidget';
-import styles from '@/styles/dashboard/DashboardPage.module.css';
 import DriverApplicationStatsWidget from '@/components/DriverApplicationStatsWidget';
 
 const DashboardPage = () => {
@@ -38,10 +38,10 @@ const DashboardPage = () => {
           <div
             style={{
               width: '2rem',
-              height: '2rem',
-              borderRadius: '50%',
-              overflow: 'hidden',
               flexShrink: 0,
+              height: '2rem',
+              overflow: 'hidden',
+              borderRadius: '50%',
             }}
           >
             <Image
@@ -64,10 +64,10 @@ const DashboardPage = () => {
           <div
             style={{
               width: '2rem',
-              height: '2rem',
-              borderRadius: '50%',
-              overflow: 'hidden',
               flexShrink: 0,
+              height: '2rem',
+              overflow: 'hidden',
+              borderRadius: '50%',
             }}
           >
             <Image
@@ -95,19 +95,19 @@ const DashboardPage = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div
             style={{
+              flexShrink: 0,
               width: '2.5rem',
               height: '2.5rem',
-              borderRadius: '50%',
               overflow: 'hidden',
-              flexShrink: 0,
+              borderRadius: '50%',
             }}
           >
             <Image
               width={40}
               height={40}
               alt="Driver"
-              src={(row.profilePicture as string) || '/profiles/profile-1.avif'}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              src={(row.profilePicture as string) || '/profiles/profile-1.avif'}
             />
           </div>
           <span style={{ fontWeight: 500, color: '#111827' }}>
@@ -175,7 +175,7 @@ const DashboardPage = () => {
         </div>
         {/*==================== End of Row 2 ====================*/}
 
-        {/*==================== Row 3: Recent Transactions Full Width ====================*/}
+        {/*==================== Row 3: Recent Transactions  ====================*/}
         <div className={styles.full__width__section}>
           <div className={styles.table__with__icon}>
             <ArrowLeftRight size={20} color="#fbbf24" />

@@ -5,11 +5,11 @@ import PassengerFilters from '@/components/filters/PassengerFilters';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import { PassengersFilterState } from '@/interfaces/passengers';
+import { PassengersFilterState } from '@/types/interfaces/passengers';
 import { passengersData } from '@/data/passenger/passengers-data';
 import { passengerStats } from '@/data/passenger/passenger-stats';
-import { TableColumn } from '@/interfaces/admin-layout';
-import { MoreHorizontal, Star, StarHalf, Users } from 'lucide-react';
+import { TableColumn } from '@/types/interfaces/admin-layout';
+import { EyeIcon, Users } from 'lucide-react';
 import styles from '@/styles/passengers/PassengersPage.module.css';
 import { StatusBadge } from '@/utils/status';
 
@@ -44,29 +44,6 @@ const PassengersPage = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-  };
-
-  const renderStarRating = (rating: number) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<Star key={i} size={16} fill="#fbbf24" color="#fbbf24" />);
-    }
-
-    if (hasHalfStar) {
-      stars.push(
-        <StarHalf key="half" size={16} fill="#fbbf24" color="#fbbf24" />
-      );
-    }
-
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(<Star key={`empty-${i}`} size={16} color="#e5e7eb" />);
-    }
-
-    return <div style={{ display: 'flex', gap: '2px' }}>{stars}</div>;
   };
 
   const formatCurrency = (amount: number) => {
@@ -115,15 +92,15 @@ const PassengersPage = () => {
       label: 'Total Spent',
       render: (value) => formatCurrency(value as number),
     },
-    {
-      key: 'averageRating',
-      label: 'Average Rating',
-      render: (value) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          {renderStarRating(value as number)}
-        </div>
-      ),
-    },
+    // {
+    //   key: 'averageRating',
+    //   label: 'Average Rating',
+    //   render: (value) => (
+    //     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+    //       {renderStarRating(value as number)}
+    //     </div>
+    //   ),
+    // },
     {
       key: 'status',
       label: 'Status',
@@ -134,7 +111,7 @@ const PassengersPage = () => {
       label: 'Action',
       render: () => (
         <button className={styles.action__button}>
-          <MoreHorizontal size={18} color="#6b7280" />
+          <EyeIcon size={18} color="#6b7280" />
         </button>
       ),
     },

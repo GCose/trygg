@@ -1,6 +1,6 @@
 import { Search, Calendar } from 'lucide-react';
 import styles from '@/styles/passengers/PassengerFilters.module.css';
-import { PassengerFiltersProps } from '@/interfaces/passengers';
+import { PassengerFiltersProps } from '@/types/interfaces/passengers';
 
 const PassengerFilters = ({
   filters,

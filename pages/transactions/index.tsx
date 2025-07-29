@@ -4,8 +4,8 @@ import DashboardLayout from '@/components/DashboardLayout';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import { TransactionsFilterState } from '@/interfaces/transactions';
-import { CreditCard, MoreHorizontal } from 'lucide-react';
+import { TransactionsFilterState } from '@/types/interfaces/transactions';
+import { CreditCard, EyeIcon } from 'lucide-react';
 import styles from '@/styles/transactions/TransactionsPage.module.css';
 import TransactionLineChart from '@/components/charts/TransactionLineChart';
 import TransactionFilters from '@/components/filters/TransactionFilters';
@@ -13,11 +13,11 @@ import {
   transactionTrendData,
   transactionVolumeData,
 } from '@/data/transactions/transaction-charts';
-import { transactionsData } from '@/data/transactions/transaction-data';
-import { transactionStats } from '@/data/transactions/transactions-stats';
-import { TableColumn } from '@/interfaces/admin-layout';
 import RevenueChart from '@/components/charts/RevenueChart';
 import { StatusBadge } from '@/utils/status';
+import { TableColumn } from '@/types/interfaces/admin-layout';
+import { transactionsData } from '@/data/transactions/transaction-data';
+import { transactionStats } from '@/data/transactions/transactions-stats';
 
 const TransactionsPage = () => {
   const [filters, setFilters] = useState<TransactionsFilterState>({
@@ -89,10 +89,10 @@ const TransactionsPage = () => {
           <div
             style={{
               width: '2rem',
-              height: '2rem',
-              borderRadius: '50%',
-              overflow: 'hidden',
               flexShrink: 0,
+              height: '2rem',
+              overflow: 'hidden',
+              borderRadius: '50%',
             }}
           >
             <Image
@@ -115,10 +115,10 @@ const TransactionsPage = () => {
           <div
             style={{
               width: '2rem',
-              height: '2rem',
-              borderRadius: '50%',
-              overflow: 'hidden',
               flexShrink: 0,
+              height: '2rem',
+              overflow: 'hidden',
+              borderRadius: '50%',
             }}
           >
             <Image
@@ -158,7 +158,7 @@ const TransactionsPage = () => {
       label: 'Action',
       render: () => (
         <button className={styles.action__button}>
-          <MoreHorizontal size={18} color="#6b7280" />
+          <EyeIcon size={18} color="#6b7280" />
         </button>
       ),
     },
@@ -249,9 +249,9 @@ const TransactionsPage = () => {
           {transactionStats.map((stat, index) => (
             <StatsCard
               key={index}
+              icon={stat.icon}
               title={stat.title}
               value={stat.value}
-              icon={stat.icon}
             />
           ))}
         </div>

@@ -4,8 +4,8 @@ import DashboardLayout from '@/components/DashboardLayout';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import { RidesFilterState } from '@/interfaces/rides';
-import { TableColumn } from '@/interfaces/admin-layout';
+import { RidesFilterState } from '@/types/interfaces/rides';
+import { TableColumn } from '@/types/interfaces/admin-layout';
 import { MoreHorizontal, Route } from 'lucide-react';
 import styles from '@/styles/rides/RidesPage.module.css';
 import RideFilters from '@/components/filters/RideFilters';
@@ -250,7 +250,7 @@ const RidesPage = () => {
   }
 
   return (
-    <DashboardLayout title="Rides" meta={SuperAdminPageMeta.ridesPage}>
+    <DashboardLayout title="Ride History" meta={SuperAdminPageMeta.ridesPage}>
       <div className={styles.rides__page}>
         {/*==================== Stats Cards Section ====================*/}
         <div className={styles.stats__section}>

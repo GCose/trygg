@@ -1,6 +1,6 @@
 import { X } from 'lucide-react';
 import styles from '@/styles/modals/Modal.module.css';
-import { ModalProps } from '@/interfaces/modal';
+import { ModalProps } from '@/types/interfaces/modal';
 
 const Modal = ({
   isOpen,

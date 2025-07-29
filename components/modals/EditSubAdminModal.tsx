@@ -5,7 +5,7 @@ import Modal from '@/components/ui/Modal';
 import {
   EditSubAdminModalProps,
   SubAdminFormData,
-} from '@/interfaces/sub-admin';
+} from '@/types/interfaces/sub-admin';
 import styles from '@/styles/modals/EditSubAdminModal.module.css';
 
 const EditSubAdminModal = ({

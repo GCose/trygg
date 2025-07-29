@@ -1,5 +1,5 @@
 import { Search, Calendar } from 'lucide-react';
-import { TransactionFiltersProps } from '@/interfaces/transactions';
+import { TransactionFiltersProps } from '@/types/interfaces/transactions';
 import styles from '@/styles/transactions/TransactionFilters.module.css';
 
 const TransactionFilters = ({

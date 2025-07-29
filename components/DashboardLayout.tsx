@@ -6,7 +6,7 @@ import styles from '@/styles/dashboard/DashboardLayout.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
 import { navigationItems } from '@/data/navigation-items';
-import { DashboardLayoutProps } from '@/interfaces/admin-layout';
+import { DashboardLayoutProps } from '@/types/interfaces/admin-layout';
 
 const DashboardLayout = ({ children, title, meta }: DashboardLayoutProps) => {
   const router = useRouter();

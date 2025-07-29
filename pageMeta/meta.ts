@@ -20,7 +20,7 @@ export const SuperAdminPageMeta = {
   },
 
   ridesPage: {
-    title: 'Trygg Admin | Rides',
+    title: 'Trygg Admin | Ride History',
     description: 'Track all Trygg rides.',
   },
 

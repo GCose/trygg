@@ -4,7 +4,7 @@
 .table__container {
   border-radius: 1.5rem;
   background: #ffffff;
-  border: 0.0625rem solid #e5e7eb;
+  border: 0.0625rem solid transparent;
 }
 
 .table__header {
