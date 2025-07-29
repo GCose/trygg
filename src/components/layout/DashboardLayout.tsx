@@ -6,7 +6,7 @@ import styles from '@/src/styles/dashboard/DashboardLayout.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
 import {
-  adminNavigationItems,
+  subAdminNavigationItems,
   superAdminNavigationItems,
 } from '@/mocks/navigation-items';
 import { DashboardLayoutProps } from '@/types/interfaces/admin-layout';
@@ -65,7 +65,7 @@ const DashboardLayout = ({
   }, []);
 
   const navigationItems =
-    role === 'SUPER' ? superAdminNavigationItems : adminNavigationItems;
+    role === 'SUPER' ? superAdminNavigationItems : subAdminNavigationItems;
 
   return (
     <>
