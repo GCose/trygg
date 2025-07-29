@@ -11,6 +11,7 @@ import { MoreHorizontal, Star, StarHalf } from 'lucide-react';
 import styles from '@/src/styles/drivers/DriversPage.module.css';
 import StatsCard from '@/components/ui/StatsCard';
 import { driverStats } from '@/data/drivers/drivers-stats';
+import { StatusBadge } from '@/utils/status';
 
 const DriversPage = () => {
   const [filters, setFilters] = useState<DriversFilterState>({
@@ -101,6 +102,11 @@ const DriversPage = () => {
       key: 'totalEarning',
       label: 'Total Earning',
       render: (value) => `$${(value as number).toLocaleString()}.00`,
+    },
+    {
+      key: 'status',
+      label: 'Status',
+      render: (value) => <StatusBadge status={value as string} />,
     },
     {
       key: 'action',

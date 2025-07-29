@@ -17,6 +17,7 @@ import { transactionsData } from '@/data/transactions/transaction-data';
 import { transactionStats } from '@/data/transactions/transactions-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
 import RevenueChart from '@/components/charts/RevenueChart';
+import { StatusBadge } from '@/utils/status';
 
 const TransactionsPage = () => {
   const [filters, setFilters] = useState<TransactionsFilterState>({
@@ -52,7 +53,6 @@ const TransactionsPage = () => {
     });
     setCurrentPage(1);
   };
-
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -136,38 +136,14 @@ const TransactionsPage = () => {
     {
       key: 'amount',
       label: 'Amount',
-      render: (value) => (
-        <span style={{ fontWeight: '600', color: '#059669' }}>
-          {formatCurrency(value as number)}
-        </span>
-      ),
+      render: (value) => <span>{formatCurrency(value as number)}</span>,
     },
+    { key: 'paymentMethod', label: 'Payment Method' },
     {
       key: 'status',
       label: 'Status',
-      render: (value) => {
-        const status = value as string;
-        const statusClass =
-          status === 'COMPLETED'
-            ? '#059669'
-            : status === 'PENDING'
-              ? '#f59e0b'
-              : '#dc2626';
-
-        return (
-          <span
-            style={{
-              color: statusClass,
-              fontWeight: '500',
-              fontSize: '0.875rem',
-            }}
-          >
-            {status}
-          </span>
-        );
-      },
+      render: (value) => <StatusBadge status={value as string} />,
     },
-    { key: 'paymentMethod', label: 'Payment Method' },
     {
       key: 'dateTime',
       label: 'Date & Time',

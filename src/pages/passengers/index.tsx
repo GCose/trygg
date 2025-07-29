@@ -11,6 +11,7 @@ import { passengerStats } from '@/data/passenger/passenger-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
 import { MoreHorizontal, Star, StarHalf } from 'lucide-react';
 import styles from '@/src/styles/passengers/PassengersPage.module.css';
+import { StatusBadge } from '@/utils/status';
 
 const PassengersPage = () => {
   const [filters, setFilters] = useState<PassengersFilterState>({
@@ -120,36 +121,13 @@ const PassengersPage = () => {
       render: (value) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           {renderStarRating(value as number)}
-          <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-            {(value as number).toFixed(1)}
-          </span>
         </div>
       ),
     },
     {
       key: 'status',
       label: 'Status',
-      render: (value) => {
-        const status = value as string;
-        const statusClass =
-          status === 'ACTIVE'
-            ? '#059669'
-            : status === 'INACTIVE'
-              ? '#6b7280'
-              : '#dc2626';
-
-        return (
-          <span
-            style={{
-              color: statusClass,
-              fontWeight: '500',
-              fontSize: '0.875rem',
-            }}
-          >
-            {status}
-          </span>
-        );
-      },
+      render: (value) => <StatusBadge status={value as string} />,
     },
     {
       key: 'action',

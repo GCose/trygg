@@ -11,6 +11,7 @@ import styles from '@/src/styles/rides/RidesPage.module.css';
 import RideFilters from '@/components/filters/RideFilters';
 import { ridesData } from '@/data/rides/rides-data';
 import { rideStats } from '@/data/rides/rides-stats';
+import { StatusBadge } from '@/utils/status';
 
 const RidesPage = () => {
   const [filters, setFilters] = useState<RidesFilterState>({
@@ -164,36 +165,12 @@ const RidesPage = () => {
     {
       key: 'fare',
       label: 'Fare',
-      render: (value) => (
-        <span style={{ fontWeight: '600', color: '#059669' }}>
-          {formatCurrency(value as number)}
-        </span>
-      ),
+      render: (value) => <span>{formatCurrency(value as number)}</span>,
     },
     {
       key: 'status',
       label: 'Status',
-      render: (value) => {
-        const status = value as string;
-        const statusClass =
-          status === 'COMPLETED'
-            ? '#059669'
-            : status === 'ACTIVE'
-              ? '#f59e0b'
-              : '#dc2626';
-
-        return (
-          <span
-            style={{
-              color: statusClass,
-              fontWeight: '500',
-              fontSize: '0.875rem',
-            }}
-          >
-            {status}
-          </span>
-        );
-      },
+      render: (value) => <StatusBadge status={value as string} />,
     },
     {
       key: 'dateTime',
