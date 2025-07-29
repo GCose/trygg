@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { X, Eye, EyeOff } from 'lucide-react';
 import { SubAdminDetailsModalProps } from '@/interfaces/sub-admin';
-import styles from '@/src/styles/modals/SubAdminModal.module.css';
+import styles from '@/styles/modals/SubAdminModal.module.css';
 
 const SubAdminDetailsModal = ({
   isOpen,

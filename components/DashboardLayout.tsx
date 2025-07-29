@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as Icons from 'lucide-react';
 import Image from 'next/image';
-import styles from '@/src/styles/dashboard/DashboardLayout.module.css';
+import styles from '@/styles/dashboard/DashboardLayout.module.css';
 import Head from 'next/head';
 import Link from 'next/link';
 import { navigationItems } from '@/data/navigation-items';

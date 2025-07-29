@@ -6,7 +6,7 @@ import {
   EditSubAdminModalProps,
   SubAdminFormData,
 } from '@/interfaces/sub-admin';
-import styles from '@/src/styles/modals/EditSubAdminModal.module.css';
+import styles from '@/styles/modals/EditSubAdminModal.module.css';
 
 const EditSubAdminModal = ({
   isOpen,

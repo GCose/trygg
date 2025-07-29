@@ -8,7 +8,7 @@ import { DriversFilterState } from '@/interfaces/drivers';
 import { driversData } from '@/data/drivers/drivers-data';
 import { TableColumn } from '@/interfaces/admin-layout';
 import { MoreHorizontal, Star, StarHalf } from 'lucide-react';
-import styles from '@/src/styles/drivers/DriversPage.module.css';
+import styles from '@/styles/drivers/DriversPage.module.css';
 import StatsCard from '@/components/ui/StatsCard';
 import { driverStats } from '@/data/drivers/drivers-stats';
 import { StatusBadge } from '@/utils/status';

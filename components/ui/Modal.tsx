@@ -1,5 +1,5 @@
 import { X } from 'lucide-react';
-import styles from '@/src/styles/modals/Modal.module.css';
+import styles from '@/styles/modals/Modal.module.css';
 import { ModalProps } from '@/interfaces/modal';
 
 const Modal = ({

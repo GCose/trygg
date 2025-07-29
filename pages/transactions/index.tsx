@@ -4,27 +4,39 @@ import DashboardLayout from '@/components/DashboardLayout';
 import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import { RidesFilterState } from '@/interfaces/rides';
-import { TableColumn } from '@/interfaces/admin-layout';
+import { TransactionsFilterState } from '@/interfaces/transactions';
 import { MoreHorizontal } from 'lucide-react';
-import styles from '@/src/styles/rides/RidesPage.module.css';
-import RideFilters from '@/components/filters/RideFilters';
-import { ridesData } from '@/data/rides/rides-data';
-import { rideStats } from '@/data/rides/rides-stats';
+import styles from '@/styles/transactions/TransactionsPage.module.css';
+import TransactionLineChart from '@/components/charts/TransactionLineChart';
+import TransactionFilters from '@/components/filters/TransactionFilters';
+import {
+  transactionTrendData,
+  transactionVolumeData,
+} from '@/data/transactions/transaction-charts';
+import { transactionsData } from '@/data/transactions/transaction-data';
+import { transactionStats } from '@/data/transactions/transactions-stats';
+import { TableColumn } from '@/interfaces/admin-layout';
+import RevenueChart from '@/components/charts/RevenueChart';
 import { StatusBadge } from '@/utils/status';
 
-const RidesPage = () => {
-  const [filters, setFilters] = useState<RidesFilterState>({
+const TransactionsPage = () => {
+  const [filters, setFilters] = useState<TransactionsFilterState>({
     search: '',
     status: '',
+    paymentMethod: '',
     dateFrom: '',
     dateTo: '',
+    amountMin: '',
+    amountMax: '',
   });
 
   const [currentPage, setCurrentPage] = useState(1);
   const entriesPerPage = 15;
 
-  const handleFilterChange = (key: keyof RidesFilterState, value: string) => {
+  const handleFilterChange = (
+    key: keyof TransactionsFilterState,
+    value: string
+  ) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
     setCurrentPage(1);
   };
@@ -33,8 +45,11 @@ const RidesPage = () => {
     setFilters({
       search: '',
       status: '',
+      paymentMethod: '',
       dateFrom: '',
       dateTo: '',
+      amountMin: '',
+      amountMax: '',
     });
     setCurrentPage(1);
   };
@@ -61,19 +76,11 @@ const RidesPage = () => {
     });
   };
 
-  const formatDuration = (minutes: number) => {
-    return `${minutes} min`;
-  };
-
-  const formatDistance = (distance: number) => {
-    return `${distance} km`;
-  };
-
   {
-    /*==================== Rides Table Columns ====================*/
+    /*==================== Transactions Table Columns ====================*/
   }
-  const ridesColumns: TableColumn[] = [
-    { key: 'rideId', label: 'Ride ID' },
+  const transactionsColumns: TableColumn[] = [
+    { key: 'transactionId', label: 'Transaction ID' },
     {
       key: 'passenger',
       label: 'Passenger',
@@ -127,46 +134,11 @@ const RidesPage = () => {
       ),
     },
     {
-      key: 'pickupLocation',
-      label: 'Pickup',
-      render: (value) => (
-        <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-          {value as string}
-        </span>
-      ),
-    },
-    {
-      key: 'dropoffLocation',
-      label: 'Dropoff',
-      render: (value) => (
-        <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
-          {value as string}
-        </span>
-      ),
-    },
-    {
-      key: 'distance',
-      label: 'Distance',
-      render: (value) => (
-        <span style={{ fontWeight: '500' }}>
-          {formatDistance(value as number)}
-        </span>
-      ),
-    },
-    {
-      key: 'duration',
-      label: 'Duration',
-      render: (value) => (
-        <span style={{ fontWeight: '500' }}>
-          {formatDuration(value as number)}
-        </span>
-      ),
-    },
-    {
-      key: 'fare',
-      label: 'Fare',
+      key: 'amount',
+      label: 'Amount',
       render: (value) => <span>{formatCurrency(value as number)}</span>,
     },
+    { key: 'paymentMethod', label: 'Payment Method' },
     {
       key: 'status',
       label: 'Status',
@@ -192,26 +164,43 @@ const RidesPage = () => {
     },
   ];
   {
-    /*==================== End of Rides Table Columns ====================*/
+    /*==================== End of Transactions Table Columns ====================*/
   }
 
   {
     /*==================== Filter Logic ====================*/
   }
-  const filteredRides = ridesData.filter((ride) => {
+  const filteredTransactions = transactionsData.filter((transaction) => {
     const matchesSearch =
       !filters.search ||
-      ride.rideId.toLowerCase().includes(filters.search.toLowerCase()) ||
-      ride.passenger.toLowerCase().includes(filters.search.toLowerCase()) ||
-      ride.driver.toLowerCase().includes(filters.search.toLowerCase()) ||
-      ride.pickupLocation
+      transaction.transactionId
         .toLowerCase()
         .includes(filters.search.toLowerCase()) ||
-      ride.dropoffLocation.toLowerCase().includes(filters.search.toLowerCase());
+      transaction.passenger
+        .toLowerCase()
+        .includes(filters.search.toLowerCase()) ||
+      transaction.driver.toLowerCase().includes(filters.search.toLowerCase());
 
-    const matchesStatus = !filters.status || ride.status === filters.status;
+    const matchesStatus =
+      !filters.status || transaction.status === filters.status;
 
-    return matchesSearch && matchesStatus;
+    const matchesPaymentMethod =
+      !filters.paymentMethod ||
+      transaction.paymentMethod === filters.paymentMethod;
+
+    const matchesAmountMin =
+      !filters.amountMin || transaction.amount >= parseFloat(filters.amountMin);
+
+    const matchesAmountMax =
+      !filters.amountMax || transaction.amount <= parseFloat(filters.amountMax);
+
+    return (
+      matchesSearch &&
+      matchesStatus &&
+      matchesPaymentMethod &&
+      matchesAmountMin &&
+      matchesAmountMax
+    );
   });
   {
     /*==================== End of Filter Logic ====================*/
@@ -220,11 +209,11 @@ const RidesPage = () => {
   {
     /*==================== Pagination Logic ====================*/
   }
-  const totalEntries = filteredRides.length;
+  const totalEntries = filteredTransactions.length;
   const totalPages = Math.ceil(totalEntries / entriesPerPage);
   const startIndex = (currentPage - 1) * entriesPerPage;
   const endIndex = startIndex + entriesPerPage;
-  const currentRides = filteredRides.slice(startIndex, endIndex);
+  const currentTransactions = filteredTransactions.slice(startIndex, endIndex);
 
   const getPaginationButtons = () => {
     const buttons = [];
@@ -250,36 +239,55 @@ const RidesPage = () => {
   }
 
   return (
-    <DashboardLayout title="Rides" meta={SuperAdminPageMeta.ridesPage}>
-      <div className={styles.rides__page}>
+    <DashboardLayout
+      title="Transactions"
+      meta={SuperAdminPageMeta.transactionPage}
+    >
+      <div className={styles.transactions__page}>
         {/*==================== Stats Cards Section ====================*/}
         <div className={styles.stats__section}>
-          {rideStats.map((stat, index) => (
+          {transactionStats.map((stat, index) => (
             <StatsCard
               key={index}
-              icon={stat.icon}
               title={stat.title}
               value={stat.value}
+              icon={stat.icon}
             />
           ))}
         </div>
         {/*==================== End of Stats Cards Section ====================*/}
 
+        {/*==================== Charts Section ====================*/}
+        <div className={styles.charts__section}>
+          <TransactionLineChart
+            data={transactionTrendData}
+            title="Transaction Trends (This Week)"
+          />
+          <RevenueChart
+            data={transactionVolumeData.map((item) => ({
+              month: item.month,
+              revenue: item.completed + item.pending + item.failed,
+            }))}
+            title="Total Transaction Volume"
+          />
+        </div>
+        {/*==================== End of Charts Section ====================*/}
+
         {/*==================== Filters Section ====================*/}
-        <RideFilters
+        <TransactionFilters
           filters={filters}
           onFilterChange={handleFilterChange}
           onResetFilters={handleResetFilters}
         />
         {/*==================== End of Filters Section ====================*/}
 
-        {/*==================== Rides Table ====================*/}
+        {/*==================== Transactions Table ====================*/}
         <ListTable
-          title="All Rides"
-          data={currentRides}
-          columns={ridesColumns}
+          title="All Transactions"
+          data={currentTransactions}
+          columns={transactionsColumns}
         />
-        {/*==================== End of Rides Table ====================*/}
+        {/*==================== End of Transactions Table ====================*/}
 
         {/*==================== Pagination Section ====================*/}
         <div className={styles.pagination__section}>
@@ -324,4 +332,4 @@ const RidesPage = () => {
   );
 };
 
-export default RidesPage;
+export default TransactionsPage;

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Star, Crown } from 'lucide-react';
-import styles from '@/src/styles/widgets/TopDriver.module.css';
+import styles from '@/styles/widgets/TopDriver.module.css';
 import { TopDriverWidgetProps } from '@/interfaces/widgets';
 
 const TopDriverWidget = ({ data }: TopDriverWidgetProps) => {

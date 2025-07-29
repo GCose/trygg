@@ -1,5 +1,5 @@
 import { ListTableProps } from '@/interfaces/admin-layout';
-import styles from '@/src/styles/ListTable.module.css';
+import styles from '@/styles/ListTable.module.css';
 
 const ListTable = ({ columns, data, title }: ListTableProps) => {
   return (

@@ -10,7 +10,7 @@ import DashboardLayout from '@/components/DashboardLayout';
 import SubAdminDetailsModal from '@/components/modals/SubAdminDetailsModal';
 import EditSubAdminModal from '@/components/modals/EditSubAdminModal';
 import DeleteConfirmModal from '@/components/modals/DeleteConfirmModal';
-import styles from '@/src/styles/sub-admin/SubAdminPage.module.css';
+import styles from '@/styles/sub-admin/SubAdminPage.module.css';
 import ActionDropdown from '@/components/ActionDropdown';
 
 const SubAdminPage = () => {

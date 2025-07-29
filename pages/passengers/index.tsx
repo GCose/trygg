@@ -10,7 +10,7 @@ import { passengersData } from '@/data/passenger/passengers-data';
 import { passengerStats } from '@/data/passenger/passenger-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
 import { MoreHorizontal, Star, StarHalf } from 'lucide-react';
-import styles from '@/src/styles/passengers/PassengersPage.module.css';
+import styles from '@/styles/passengers/PassengersPage.module.css';
 import { StatusBadge } from '@/utils/status';
 
 const PassengersPage = () => {

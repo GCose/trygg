@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { TrendingUp } from 'lucide-react';
-import styles from '@/src/styles/charts/TransactionLineChart.module.css';
+import styles from '@/styles/charts/TransactionLineChart.module.css';
 import {
   TransactionLineChartProps,
   TransactionTooltipProps,

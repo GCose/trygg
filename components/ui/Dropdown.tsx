@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import styles from '@/src/styles/Dropdown.module.css';
+import styles from '@/styles/Dropdown.module.css';
 import { DropdownProps } from '@/interfaces/modal';
 
 const Dropdown = ({

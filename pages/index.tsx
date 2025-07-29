@@ -23,7 +23,7 @@ import TopDriverWidget from '@/components/TopDriverWidget';
 import RevenueChart from '@/components/charts/RevenueChart';
 import DriverStatusWidget from '@/components/DriverStatusWidget';
 import AlertsSummaryWidget from '@/components/AlertsSummaryWidget';
-import styles from '@/src/styles/dashboard/DashboardPage.module.css';
+import styles from '@/styles/dashboard/DashboardPage.module.css';
 import DriverApplicationStatsWidget from '@/components/DriverApplicationStatsWidget';
 
 const DashboardPage = () => {
