@@ -28,16 +28,16 @@ export interface SubAdminDetailsModalProps {
   onDelete: (adminId: string) => void;
 }
 
-export interface DropdownProps {
-  trigger: React.ReactNode;
-  children: React.ReactNode;
+export interface EditSubAdminModalProps {
   isOpen: boolean;
-  onToggle: () => void;
   onClose: () => void;
+  admin: SubAdmin | null;
+  onUpdate: (adminId: string, data: SubAdminFormData) => void;
 }
 
-export interface ActionDropdownProps {
-  onViewDetails: () => void;
-  onEdit: () => void;
-  onDelete: () => void;
+export interface SubAdminDeleteModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  adminId: string;
+  onConfirm: (adminId: string) => void;
 }

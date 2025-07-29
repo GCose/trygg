@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
-import { DropdownProps } from '@/interfaces/sub-admin';
 import styles from '@/src/styles/Dropdown.module.css';
+import { DropdownProps } from '@/interfaces/modal';
 
 const Dropdown = ({
   trigger,
