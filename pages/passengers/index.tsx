@@ -9,7 +9,7 @@ import { PassengersFilterState } from '@/interfaces/passengers';
 import { passengersData } from '@/data/passenger/passengers-data';
 import { passengerStats } from '@/data/passenger/passenger-stats';
 import { TableColumn } from '@/interfaces/admin-layout';
-import { MoreHorizontal, Star, StarHalf } from 'lucide-react';
+import { MoreHorizontal, Star, StarHalf, Users } from 'lucide-react';
 import styles from '@/styles/passengers/PassengersPage.module.css';
 import { StatusBadge } from '@/utils/status';
 
@@ -227,11 +227,14 @@ const PassengersPage = () => {
         {/*==================== End of Filters Section ====================*/}
 
         {/*==================== Passengers Table ====================*/}
-        <ListTable
-          title="Passengers List"
-          data={currentPassengers}
-          columns={passengersColumns}
-        />
+        <div className={styles.table__with__icon}>
+          <Users size={20} color="#fbbf24" />
+          <ListTable
+            title="Passengers List"
+            data={currentPassengers}
+            columns={passengersColumns}
+          />
+        </div>
         {/*==================== End of Passengers Table ====================*/}
 
         {/*==================== Pagination Section ====================*/}

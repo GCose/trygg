@@ -7,7 +7,7 @@ import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { DriversFilterState } from '@/interfaces/drivers';
 import { driversData } from '@/data/drivers/drivers-data';
 import { TableColumn } from '@/interfaces/admin-layout';
-import { MoreHorizontal, Star, StarHalf } from 'lucide-react';
+import { Car, MoreHorizontal, Star, StarHalf } from 'lucide-react';
 import styles from '@/styles/drivers/DriversPage.module.css';
 import StatsCard from '@/components/ui/StatsCard';
 import { driverStats } from '@/data/drivers/drivers-stats';
@@ -197,11 +197,14 @@ const DriversPage = () => {
         {/*==================== End of Filters Section ====================*/}
 
         {/*==================== Drivers Table ====================*/}
-        <ListTable
-          title="Drivers List"
-          data={currentDrivers}
-          columns={driversColumns}
-        />
+        <div className={styles.table__with__icon}>
+          <Car size={20} color="#fbbf24" />
+          <ListTable
+            title="Drivers List"
+            data={currentDrivers}
+            columns={driversColumns}
+          />
+        </div>
         {/*==================== End of Drivers Table ====================*/}
 
         {/*==================== Pagination Section ====================*/}

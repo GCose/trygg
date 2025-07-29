@@ -1,6 +1,6 @@
-/**===================
+/**=======================
  * PASSENGERS PAGE STYLES
- ===================*/
+ =======================*/
 .passengers__page {
   display: flex;
   margin: 0 auto;
@@ -8,18 +8,32 @@
   gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
-/**==================
+/**======================
  * STATS SECTION STYLES
- ==================*/
+ ======================*/
 .stats__section {
   display: grid;
   gap: clamp(0.75rem, 2vw, 1.5rem);
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
-/**====================
+/**========================
+ * TABLE WITH ICON STYLES
+ ========================*/
+.table__with__icon {
+  position: relative;
+}
+
+.table__with__icon > svg {
+  z-index: 10;
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.25rem);
+  right: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+/**======================
  * ACTION BUTTON STYLES
- ====================*/
+ ======================*/
 .action__button {
   border: none;
   display: flex;
@@ -106,6 +120,11 @@
  * BREAKPOINT STYLES
  ===================*/
 @media (max-width: 48rem) {
+  .table__with__icon > svg {
+    top: 1rem;
+    right: 1rem;
+  }
+
   .pagination__section {
     align-items: stretch;
     flex-direction: column;

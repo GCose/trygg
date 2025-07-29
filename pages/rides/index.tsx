@@ -6,7 +6,7 @@ import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { RidesFilterState } from '@/interfaces/rides';
 import { TableColumn } from '@/interfaces/admin-layout';
-import { MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal, Route } from 'lucide-react';
 import styles from '@/styles/rides/RidesPage.module.css';
 import RideFilters from '@/components/filters/RideFilters';
 import { ridesData } from '@/data/rides/rides-data';
@@ -274,11 +274,14 @@ const RidesPage = () => {
         {/*==================== End of Filters Section ====================*/}
 
         {/*==================== Rides Table ====================*/}
-        <ListTable
-          title="All Rides"
-          data={currentRides}
-          columns={ridesColumns}
-        />
+        <div className={styles.table__with__icon}>
+          <Route size={20} color="#fbbf24" />
+          <ListTable
+            title="All Rides"
+            data={currentRides}
+            columns={ridesColumns}
+          />
+        </div>
         {/*==================== End of Rides Table ====================*/}
 
         {/*==================== Pagination Section ====================*/}

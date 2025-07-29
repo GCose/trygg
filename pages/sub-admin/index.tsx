@@ -12,6 +12,7 @@ import EditSubAdminModal from '@/components/modals/EditSubAdminModal';
 import DeleteConfirmModal from '@/components/modals/DeleteConfirmModal';
 import styles from '@/styles/sub-admin/SubAdminPage.module.css';
 import ActionDropdown from '@/components/ActionDropdown';
+import { User } from 'lucide-react';
 
 const SubAdminPage = () => {
   const [subAdmins, setSubAdmins] = useState(subAdminData);
@@ -183,11 +184,14 @@ const SubAdminPage = () => {
           {/*==================== Right Column - Sub Admins List ====================*/}
           <div className={styles.right__column}>
             <div className={styles.table__container}>
-              <ListTable
-                title="Sub Admin"
-                data={subAdmins}
-                columns={subAdminColumns}
-              />
+              <div className={styles.table__with__icon}>
+                <User size={20} color="#fbbf24" />
+                <ListTable
+                  title="Sub Admin"
+                  data={subAdmins}
+                  columns={subAdminColumns}
+                />
+              </div>
             </div>
           </div>
           {/*==================== End of Right Column ====================*/}

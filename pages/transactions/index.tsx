@@ -5,7 +5,7 @@ import StatsCard from '@/components/ui/StatsCard';
 import ListTable from '@/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { TransactionsFilterState } from '@/interfaces/transactions';
-import { MoreHorizontal } from 'lucide-react';
+import { CreditCard, MoreHorizontal } from 'lucide-react';
 import styles from '@/styles/transactions/TransactionsPage.module.css';
 import TransactionLineChart from '@/components/charts/TransactionLineChart';
 import TransactionFilters from '@/components/filters/TransactionFilters';
@@ -282,11 +282,14 @@ const TransactionsPage = () => {
         {/*==================== End of Filters Section ====================*/}
 
         {/*==================== Transactions Table ====================*/}
-        <ListTable
-          title="All Transactions"
-          data={currentTransactions}
-          columns={transactionsColumns}
-        />
+        <div className={styles.table__with__icon}>
+          <CreditCard size={20} color="#fbbf24" />
+          <ListTable
+            title="All Transactions"
+            data={currentTransactions}
+            columns={transactionsColumns}
+          />
+        </div>
         {/*==================== End of Transactions Table ====================*/}
 
         {/*==================== Pagination Section ====================*/}
