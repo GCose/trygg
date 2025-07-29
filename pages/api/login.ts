@@ -18,8 +18,12 @@ export default async function handler(
         password,
       });
 
+      const token: string = data.data.accessToken;
+      const role: string = data.data.admin.role;
+
       const cookieData: User = {
-        token: data.token,
+        token,
+        role,
       };
 
       const tokenCookie = serialize('trygg_admin', JSON.stringify(cookieData), {
@@ -32,7 +36,7 @@ export default async function handler(
 
       res.setHeader('Set-Cookie', [tokenCookie]);
 
-      res.json({ token: data.token });
+      res.json({ token, role });
     } catch (error) {
       const { message, statusCode } = getErrorMessage(error);
       res.status(statusCode).json({ message });
