@@ -8,6 +8,7 @@ import { EyeOff, Eye } from 'lucide-react';
 import { isLoggedIn } from '@/utils/auth';
 import { showAlert } from '@/utils/sweet-alert';
 import { getErrorMessage } from '@/utils/error';
+import { User } from '@/types';
 
 const SignIn = () => {
   const admin_email = useRef<HTMLInputElement>(null);
@@ -30,7 +31,7 @@ const SignIn = () => {
         const email = admin_email.current.value;
         const password = admin_password.current.value;
 
-        await axios.post('/api/login', { email, password });
+        const { data } = await axios.post('/api/login', { email, password });
 
         showAlert({
           title: 'Success!',
@@ -40,7 +41,11 @@ const SignIn = () => {
           confirmButtonText: 'OK',
         });
 
-        router.push('/');
+        if (data.role === 'SUB') {
+          router.push('/sub');
+        } else if (data.role === 'SUPER') {
+          router.push('/super-admin');
+        }
       } else {
         showAlert({
           title: 'Error!',
@@ -172,6 +177,24 @@ export const getServerSideProps = async ({ req }: { req: NextApiRequest }) => {
   const userData = isLoggedIn(req);
 
   if (userData) {
+    const user = userData as User;
+
+    if (user.role === 'SUB') {
+      return {
+        redirect: {
+          destination: '/sub',
+          permanent: false,
+        },
+      };
+    } else if (user.role === 'SUPER') {
+      return {
+        redirect: {
+          destination: '/super-admin',
+          permanent: false,
+        },
+      };
+    }
+
     return {
       redirect: {
         destination: '/',
