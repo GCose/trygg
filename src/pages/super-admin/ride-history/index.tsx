@@ -1,23 +1,23 @@
-import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import RidesPageComponent from '@/src/components/shared/rides/rides';
+import { User } from '@/types';
 import { NextApiRequest } from 'next';
 import { isLoggedIn } from '@/utils/auth';
-import { User } from '@/types';
+import { SuperAdminPageMeta } from '@/pageMeta/meta';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import RideHistoryPageComponent from '@/src/components/shared/ride-history/ride-history';
 
-const RidesPage = () => {
+const rideHistoryPage = () => {
   return (
     <DashboardLayout
       role="SUPER"
       title="Ride History"
-      meta={SuperAdminPageMeta.ridesPage}
+      meta={SuperAdminPageMeta.rideHistoryPage}
     >
-      <RidesPageComponent />
+      <RideHistoryPageComponent />
     </DashboardLayout>
   );
 };
 
-export default RidesPage;
+export default rideHistoryPage;
 
 export const getServerSideProps = async ({ req }: { req: NextApiRequest }) => {
   const userData = isLoggedIn(req);

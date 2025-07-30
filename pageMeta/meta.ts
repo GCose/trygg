@@ -14,7 +14,7 @@ export const AdminPageMeta = {
     description: 'Track all Trygg passengers.',
   },
 
-  ridesPage: {
+  rideHistoryPage: {
     title: 'Trygg Admin | Ride History',
     description: 'Track all Trygg rides.',
   },

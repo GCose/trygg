@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 import { RideFiltersProps } from '@/types/interfaces/rides';
-import styles from '@/src/styles/rides/RideFilters.module.css';
+import styles from '@/src/styles/ride-history/RideFilters.module.css';
 
 const RideFilters = ({
   filters,

@@ -19,7 +19,6 @@ export const subAdminNavigationItems: NavigationItem[] = [
     href: '/sub-admin/passengers',
     icon: 'Users',
   },
-
   {
     id: 'rides',
     label: 'Ride History',
@@ -53,7 +52,6 @@ export const superAdminNavigationItems: NavigationItem[] = [
     href: '/super-admin/passengers',
     icon: 'Users',
   },
-
   {
     id: 'rides',
     label: 'Ride History',

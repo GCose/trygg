@@ -9,7 +9,7 @@ import ListTable from '@/src/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { TableColumn } from '@/types/interfaces/admin-layout';
 import { SubAdminFormData, SubAdmin } from '@/types/interfaces/sub-admin';
-import CreateSubAdminForm from '@/src/components/forms/subAdminForm';
+import CreateSubAdminForm from '@/src/components/forms/SubAdminForm';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import SubAdminDetailsModal from '@/src/components/modals/SubAdminDetailsModal';
 import EditSubAdminModal from '@/src/components/modals/EditSubAdminModal';
