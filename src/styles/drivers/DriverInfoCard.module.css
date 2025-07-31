@@ -292,7 +292,6 @@
   .tab__nav {
     gap: 0.5rem;
     overflow-x: auto;
-    flex-direction: row;
   }
 
   .nav__item {
@@ -318,6 +317,19 @@
 }
 
 @media (max-width: 480px) {
+  .profile__left {
+    flex-direction: column;
+  }
+
+  .tab__content {
+    flex-direction: column;
+  }
+
+  .tab__nav {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
   .driver__info__card {
     padding: 1rem;
   }
