@@ -1,9 +1,9 @@
-import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import DriversPageComponent from '@/src/components/shared/drivers/drivers';
+import { User } from '@/types';
 import { NextApiRequest } from 'next';
 import { isLoggedIn } from '@/utils/auth';
-import { User } from '@/types';
+import { SuperAdminPageMeta } from '@/pageMeta/meta';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import DriversPageComponent from '@/src/components/shared/drivers/drivers';
 
 const DriversPage = () => {
   return (

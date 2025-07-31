@@ -9,6 +9,11 @@ export const AdminPageMeta = {
     description: 'Track all Trygg drivers.',
   },
 
+  driverDetailsPage: {
+    title: 'Trygg Admin | Driver Details',
+    description: 'View detailed information about a specific driver.',
+  },
+
   passengersPage: {
     title: 'Trygg Admin | Passengers',
     description: 'Track all Trygg passengers.',

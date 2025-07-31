@@ -1,7 +1,18 @@
-import { ListTableProps } from '@/types/interfaces/admin-layout';
 import styles from '@/src/styles/ListTable.module.css';
+import { ExtendedListTableProps } from '@/types/interfaces/admin-layout';
 
-const ListTable = ({ columns, data, title }: ListTableProps) => {
+const ListTable = ({
+  columns,
+  data,
+  title,
+  onRowClick,
+}: ExtendedListTableProps) => {
+  const handleRowClick = (row: Record<string, unknown>) => {
+    if (onRowClick) {
+      onRowClick(row);
+    }
+  };
+
   return (
     <div className={styles.table__container}>
       {/*==================== Table Header ====================*/}
@@ -25,7 +36,11 @@ const ListTable = ({ columns, data, title }: ListTableProps) => {
           </thead>
           <tbody className={styles.tbody}>
             {data.map((row, index) => (
-              <tr key={index} className={styles.tr}>
+              <tr
+                key={index}
+                className={`${styles.tr} ${onRowClick ? styles.clickable : ''}`}
+                onClick={() => handleRowClick(row)}
+              >
                 {columns.map((column) => (
                   <td key={column.key} className={styles.td}>
                     {column.render

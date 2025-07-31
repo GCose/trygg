@@ -35,3 +35,7 @@ export interface ListTableProps {
   data: Record<string, unknown>[];
   title?: string;
 }
+
+export interface ExtendedListTableProps extends ListTableProps {
+  onRowClick?: (row: Record<string, unknown>) => void;
+}

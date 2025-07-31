@@ -27,3 +27,7 @@ export interface DriverFiltersProps {
   onFilterChange: (key: keyof DriversFilterState, value: string) => void;
   onResetFilters: () => void;
 }
+
+export interface DriversComponentProps {
+  role: 'SUPER' | 'SUB';
+}

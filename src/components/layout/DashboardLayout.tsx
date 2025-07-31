@@ -27,7 +27,10 @@ const DashboardLayout = ({
   };
 
   const isActiveRoute = (href: string) => {
-    return router.pathname === href;
+    if (href === '/' || href === '/super-admin' || href === '/sub-admin') {
+      return router.pathname === href;
+    }
+    return router.pathname.startsWith(href);
   };
 
   const handleMenuToggle = () => {

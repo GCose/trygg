@@ -2,8 +2,11 @@ import { useState } from 'react';
 import Image from 'next/image';
 import DriverFilters from '@/src/components/filters/DriverFilters';
 import ListTable from '@/src/components/ui/ListTable';
+import DriverDetailsModal from '@/src/components/modals/DriverDetailsModal';
 import { DriversFilterState } from '@/types/interfaces/drivers';
+import { DriverDetails } from '@/types/interfaces/driver-details';
 import { driversData } from '@/mocks/drivers/drivers-data';
+import { getDriverById } from '@/mocks/drivers/driver-details-data';
 import { TableColumn } from '@/types/interfaces/admin-layout';
 import { Car, MoreHorizontal, Star, StarHalf } from 'lucide-react';
 import styles from '@/src/styles/drivers/DriversPage.module.css';
@@ -20,6 +23,10 @@ const DriversPageComponent = () => {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDriver, setSelectedDriver] = useState<DriverDetails | null>(
+    null
+  );
   const entriesPerPage = 15;
 
   const handleFilterChange = (key: keyof DriversFilterState, value: string) => {
@@ -39,6 +46,21 @@ const DriversPageComponent = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const handleRowClick = (row: Record<string, unknown>) => {
+    const driverId = row.driverId as string;
+    const driver = getDriverById(driverId);
+
+    if (driver) {
+      setSelectedDriver(driver);
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedDriver(null);
   };
 
   const renderStarRating = (rating: number) => {
@@ -122,30 +144,23 @@ const DriversPageComponent = () => {
     },
   ];
 
-  {
-    /*==================== Filter Logic ====================*/
-  }
   const filteredDrivers = driversData.filter((driver) => {
-    const matchesSearch =
-      !filters.search ||
-      driver.name.toLowerCase().includes(filters.search.toLowerCase()) ||
-      driver.driverId.toLowerCase().includes(filters.search.toLowerCase()) ||
-      driver.mobileNumber.includes(filters.search);
+    const matchesSearch = filters.search
+      ? driver.name.toLowerCase().includes(filters.search.toLowerCase()) ||
+        driver.driverId.toLowerCase().includes(filters.search.toLowerCase())
+      : true;
 
-    const matchesRating =
-      !filters.rating || driver.rating >= parseFloat(filters.rating);
+    const matchesRating = filters.rating
+      ? Math.floor(driver.rating) >= parseInt(filters.rating)
+      : true;
 
-    const matchesStatus = !filters.status || driver.status === filters.status;
+    const matchesStatus = filters.status
+      ? driver.status === filters.status
+      : true;
 
     return matchesSearch && matchesRating && matchesStatus;
   });
-  {
-    /*==================== End of Filter Logic ====================*/
-  }
 
-  {
-    /*==================== Pagination Logic ====================*/
-  }
   const totalEntries = filteredDrivers.length;
   const totalPages = Math.ceil(totalEntries / entriesPerPage);
   const startIndex = (currentPage - 1) * entriesPerPage;
@@ -154,15 +169,12 @@ const DriversPageComponent = () => {
 
   const getPaginationButtons = () => {
     const buttons = [];
-    const maxVisibleButtons = 5;
-    let startPage = Math.max(
-      1,
-      currentPage - Math.floor(maxVisibleButtons / 2)
-    );
-    const endPage = Math.min(totalPages, startPage + maxVisibleButtons - 1);
+    const maxButtons = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+    const endPage = Math.min(totalPages, startPage + maxButtons - 1);
 
-    if (endPage - startPage + 1 < maxVisibleButtons) {
-      startPage = Math.max(1, endPage - maxVisibleButtons + 1);
+    if (endPage - startPage + 1 < maxButtons) {
+      startPage = Math.max(1, endPage - maxButtons + 1);
     }
 
     for (let i = startPage; i <= endPage; i++) {
@@ -171,83 +183,91 @@ const DriversPageComponent = () => {
 
     return buttons;
   };
-  {
-    /*==================== End of Pagination Logic ====================*/
-  }
 
   return (
-    <div className={styles.drivers__page}>
-      {/*==================== Stats Cards Section ====================*/}
-      <div className={styles.stats__section}>
-        {driverStats.map((stat, index) => (
-          <StatsCard
-            key={index}
-            icon={stat.icon}
-            title={stat.title}
-            value={stat.value}
-          />
-        ))}
-      </div>
-      {/*==================== End of Stats Cards Section ====================*/}
-
-      {/*==================== Filters Section ====================*/}
-      <DriverFilters
-        filters={filters}
-        onFilterChange={handleFilterChange}
-        onResetFilters={handleResetFilters}
-      />
-      {/*==================== End of Filters Section ====================*/}
-
-      {/*==================== Drivers Table ====================*/}
-      <div className={styles.table__with__icon}>
-        <Car size={20} color="#fbbf24" />
-        <ListTable
-          title="Drivers List"
-          data={currentDrivers}
-          columns={driversColumns}
-        />
-      </div>
-      {/*==================== End of Drivers Table ====================*/}
-
-      {/*==================== Pagination Section ====================*/}
-      <div className={styles.pagination__section}>
-        <div className={styles.pagination__info}>
-          Showing {startIndex + 1} to {Math.min(endIndex, totalEntries)} of{' '}
-          {totalEntries} entries
-        </div>
-
-        <div className={styles.pagination__controls}>
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className={styles.pagination__button}
-          >
-            Previous
-          </button>
-
-          {getPaginationButtons().map((page) => (
-            <button
-              key={page}
-              onClick={() => handlePageChange(page)}
-              className={`${styles.pagination__button} ${
-                currentPage === page ? styles.active : ''
-              }`}
-            >
-              {page}
-            </button>
+    <>
+      <div className={styles.drivers__page}>
+        {/*==================== Stats Cards Section ====================*/}
+        <div className={styles.stats__section}>
+          {driverStats.map((stat, index) => (
+            <StatsCard
+              key={index}
+              icon={stat.icon}
+              title={stat.title}
+              value={stat.value}
+            />
           ))}
-
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className={styles.pagination__button}
-          >
-            Next
-          </button>
         </div>
+        {/*==================== End of Stats Cards Section ====================*/}
+
+        {/*==================== Filters Section ====================*/}
+        <DriverFilters
+          filters={filters}
+          onFilterChange={handleFilterChange}
+          onResetFilters={handleResetFilters}
+        />
+        {/*==================== End of Filters Section ====================*/}
+
+        {/*==================== Drivers Table ====================*/}
+        <div className={styles.table__with__icon}>
+          <Car size={20} color="#fbbf24" />
+          <ListTable
+            title="Drivers List"
+            data={currentDrivers}
+            columns={driversColumns}
+            onRowClick={handleRowClick}
+          />
+        </div>
+        {/*==================== End of Drivers Table ====================*/}
+
+        {/*==================== Pagination Section ====================*/}
+        <div className={styles.pagination__section}>
+          <div className={styles.pagination__info}>
+            Showing {startIndex + 1} to {Math.min(endIndex, totalEntries)} of{' '}
+            {totalEntries} entries
+          </div>
+
+          <div className={styles.pagination__controls}>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className={styles.pagination__button}
+            >
+              Previous
+            </button>
+
+            {getPaginationButtons().map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`${styles.pagination__button} ${
+                  currentPage === page ? styles.active : ''
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+
+            <button
+              disabled={currentPage === totalPages}
+              className={styles.pagination__button}
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+        {/*==================== End of Pagination Section ====================*/}
       </div>
-      {/*==================== End of Pagination Section ====================*/}
-    </div>
+
+      {/*==================== Driver Details Modal ====================*/}
+      <DriverDetailsModal
+        isOpen={isModalOpen}
+        driver={selectedDriver}
+        onClose={handleCloseModal}
+      />
+      {/*==================== End of Driver Details Modal ====================*/}
+    </>
   );
 };
 

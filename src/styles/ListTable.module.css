@@ -74,6 +74,7 @@
 }
 
 .tr:hover {
+  cursor: pointer;
   background: #fff0c8 !important;
 }
 
