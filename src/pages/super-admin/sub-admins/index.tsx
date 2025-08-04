@@ -16,7 +16,7 @@ import EditSubAdminModal from '@/src/components/modals/EditSubAdminModal';
 import { SubAdminFormData, SubAdmin } from '@/types/interfaces/sub-admin';
 import DeleteConfirmModal from '@/src/components/modals/DeleteConfirmModal';
 import SubAdminDetailsModal from '@/src/components/modals/SubAdminDetailsModal';
-import CreateSubAdminForm from '@/src/components/forms/subAdminForm';
+import CreateSubAdminForm from '@/src/components/forms/SubAdminForm';
 
 const SubAdminsPage = () => {
   const [subAdmins, setSubAdmins] = useState(subAdminData);
