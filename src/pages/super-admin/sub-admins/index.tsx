@@ -10,13 +10,13 @@ import ListTable from '@/src/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import { TableColumn } from '@/types/interfaces/admin-layout';
 import styles from '@/src/styles/sub-admin/SubAdminPage.module.css';
-import CreateSubAdminForm from '@/src/components/forms/SubAdminForm';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import ActionDropdown from '@/src/components/dropdowns/ActionDropdown';
 import EditSubAdminModal from '@/src/components/modals/EditSubAdminModal';
 import { SubAdminFormData, SubAdmin } from '@/types/interfaces/sub-admin';
 import DeleteConfirmModal from '@/src/components/modals/DeleteConfirmModal';
 import SubAdminDetailsModal from '@/src/components/modals/SubAdminDetailsModal';
+import CreateSubAdminForm from '@/src/components/forms/subAdminForm';
 
 const SubAdminsPage = () => {
   const [subAdmins, setSubAdmins] = useState(subAdminData);
