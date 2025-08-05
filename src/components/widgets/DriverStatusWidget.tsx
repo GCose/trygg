@@ -1,6 +1,7 @@
 import { Users, Clock } from 'lucide-react';
+
 import styles from '@/src/styles/widgets/DriverStatus.module.css';
-import { DriverStatusWidgetProps } from '@/types/interfaces/widgets';
+import type { DriverStatusWidgetProps } from '@/types/interfaces/widgets';
 
 const DriverStatusWidget = ({ data }: DriverStatusWidgetProps) => {
   return (
@@ -21,14 +22,14 @@ const DriverStatusWidget = ({ data }: DriverStatusWidgetProps) => {
 
         <div className={styles.breakdown}>
           <div className={styles.breakdown__item}>
-            <div className={styles.indicator__critical}></div>
+            <div className={styles.indicator__critical} />
             <span className={styles.breakdown__text}>
               {data.criticalOffline} offline &gt;2hrs
             </span>
           </div>
 
           <div className={styles.breakdown__item}>
-            <div className={styles.indicator__warning}></div>
+            <div className={styles.indicator__warning} />
             <span className={styles.breakdown__text}>
               {data.recentOffline} offline &lt;2hrs
             </span>

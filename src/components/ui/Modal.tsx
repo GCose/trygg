@@ -1,6 +1,7 @@
 import { X } from 'lucide-react';
+
 import styles from '@/src/styles/modals/Modal.module.css';
-import { ModalProps } from '@/types/interfaces/modal';
+import type { ModalProps } from '@/types/interfaces/modal';
 
 const Modal = ({
   isOpen,
@@ -20,7 +21,7 @@ const Modal = ({
         <div
           className={styles.modal}
           style={{ maxWidth }}
-          onClick={(e) => e.stopPropagation()}
+          onClick={e => e.stopPropagation()}
         >
           {/*==================== Modal Header ====================*/}
           <div className={styles.header}>

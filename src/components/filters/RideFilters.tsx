@@ -1,6 +1,7 @@
 import { Search } from 'lucide-react';
-import { RideFiltersProps } from '@/types/interfaces/rides';
+
 import styles from '@/src/styles/ride-history/RideFilters.module.css';
+import type { RideFiltersProps } from '@/types/interfaces/rides';
 
 const RideFilters = ({
   filters,
@@ -17,7 +18,7 @@ const RideFilters = ({
             type="text"
             placeholder="Search rides..."
             value={filters.search}
-            onChange={(e) => onFilterChange('search', e.target.value)}
+            onChange={e => onFilterChange('search', e.target.value)}
             className={styles.search__input}
           />
         </div>
@@ -27,7 +28,7 @@ const RideFilters = ({
         <div className={styles.filters__group}>
           <select
             value={filters.status}
-            onChange={(e) => onFilterChange('status', e.target.value)}
+            onChange={e => onFilterChange('status', e.target.value)}
             className={styles.filter__select}
           >
             <option value="">All Status</option>
@@ -42,7 +43,7 @@ const RideFilters = ({
               placeholder="From Date"
               value={filters.dateFrom}
               className={styles.date__input}
-              onChange={(e) => onFilterChange('dateFrom', e.target.value)}
+              onChange={e => onFilterChange('dateFrom', e.target.value)}
             />
           </div>
 
@@ -50,7 +51,7 @@ const RideFilters = ({
             <input
               type="date"
               value={filters.dateTo}
-              onChange={(e) => onFilterChange('dateTo', e.target.value)}
+              onChange={e => onFilterChange('dateTo', e.target.value)}
               className={styles.date__input}
               placeholder="To Date"
             />

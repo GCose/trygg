@@ -1,9 +1,10 @@
-import { User } from '@/types';
-import { NextApiRequest } from 'next';
-import { isLoggedIn } from '@/utils/auth';
+import type { NextApiRequest } from 'next';
+
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import RideHistoryPageComponent from '@/src/components/shared/ride-history/ride-history';
+import type { User } from '@/types';
+import { isLoggedIn } from '@/utils/auth';
 
 const rideHistoryPage = () => {
   return (

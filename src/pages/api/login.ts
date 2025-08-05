@@ -1,9 +1,11 @@
-import { User } from '@/types';
-import { getErrorMessage } from '@/utils/error';
-import { BASE_URL } from '@/utils//url';
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 import axios from 'axios';
 import { serialize } from 'cookie';
-import { NextApiRequest, NextApiResponse } from 'next';
+
+import type { User } from '@/types';
+import { BASE_URL } from '@/utils//url';
+import { getErrorMessage } from '@/utils/error';
 
 export default async function handler(
   req: NextApiRequest,
@@ -19,7 +21,7 @@ export default async function handler(
       });
 
       const token: string = data.data.accessToken;
-      const role: string = data.data.admin.role;
+      const { role } = data.data.admin;
 
       const cookieData: User = {
         token,

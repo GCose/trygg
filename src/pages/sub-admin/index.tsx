@@ -1,21 +1,25 @@
-import { User } from '@/types';
-import { isLoggedIn } from '@/utils/auth';
-import { NextApiRequest } from 'next';
 import React from 'react';
+
+import type { NextApiRequest } from 'next';
+
+import Image from 'next/image';
+
+import { ArrowLeftRight } from 'lucide-react';
+
+import { monthlyRevenueData } from '@/mocks/chart-data';
 import { dashboardStats, recentTransactions } from '@/mocks/dashboard-stats';
 import { topDriverData, driverStatusData } from '@/mocks/widgets-data';
-import Image from 'next/image';
-import StatsCard from '@/src/components/ui/StatsCard';
-import ListTable from '@/src/components/ui/ListTable';
-import { ArrowLeftRight } from 'lucide-react';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import { monthlyRevenueData } from '@/mocks/chart-data';
-import { TableColumn } from '@/types/interfaces/admin-layout';
-import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import TopDriverWidget from '@/src/components/widgets/TopDriverWidget';
 import RevenueChart from '@/src/components/charts/RevenueChart';
-import styles from '@/src/styles/dashboard/DashboardPage.module.css';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import ListTable from '@/src/components/ui/ListTable';
+import StatsCard from '@/src/components/ui/StatsCard';
 import DriverStatusWidget from '@/src/components/widgets/DriverStatusWidget';
+import TopDriverWidget from '@/src/components/widgets/TopDriverWidget';
+import styles from '@/src/styles/dashboard/DashboardPage.module.css';
+import type { User } from '@/types';
+import type { TableColumn } from '@/types/interfaces/admin-layout';
+import { isLoggedIn } from '@/utils/auth';
 
 const DashboardPage = () => {
   const transactionColumns: TableColumn[] = [
@@ -23,7 +27,7 @@ const DashboardPage = () => {
     {
       key: 'passenger',
       label: 'Passenger',
-      render: (value) => (
+      render: value => (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div
             style={{
@@ -49,7 +53,7 @@ const DashboardPage = () => {
     {
       key: 'driver',
       label: 'Driver',
-      render: (value) => (
+      render: value => (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div
             style={{

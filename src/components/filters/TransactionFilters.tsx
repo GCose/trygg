@@ -1,6 +1,7 @@
 import { Search } from 'lucide-react';
-import { TransactionFiltersProps } from '@/types/interfaces/transactions';
+
 import styles from '@/src/styles/transactions/TransactionFilters.module.css';
+import type { TransactionFiltersProps } from '@/types/interfaces/transactions';
 
 const TransactionFilters = ({
   filters,
@@ -18,7 +19,7 @@ const TransactionFilters = ({
             value={filters.search}
             className={styles.search__input}
             placeholder="Search transactions..."
-            onChange={(e) => onFilterChange('search', e.target.value)}
+            onChange={e => onFilterChange('search', e.target.value)}
           />
         </div>
         {/*==================== End of Search Input ====================*/}
@@ -27,7 +28,7 @@ const TransactionFilters = ({
         <div className={styles.filters__group}>
           <select
             value={filters.status}
-            onChange={(e) => onFilterChange('status', e.target.value)}
+            onChange={e => onFilterChange('status', e.target.value)}
             className={styles.filter__select}
           >
             <option value="">All Status</option>
@@ -39,7 +40,7 @@ const TransactionFilters = ({
           <select
             value={filters.paymentMethod}
             className={styles.filter__select}
-            onChange={(e) => onFilterChange('paymentMethod', e.target.value)}
+            onChange={e => onFilterChange('paymentMethod', e.target.value)}
           >
             <option value="">Payment Method</option>
             <option value="Credit Card">Credit Card</option>
@@ -53,7 +54,7 @@ const TransactionFilters = ({
               placeholder="From Date"
               value={filters.dateFrom}
               className={styles.date__input}
-              onChange={(e) => onFilterChange('dateFrom', e.target.value)}
+              onChange={e => onFilterChange('dateFrom', e.target.value)}
             />
           </div>
 

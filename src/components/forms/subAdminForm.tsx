@@ -1,8 +1,11 @@
-import Image from 'next/image';
 import { useState } from 'react';
+
+import Image from 'next/image';
+
 import { Eye, EyeOff, Upload } from 'lucide-react';
+
 import styles from '@/src/styles/sub-admin/SubAdminForm.module.css';
-import {
+import type {
   SubAdminFormProps,
   SubAdminFormData,
 } from '@/types/interfaces/sub-admin';
@@ -20,7 +23,7 @@ const CreateSubAdminForm = ({ onCreateAdmin }: SubAdminFormProps) => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleInputChange = (field: keyof SubAdminFormData, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const handleAvatarUpload = () => {
@@ -33,7 +36,7 @@ const CreateSubAdminForm = ({ onCreateAdmin }: SubAdminFormProps) => {
     ];
     const currentIndex = profiles.indexOf(formData.avatar);
     const nextIndex = (currentIndex + 1) % profiles.length;
-    setFormData((prev) => ({ ...prev, avatar: profiles[nextIndex] }));
+    setFormData(prev => ({ ...prev, avatar: profiles[nextIndex] }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -102,7 +105,7 @@ const CreateSubAdminForm = ({ onCreateAdmin }: SubAdminFormProps) => {
             <input
               type="text"
               value={formData.fullName}
-              onChange={(e) => handleInputChange('fullName', e.target.value)}
+              onChange={e => handleInputChange('fullName', e.target.value)}
               placeholder="John Migurdia"
               className={styles.field__input}
             />
@@ -115,7 +118,7 @@ const CreateSubAdminForm = ({ onCreateAdmin }: SubAdminFormProps) => {
             <input
               type="email"
               value={formData.email}
-              onChange={(e) => handleInputChange('email', e.target.value)}
+              onChange={e => handleInputChange('email', e.target.value)}
               placeholder="example@gmail.com"
               className={styles.field__input}
             />
@@ -129,7 +132,7 @@ const CreateSubAdminForm = ({ onCreateAdmin }: SubAdminFormProps) => {
               <input
                 type={showPassword ? 'text' : 'password'}
                 value={formData.password}
-                onChange={(e) => handleInputChange('password', e.target.value)}
+                onChange={e => handleInputChange('password', e.target.value)}
                 placeholder="••••••••"
                 className={styles.field__input}
               />
@@ -151,7 +154,7 @@ const CreateSubAdminForm = ({ onCreateAdmin }: SubAdminFormProps) => {
               <input
                 type={showConfirmPassword ? 'text' : 'password'}
                 value={formData.confirmPassword}
-                onChange={(e) =>
+                onChange={e =>
                   handleInputChange('confirmPassword', e.target.value)
                 }
                 placeholder="••••••••"

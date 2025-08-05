@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import type { NextApiRequest } from 'next';
+
 import Image from 'next/image';
-import { User } from '@/types';
-import { useState } from 'react';
-import { NextApiRequest } from 'next';
+
 import { UserIcon } from 'lucide-react';
-import { isLoggedIn } from '@/utils/auth';
+
 import { subAdminData } from '@/mocks/sub-admin';
-import ListTable from '@/src/components/ui/ListTable';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import { TableColumn } from '@/types/interfaces/admin-layout';
-import styles from '@/src/styles/sub-admin/SubAdminPage.module.css';
+import ActionDropdown from '@/src/components/dropdowns/ActionDropdown';
 import CreateSubAdminForm from '@/src/components/forms/SubAdminForm';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import ActionDropdown from '@/src/components/dropdowns/ActionDropdown';
-import EditSubAdminModal from '@/src/components/modals/EditSubAdminModal';
-import { SubAdminFormData, SubAdmin } from '@/types/interfaces/sub-admin';
 import DeleteConfirmModal from '@/src/components/modals/DeleteConfirmModal';
+import EditSubAdminModal from '@/src/components/modals/EditSubAdminModal';
 import SubAdminDetailsModal from '@/src/components/modals/SubAdminDetailsModal';
+import ListTable from '@/src/components/ui/ListTable';
+import styles from '@/src/styles/sub-admin/SubAdminPage.module.css';
+import type { User } from '@/types';
+import type { TableColumn } from '@/types/interfaces/admin-layout';
+import type { SubAdminFormData, SubAdmin } from '@/types/interfaces/sub-admin';
+import { isLoggedIn } from '@/utils/auth';
 
 const SubAdminsPage = () => {
   const [subAdmins, setSubAdmins] = useState(subAdminData);
@@ -39,11 +42,11 @@ const SubAdminsPage = () => {
       status: 'ACTIVE' as const,
     };
 
-    setSubAdmins((prev) => [newAdmin, ...prev]);
+    setSubAdmins(prev => [newAdmin, ...prev]);
   };
 
   const handleViewDetails = (adminId: string) => {
-    const admin = subAdmins.find((admin) => admin.adminId === adminId);
+    const admin = subAdmins.find(admin => admin.adminId === adminId);
     if (admin) {
       setSelectedAdmin(admin);
       setIsDetailsModalOpen(true);
@@ -51,7 +54,7 @@ const SubAdminsPage = () => {
   };
 
   const handleEditAdmin = (adminId: string) => {
-    const admin = subAdmins.find((admin) => admin.adminId === adminId);
+    const admin = subAdmins.find(admin => admin.adminId === adminId);
     if (admin) {
       setSelectedAdmin(admin);
       setIsEditModalOpen(true);
@@ -64,14 +67,14 @@ const SubAdminsPage = () => {
   };
 
   const handleDeleteConfirm = (adminId: string) => {
-    setSubAdmins((prev) => prev.filter((admin) => admin.adminId !== adminId));
+    setSubAdmins(prev => prev.filter(admin => admin.adminId !== adminId));
     setIsDeleteModalOpen(false);
     setAdminToDelete('');
   };
 
   const handleUpdateAdmin = (adminId: string, formData: SubAdminFormData) => {
-    setSubAdmins((prev) =>
-      prev.map((admin) =>
+    setSubAdmins(prev =>
+      prev.map(admin =>
         admin.adminId === adminId
           ? {
               ...admin,
@@ -102,19 +105,15 @@ const SubAdminsPage = () => {
   };
 
   const formatDateTime = (dateTime: string) => {
-    return (
-      new Date(dateTime).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      }) +
-      ' at ' +
-      new Date(dateTime).toLocaleTimeString('en-US', {
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit',
-      })
-    );
+    return `${new Date(dateTime).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    })} at ${new Date(dateTime).toLocaleTimeString('en-US', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+    })}`;
   };
 
   {
@@ -153,7 +152,7 @@ const SubAdminsPage = () => {
     {
       key: 'createdAt',
       label: 'Created Date',
-      render: (value) => formatDateTime(value as string),
+      render: value => formatDateTime(value as string),
     },
     {
       key: 'action',

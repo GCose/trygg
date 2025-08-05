@@ -1,6 +1,7 @@
 import { AlertTriangle, FileText } from 'lucide-react';
+
 import styles from '@/src/styles/widgets/AlertsSummary.module.css';
-import { AlertsSummaryWidgetProps } from '@/types/interfaces/widgets';
+import type { AlertsSummaryWidgetProps } from '@/types/interfaces/widgets';
 
 const AlertsSummaryWidget = ({ data }: AlertsSummaryWidgetProps) => {
   return (
@@ -21,14 +22,14 @@ const AlertsSummaryWidget = ({ data }: AlertsSummaryWidgetProps) => {
 
         <div className={styles.breakdown}>
           <div className={styles.breakdown__item}>
-            <div className={styles.indicator__critical}></div>
+            <div className={styles.indicator__critical} />
             <span className={styles.breakdown__text}>
               {data.criticalAlerts} Critical (≤7 days)
             </span>
           </div>
 
           <div className={styles.breakdown__item}>
-            <div className={styles.indicator__warning}></div>
+            <div className={styles.indicator__warning} />
             <span className={styles.breakdown__text}>
               {data.warningAlerts} Warning (≤30 days)
             </span>

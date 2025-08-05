@@ -1,6 +1,7 @@
 import { Search } from 'lucide-react';
+
 import styles from '@/src/styles/passengers/PassengerFilters.module.css';
-import { PassengerFiltersProps } from '@/types/interfaces/passengers';
+import type { PassengerFiltersProps } from '@/types/interfaces/passengers';
 
 const PassengerFilters = ({
   filters,
@@ -17,7 +18,7 @@ const PassengerFilters = ({
             type="text"
             placeholder="Search.."
             value={filters.search}
-            onChange={(e) => onFilterChange('search', e.target.value)}
+            onChange={e => onFilterChange('search', e.target.value)}
             className={styles.search__input}
           />
         </div>
@@ -27,7 +28,7 @@ const PassengerFilters = ({
         <div className={styles.filters__group}>
           <select
             value={filters.rating}
-            onChange={(e) => onFilterChange('rating', e.target.value)}
+            onChange={e => onFilterChange('rating', e.target.value)}
             className={styles.filter__select}
           >
             <option value="">Ratings</option>
@@ -40,7 +41,7 @@ const PassengerFilters = ({
 
           <select
             value={filters.status}
-            onChange={(e) => onFilterChange('status', e.target.value)}
+            onChange={e => onFilterChange('status', e.target.value)}
             className={styles.filter__select}
           >
             <option value="">Status</option>
@@ -55,7 +56,7 @@ const PassengerFilters = ({
               placeholder="From Date"
               value={filters.fromDate}
               className={styles.date__input}
-              onChange={(e) => onFilterChange('fromDate', e.target.value)}
+              onChange={e => onFilterChange('fromDate', e.target.value)}
             />
           </div>
 

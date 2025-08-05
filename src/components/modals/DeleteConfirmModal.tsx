@@ -1,7 +1,8 @@
 import { Trash2 } from 'lucide-react';
+
 import Modal from '@/src/components/ui/Modal';
-import { DeleteConfirmModalProps } from '@/types/interfaces/modal';
 import styles from '@/src/styles/modals/DeleteConfirmModal.module.css';
+import type { DeleteConfirmModalProps } from '@/types/interfaces/modal';
 
 const DeleteConfirmModal = ({
   isOpen,

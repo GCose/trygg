@@ -1,15 +1,18 @@
 import { useState } from 'react';
+
 import Image from 'next/image';
-import PassengerFilters from '@/src/components/filters/PassengerFilters';
-import StatsCard from '@/src/components/ui/StatsCard';
-import ListTable from '@/src/components/ui/ListTable';
-import { PassengersFilterState } from '@/types/interfaces/passengers';
-import { passengersData } from '@/mocks/passenger/passengers-data';
-import { passengerStats } from '@/mocks/passenger/passenger-stats';
-import { TableColumn } from '@/types/interfaces/admin-layout';
+
 import { EyeIcon, Users } from 'lucide-react';
-import styles from '@/src/styles/passengers/PassengersPage.module.css';
+
+import { passengerStats } from '@/mocks/passenger/passenger-stats';
+import { passengersData } from '@/mocks/passenger/passengers-data';
+import PassengerFilters from '@/src/components/filters/PassengerFilters';
 import StatusBadge from '@/src/components/shared/status';
+import ListTable from '@/src/components/ui/ListTable';
+import StatsCard from '@/src/components/ui/StatsCard';
+import styles from '@/src/styles/passengers/PassengersPage.module.css';
+import type { TableColumn } from '@/types/interfaces/admin-layout';
+import type { PassengersFilterState } from '@/types/interfaces/passengers';
 
 const PassengersPageComponent = () => {
   const [filters, setFilters] = useState<PassengersFilterState>({
@@ -26,7 +29,7 @@ const PassengersPageComponent = () => {
     key: keyof PassengersFilterState,
     value: string
   ) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setFilters(prev => ({ ...prev, [key]: value }));
     setCurrentPage(1);
   };
 
@@ -88,7 +91,7 @@ const PassengersPageComponent = () => {
     {
       key: 'totalSpent',
       label: 'Total Spent',
-      render: (value) => formatCurrency(value as number),
+      render: value => formatCurrency(value as number),
     },
     // {
     //   key: 'averageRating',
@@ -102,7 +105,7 @@ const PassengersPageComponent = () => {
     {
       key: 'status',
       label: 'Status',
-      render: (value) => <StatusBadge status={value as string} />,
+      render: value => <StatusBadge status={value as string} />,
     },
     {
       key: 'action',
@@ -121,7 +124,7 @@ const PassengersPageComponent = () => {
   {
     /*==================== Filter Logic ====================*/
   }
-  const filteredPassengers = passengersData.filter((passenger) => {
+  const filteredPassengers = passengersData.filter(passenger => {
     const matchesSearch =
       !filters.search ||
       passenger.name.toLowerCase().includes(filters.search.toLowerCase()) ||
@@ -224,7 +227,7 @@ const PassengersPageComponent = () => {
             Previous
           </button>
 
-          {getPaginationButtons().map((page) => (
+          {getPaginationButtons().map(page => (
             <button
               key={page}
               onClick={() => handlePageChange(page)}

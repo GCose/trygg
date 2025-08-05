@@ -1,3 +1,10 @@
+import type { NextApiRequest } from 'next';
+
+import Image from 'next/image';
+
+import { ArrowLeftRight, Clock } from 'lucide-react';
+
+import { monthlyRevenueData } from '@/mocks/chart-data';
 import {
   dashboardStats,
   recentTransactions,
@@ -9,23 +16,19 @@ import {
   alertsSummaryData,
   driverApplicationStatsData,
 } from '@/mocks/widgets-data';
-import Image from 'next/image';
-import { NextApiRequest } from 'next';
-import { isLoggedIn } from '@/utils/auth';
-import StatsCard from '@/src/components/ui/StatsCard';
-import ListTable from '@/src/components/ui/ListTable';
-import { ArrowLeftRight, Clock } from 'lucide-react';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import { monthlyRevenueData } from '@/mocks/chart-data';
-import { TableColumn } from '@/types/interfaces/admin-layout';
-import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import TopDriverWidget from '@/src/components/widgets/TopDriverWidget';
 import RevenueChart from '@/src/components/charts/RevenueChart';
-import styles from '@/src/styles/dashboard/DashboardPage.module.css';
-import DriverStatusWidget from '@/src/components/widgets/DriverStatusWidget';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import ListTable from '@/src/components/ui/ListTable';
+import StatsCard from '@/src/components/ui/StatsCard';
 import AlertsSummaryWidget from '@/src/components/widgets/AlertsSummaryWidget';
 import DriverApplicationStatsWidget from '@/src/components/widgets/DriverApplicationStatsWidget';
-import { User } from '@/types';
+import DriverStatusWidget from '@/src/components/widgets/DriverStatusWidget';
+import TopDriverWidget from '@/src/components/widgets/TopDriverWidget';
+import styles from '@/src/styles/dashboard/DashboardPage.module.css';
+import type { User } from '@/types';
+import type { TableColumn } from '@/types/interfaces/admin-layout';
+import { isLoggedIn } from '@/utils/auth';
 
 const DashboardPage = () => {
   // Transaction Columns
@@ -34,7 +37,7 @@ const DashboardPage = () => {
     {
       key: 'passenger',
       label: 'Passenger',
-      render: (value) => (
+      render: value => (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div
             style={{
@@ -60,7 +63,7 @@ const DashboardPage = () => {
     {
       key: 'driver',
       label: 'Driver',
-      render: (value) => (
+      render: value => (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div
             style={{

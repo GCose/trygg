@@ -1,4 +1,4 @@
-import { RevenueData } from '@/types/interfaces/chart';
+import type { RevenueData } from '@/types/interfaces/chart';
 
 /**========================
  * Monthly Revenue Data

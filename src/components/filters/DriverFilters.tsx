@@ -1,6 +1,7 @@
 import { Search } from 'lucide-react';
+
 import styles from '@/src/styles/drivers/DriverFilters.module.css';
-import { DriverFiltersProps } from '@/types/interfaces/drivers';
+import type { DriverFiltersProps } from '@/types/interfaces/drivers';
 
 const DriverFilters = ({
   filters,
@@ -18,7 +19,7 @@ const DriverFilters = ({
             placeholder="Search.."
             value={filters.search}
             className={styles.search__input}
-            onChange={(e) => onFilterChange('search', e.target.value)}
+            onChange={e => onFilterChange('search', e.target.value)}
           />
         </div>
         {/*==================== End of Search Input ====================*/}
@@ -27,7 +28,7 @@ const DriverFilters = ({
         <div className={styles.filters__group}>
           <select
             value={filters.rating}
-            onChange={(e) => onFilterChange('rating', e.target.value)}
+            onChange={e => onFilterChange('rating', e.target.value)}
             className={styles.filter__select}
           >
             <option value="">Ratings</option>
@@ -40,7 +41,7 @@ const DriverFilters = ({
 
           <select
             value={filters.status}
-            onChange={(e) => onFilterChange('status', e.target.value)}
+            onChange={e => onFilterChange('status', e.target.value)}
             className={styles.filter__select}
           >
             <option value="">Status</option>
@@ -56,7 +57,7 @@ const DriverFilters = ({
               placeholder="From Date"
               value={filters.fromDate}
               className={styles.date__input}
-              onChange={(e) => onFilterChange('fromDate', e.target.value)}
+              onChange={e => onFilterChange('fromDate', e.target.value)}
             />
           </div>
 

@@ -1,9 +1,11 @@
-import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import { AdminPageMeta } from '@/pageMeta/meta';
 import React from 'react';
-import { NextApiRequest } from 'next';
+
+import type { NextApiRequest } from 'next';
+
+import { AdminPageMeta } from '@/pageMeta/meta';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
-import { User } from '@/types';
 
 const SettingsPage = () => {
   return (
@@ -11,7 +13,7 @@ const SettingsPage = () => {
       role="SUB"
       title="Settings"
       meta={AdminPageMeta.settingsPage}
-    ></DashboardLayout>
+    />
   );
 };
 

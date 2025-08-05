@@ -1,9 +1,10 @@
-import { User } from '@/types';
-import { NextApiRequest } from 'next';
-import { isLoggedIn } from '@/utils/auth';
+import type { NextApiRequest } from 'next';
+
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import DriversPageComponent from '@/src/components/shared/drivers/drivers';
+import type { User } from '@/types';
+import { isLoggedIn } from '@/utils/auth';
 
 const DriversPage = () => {
   return (

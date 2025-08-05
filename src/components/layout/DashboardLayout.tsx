@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import * as Icons from 'lucide-react';
-import Image from 'next/image';
-import styles from '@/src/styles/dashboard/DashboardLayout.module.css';
+
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import * as Icons from 'lucide-react';
+
 import {
   subAdminNavigationItems,
   superAdminNavigationItems,
 } from '@/constants/navigation-items';
-import { DashboardLayoutProps } from '@/types/interfaces/admin-layout';
+import styles from '@/src/styles/dashboard/DashboardLayout.module.css';
+import type { DashboardLayoutProps } from '@/types/interfaces/admin-layout';
 
 const DashboardLayout = ({
   children,
@@ -118,7 +121,7 @@ const DashboardLayout = ({
 
           {/*==================== Navigation ====================*/}
           <nav className={styles.navigation}>
-            {navigationItems.map((item) => {
+            {navigationItems.map(item => {
               const IconComponent = Icons[
                 item.icon as keyof typeof Icons
               ] as React.ComponentType<{ size: number }>;

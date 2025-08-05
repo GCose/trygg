@@ -1,8 +1,11 @@
 import { useState } from 'react';
+
 import Image from 'next/image';
+
 import { X, Eye, EyeOff } from 'lucide-react';
-import { SubAdminDetailsModalProps } from '@/types/interfaces/sub-admin';
+
 import styles from '@/src/styles/modals/SubAdminModal.module.css';
+import type { SubAdminDetailsModalProps } from '@/types/interfaces/sub-admin';
 
 const SubAdminDetailsModal = ({
   isOpen,
@@ -14,19 +17,15 @@ const SubAdminDetailsModal = ({
   if (!isOpen || !admin) return null;
 
   const formatDateTime = (dateTime: string) => {
-    return (
-      new Date(dateTime).toLocaleDateString('en-US', {
-        day: '2-digit',
-        month: 'short',
-        year: 'numeric',
-      }) +
-      ' at ' +
-      new Date(dateTime).toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false,
-      })
-    );
+    return `${new Date(dateTime).toLocaleDateString('en-US', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    })} at ${new Date(dateTime).toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    })}`;
   };
 
   return (
@@ -34,7 +33,7 @@ const SubAdminDetailsModal = ({
       {/*==================== Modal Backdrop ====================*/}
       <div className={styles.backdrop} onClick={onClose}>
         {/*==================== Modal Container ====================*/}
-        <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.modal} onClick={e => e.stopPropagation()}>
           {/*==================== Modal Header ====================*/}
           <div className={styles.header}>
             <h2 className={styles.title}>Admin Details</h2>

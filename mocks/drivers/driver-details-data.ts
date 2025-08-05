@@ -1,4 +1,4 @@
-import { DriverDetails } from '@/types/interfaces/driver-details';
+import type { DriverDetails } from '@/types/interfaces/driver-details';
 
 /**======================
  * Driver Details Data.
@@ -1262,5 +1262,5 @@ export const driverDetailsData: DriverDetails[] = [
  * @returns 
  =====================================*/
 export const getDriverById = (driverId: string): DriverDetails | undefined => {
-  return driverDetailsData.find((driver) => driver.driverId === driverId);
+  return driverDetailsData.find(driver => driver.driverId === driverId);
 };

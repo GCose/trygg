@@ -1,8 +1,10 @@
-import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import React from 'react';
-import { User } from '@/types';
-import { NextApiRequest } from 'next';
+
+import type { NextApiRequest } from 'next';
+
+import { SuperAdminPageMeta } from '@/pageMeta/meta';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
 
 const SettingsPage = () => {
@@ -11,7 +13,7 @@ const SettingsPage = () => {
       role="SUPER"
       title="Settings"
       meta={SuperAdminPageMeta.settingsPage}
-    ></DashboardLayout>
+    />
   );
 };
 

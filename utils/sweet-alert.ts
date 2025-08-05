@@ -1,5 +1,6 @@
-import { SweetAlertProps } from '@/types';
 import Swal from 'sweetalert2';
+
+import type { SweetAlertProps } from '@/types';
 
 export const showAlert = ({
   title,
@@ -24,7 +25,7 @@ export const showAlert = ({
       confirmButton: `swal-confirm-button swal-${icon}-button`,
       cancelButton: 'swal-cancel-button',
     },
-  }).then((result) => {
+  }).then(result => {
     if (result.isConfirmed && onConfirm) {
       onConfirm();
     } else if (result.isDismissed && onCancel) {
