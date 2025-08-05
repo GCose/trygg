@@ -1,8 +1,11 @@
-import Image from 'next/image';
 import { useState } from 'react';
+
+import Image from 'next/image';
+
 import { Star } from 'lucide-react';
+
 import styles from '@/src/styles/drivers/DriverInfoCard.module.css';
-import { DriverInfoCardProps } from '@/types/interfaces/driver-details';
+import type { DriverInfoCardProps } from '@/types/interfaces/driver-details';
 
 const DriverInfoCard = ({ driver }: DriverInfoCardProps) => {
   const [activeDocumentTab, setActiveDocumentTab] = useState('license');
@@ -110,7 +113,7 @@ const DriverInfoCard = ({ driver }: DriverInfoCardProps) => {
         <div className={styles.profile__right}>
           {driver.isOnline && (
             <div className={styles.online__status}>
-              <div className={styles.online__dot}></div>
+              <div className={styles.online__dot} />
               <span className={styles.online__text}>Online</span>
             </div>
           )}

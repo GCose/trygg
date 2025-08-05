@@ -1,3 +1,4 @@
+import { TrendingUp } from 'lucide-react';
 import {
   LineChart,
   Line,
@@ -7,9 +8,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { TrendingUp } from 'lucide-react';
+
 import styles from '@/src/styles/charts/TransactionLineChart.module.css';
-import {
+import type {
   TransactionLineChartProps,
   TransactionTooltipProps,
 } from '@/types/interfaces/transactions';
@@ -24,7 +25,7 @@ const TransactionLineChart = ({ data, title }: TransactionLineChartProps) => {
     payload,
     label,
   }: TransactionTooltipProps) => {
-    if (active && payload && payload.length) {
+    if (active && payload?.length) {
       return (
         <div className={styles.tooltip}>
           <p className={styles.tooltip__label}>{`${label}`}</p>

@@ -1,3 +1,4 @@
+import { TrendingUp } from 'lucide-react';
 import {
   BarChart,
   Bar,
@@ -7,9 +8,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { TrendingUp } from 'lucide-react';
+
 import styles from '@/src/styles/charts/RevenueChart.module.css';
-import { RevenueChartProps, TooltipProps } from '@/types/interfaces/chart';
+import type { RevenueChartProps, TooltipProps } from '@/types/interfaces/chart';
 
 const RevenueChart = ({ data, title }: RevenueChartProps) => {
   const formatRevenue = (value: number) => {
@@ -17,7 +18,7 @@ const RevenueChart = ({ data, title }: RevenueChartProps) => {
   };
 
   const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
-    if (active && payload && payload.length) {
+    if (active && payload?.length) {
       return (
         <div className={styles.tooltip}>
           <p className={styles.tooltip__label}>{`${label} 2025`}</p>

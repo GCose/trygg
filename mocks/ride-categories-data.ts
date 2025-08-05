@@ -1,4 +1,4 @@
-import { RideCategory, KmRange } from '@/types/interfaces/ride-categories';
+import type { RideCategory, KmRange } from '@/types/interfaces/ride-categories';
 
 /**======================
  * Ride Categories Data

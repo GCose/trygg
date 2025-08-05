@@ -1,7 +1,8 @@
 import { X } from 'lucide-react';
-import styles from '@/src/styles/modals/DriverDetailsModal.module.css';
-import { DriverDetailsModalProps } from '@/types/interfaces/driver-details';
+
 import DriverInfoCard from '@/src/components/shared/drivers/DriverInfoCard';
+import styles from '@/src/styles/modals/DriverDetailsModal.module.css';
+import type { DriverDetailsModalProps } from '@/types/interfaces/driver-details';
 
 const DriverDetailsModal = ({
   isOpen,
@@ -15,7 +16,7 @@ const DriverDetailsModal = ({
       {/*==================== Modal Backdrop ====================*/}
       <div className={styles.backdrop} onClick={onClose}>
         {/*==================== Modal Container ====================*/}
-        <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.modal} onClick={e => e.stopPropagation()}>
           {/*==================== Modal Header ====================*/}
           <div className={styles.modal__header}>
             <div className={styles.header__left}>

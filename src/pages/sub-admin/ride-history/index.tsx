@@ -1,9 +1,10 @@
-import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import type { NextApiRequest } from 'next';
+
 import { AdminPageMeta } from '@/pageMeta/meta';
-import { isLoggedIn } from '@/utils/auth';
-import { NextApiRequest } from 'next';
-import { User } from '@/types';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import RideHistoryPageComponent from '@/src/components/shared/ride-history/ride-history';
+import type { User } from '@/types';
+import { isLoggedIn } from '@/utils/auth';
 
 const rideHistoryPage = () => {
   return (

@@ -1,18 +1,21 @@
 import { useState } from 'react';
+
 import Image from 'next/image';
-import DriverFilters from '@/src/components/filters/DriverFilters';
-import ListTable from '@/src/components/ui/ListTable';
-import DriverDetailsModal from '@/src/components/modals/DriverDetailsModal';
-import { DriversFilterState } from '@/types/interfaces/drivers';
-import { DriverDetails } from '@/types/interfaces/driver-details';
-import { driversData } from '@/mocks/drivers/drivers-data';
-import { getDriverById } from '@/mocks/drivers/driver-details-data';
-import { TableColumn } from '@/types/interfaces/admin-layout';
+
 import { Car, MoreHorizontal, Star, StarHalf } from 'lucide-react';
-import styles from '@/src/styles/drivers/DriversPage.module.css';
-import StatsCard from '@/src/components/ui/StatsCard';
+
+import { getDriverById } from '@/mocks/drivers/driver-details-data';
+import { driversData } from '@/mocks/drivers/drivers-data';
 import { driverStats } from '@/mocks/drivers/drivers-stats';
+import DriverFilters from '@/src/components/filters/DriverFilters';
+import DriverDetailsModal from '@/src/components/modals/DriverDetailsModal';
 import StatusBadge from '@/src/components/shared/status';
+import ListTable from '@/src/components/ui/ListTable';
+import StatsCard from '@/src/components/ui/StatsCard';
+import styles from '@/src/styles/drivers/DriversPage.module.css';
+import type { TableColumn } from '@/types/interfaces/admin-layout';
+import type { DriverDetails } from '@/types/interfaces/driver-details';
+import type { DriversFilterState } from '@/types/interfaces/drivers';
 
 const DriversPageComponent = () => {
   const [filters, setFilters] = useState<DriversFilterState>({
@@ -30,7 +33,7 @@ const DriversPageComponent = () => {
   const entriesPerPage = 15;
 
   const handleFilterChange = (key: keyof DriversFilterState, value: string) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setFilters(prev => ({ ...prev, [key]: value }));
     setCurrentPage(1);
   };
 
@@ -120,18 +123,18 @@ const DriversPageComponent = () => {
     {
       key: 'rating',
       label: 'Ratings',
-      render: (value) => renderStarRating(value as number),
+      render: value => renderStarRating(value as number),
     },
     { key: 'totalTrips', label: 'Total Trips' },
     {
       key: 'totalEarning',
       label: 'Total Earning',
-      render: (value) => `$${(value as number).toLocaleString()}.00`,
+      render: value => `$${(value as number).toLocaleString()}.00`,
     },
     {
       key: 'status',
       label: 'Status',
-      render: (value) => <StatusBadge status={value as string} />,
+      render: value => <StatusBadge status={value as string} />,
     },
     {
       key: 'action',
@@ -144,7 +147,7 @@ const DriversPageComponent = () => {
     },
   ];
 
-  const filteredDrivers = driversData.filter((driver) => {
+  const filteredDrivers = driversData.filter(driver => {
     const matchesSearch = filters.search
       ? driver.name.toLowerCase().includes(filters.search.toLowerCase()) ||
         driver.driverId.toLowerCase().includes(filters.search.toLowerCase())
@@ -236,7 +239,7 @@ const DriversPageComponent = () => {
               Previous
             </button>
 
-            {getPaginationButtons().map((page) => (
+            {getPaginationButtons().map(page => (
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}

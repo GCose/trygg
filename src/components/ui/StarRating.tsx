@@ -1,5 +1,5 @@
-import { StarRatingProps } from '@/types/interfaces/drivers';
 import styles from '@/src/styles/StarRating.module.css';
+import type { StarRatingProps } from '@/types/interfaces/drivers';
 
 const StarRating = ({ rating, maxStars = 5 }: StarRatingProps) => {
   const fullStars = Math.floor(rating);

@@ -1,26 +1,30 @@
 import { useState } from 'react';
+
+import type { NextApiRequest } from 'next';
+
 import Image from 'next/image';
-import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import StatsCard from '@/src/components/ui/StatsCard';
-import ListTable from '@/src/components/ui/ListTable';
-import { SuperAdminPageMeta } from '@/pageMeta/meta';
-import { TransactionsFilterState } from '@/types/interfaces/transactions';
+
 import { CreditCard, EyeIcon } from 'lucide-react';
-import styles from '@/src/styles/transactions/TransactionsPage.module.css';
-import TransactionLineChart from '@/src/components/charts/TransactionLineChart';
-import TransactionFilters from '@/src/components/filters/TransactionFilters';
+
 import {
   transactionTrendData,
   transactionVolumeData,
 } from '@/mocks/transactions/transaction-charts';
-import RevenueChart from '@/src/components/charts/RevenueChart';
-import { TableColumn } from '@/types/interfaces/admin-layout';
 import { transactionsData } from '@/mocks/transactions/transaction-data';
 import { transactionStats } from '@/mocks/transactions/transactions-stats';
+import { SuperAdminPageMeta } from '@/pageMeta/meta';
+import RevenueChart from '@/src/components/charts/RevenueChart';
+import TransactionLineChart from '@/src/components/charts/TransactionLineChart';
+import TransactionFilters from '@/src/components/filters/TransactionFilters';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import StatusBadge from '@/src/components/shared/status';
-import { NextApiRequest } from 'next';
+import ListTable from '@/src/components/ui/ListTable';
+import StatsCard from '@/src/components/ui/StatsCard';
+import styles from '@/src/styles/transactions/TransactionsPage.module.css';
+import type { User } from '@/types';
+import type { TableColumn } from '@/types/interfaces/admin-layout';
+import type { TransactionsFilterState } from '@/types/interfaces/transactions';
 import { isLoggedIn } from '@/utils/auth';
-import { User } from '@/types';
 
 const TransactionsPage = () => {
   const [filters, setFilters] = useState<TransactionsFilterState>({
@@ -40,7 +44,7 @@ const TransactionsPage = () => {
     key: keyof TransactionsFilterState,
     value: string
   ) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setFilters(prev => ({ ...prev, [key]: value }));
     setCurrentPage(1);
   };
 
@@ -139,18 +143,18 @@ const TransactionsPage = () => {
     {
       key: 'amount',
       label: 'Amount',
-      render: (value) => <span>{formatCurrency(value as number)}</span>,
+      render: value => <span>{formatCurrency(value as number)}</span>,
     },
     { key: 'paymentMethod', label: 'Payment Method' },
     {
       key: 'status',
       label: 'Status',
-      render: (value) => <StatusBadge status={value as string} />,
+      render: value => <StatusBadge status={value as string} />,
     },
     {
       key: 'dateTime',
       label: 'Date & Time',
-      render: (value) => (
+      render: value => (
         <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
           {formatDateTime(value as string)}
         </span>
@@ -173,7 +177,7 @@ const TransactionsPage = () => {
   {
     /*==================== Filter Logic ====================*/
   }
-  const filteredTransactions = transactionsData.filter((transaction) => {
+  const filteredTransactions = transactionsData.filter(transaction => {
     const matchesSearch =
       !filters.search ||
       transaction.transactionId
@@ -268,7 +272,7 @@ const TransactionsPage = () => {
             title="Transaction Trends (This Week)"
           />
           <RevenueChart
-            data={transactionVolumeData.map((item) => ({
+            data={transactionVolumeData.map(item => ({
               month: item.month,
               revenue: item.completed + item.pending + item.failed,
             }))}
@@ -312,7 +316,7 @@ const TransactionsPage = () => {
               Previous
             </button>
 
-            {getPaginationButtons().map((page) => (
+            {getPaginationButtons().map(page => (
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}

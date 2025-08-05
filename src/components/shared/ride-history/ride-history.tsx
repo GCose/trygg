@@ -1,15 +1,18 @@
 import { useState } from 'react';
+
 import Image from 'next/image';
-import StatsCard from '@/src/components/ui/StatsCard';
-import ListTable from '@/src/components/ui/ListTable';
-import { RidesFilterState } from '@/types/interfaces/rides';
-import { TableColumn } from '@/types/interfaces/admin-layout';
+
 import { MoreHorizontal, Route } from 'lucide-react';
-import styles from '@/src/styles/ride-history/RideHistoryPage.module.css';
-import RideFilters from '@/src/components/filters/RideFilters';
+
 import { ridesData } from '@/mocks/ride-history/ride-history-data';
 import { rideStats } from '@/mocks/ride-history/ride-history-stats';
+import RideFilters from '@/src/components/filters/RideFilters';
 import StatusBadge from '@/src/components/shared/status';
+import ListTable from '@/src/components/ui/ListTable';
+import StatsCard from '@/src/components/ui/StatsCard';
+import styles from '@/src/styles/ride-history/RideHistoryPage.module.css';
+import type { TableColumn } from '@/types/interfaces/admin-layout';
+import type { RidesFilterState } from '@/types/interfaces/rides';
 
 const RideHistoryPageComponent = () => {
   const [filters, setFilters] = useState<RidesFilterState>({
@@ -23,7 +26,7 @@ const RideHistoryPageComponent = () => {
   const entriesPerPage = 15;
 
   const handleFilterChange = (key: keyof RidesFilterState, value: string) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setFilters(prev => ({ ...prev, [key]: value }));
     setCurrentPage(1);
   };
 
@@ -127,7 +130,7 @@ const RideHistoryPageComponent = () => {
     {
       key: 'pickupLocation',
       label: 'Pickup',
-      render: (value) => (
+      render: value => (
         <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
           {value as string}
         </span>
@@ -136,7 +139,7 @@ const RideHistoryPageComponent = () => {
     {
       key: 'dropoffLocation',
       label: 'Dropoff',
-      render: (value) => (
+      render: value => (
         <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
           {value as string}
         </span>
@@ -145,7 +148,7 @@ const RideHistoryPageComponent = () => {
     {
       key: 'distance',
       label: 'Distance',
-      render: (value) => (
+      render: value => (
         <span style={{ fontWeight: '500' }}>
           {formatDistance(value as number)}
         </span>
@@ -154,7 +157,7 @@ const RideHistoryPageComponent = () => {
     {
       key: 'duration',
       label: 'Duration',
-      render: (value) => (
+      render: value => (
         <span style={{ fontWeight: '500' }}>
           {formatDuration(value as number)}
         </span>
@@ -163,17 +166,17 @@ const RideHistoryPageComponent = () => {
     {
       key: 'fare',
       label: 'Fare',
-      render: (value) => <span>{formatCurrency(value as number)}</span>,
+      render: value => <span>{formatCurrency(value as number)}</span>,
     },
     {
       key: 'status',
       label: 'Status',
-      render: (value) => <StatusBadge status={value as string} />,
+      render: value => <StatusBadge status={value as string} />,
     },
     {
       key: 'dateTime',
       label: 'Date & Time',
-      render: (value) => (
+      render: value => (
         <span style={{ fontSize: '0.875rem', color: '#6b7280' }}>
           {formatDateTime(value as string)}
         </span>
@@ -196,7 +199,7 @@ const RideHistoryPageComponent = () => {
   {
     /*==================== Filter Logic ====================*/
   }
-  const filteredRides = ridesData.filter((ride) => {
+  const filteredRides = ridesData.filter(ride => {
     const matchesSearch =
       !filters.search ||
       ride.rideId.toLowerCase().includes(filters.search.toLowerCase()) ||
@@ -297,7 +300,7 @@ const RideHistoryPageComponent = () => {
             Previous
           </button>
 
-          {getPaginationButtons().map((page) => (
+          {getPaginationButtons().map(page => (
             <button
               key={page}
               onClick={() => handlePageChange(page)}

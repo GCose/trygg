@@ -1,11 +1,12 @@
-import { NextApiRequest } from 'next';
-import { isLoggedIn } from '@/utils/auth';
-import { User } from '@/types';
-
 import React from 'react';
 
+import type { NextApiRequest } from 'next';
+
+import type { User } from '@/types';
+import { isLoggedIn } from '@/utils/auth';
+
 const PageRoot = () => {
-  return <div></div>;
+  return <div />;
 };
 
 export default PageRoot;

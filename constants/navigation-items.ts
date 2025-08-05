@@ -1,4 +1,4 @@
-import { NavigationItem } from '@/types/interfaces/admin-layout';
+import type { NavigationItem } from '@/types/interfaces/admin-layout';
 
 export const subAdminNavigationItems: NavigationItem[] = [
   {

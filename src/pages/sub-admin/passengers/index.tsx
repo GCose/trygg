@@ -1,9 +1,10 @@
-import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import type { NextApiRequest } from 'next';
+
 import { AdminPageMeta } from '@/pageMeta/meta';
+import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import PassengersPageComponent from '@/src/components/shared/passengers/passengers';
-import { User } from '@/types';
+import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
-import { NextApiRequest } from 'next';
 
 const PassengersPage = () => {
   return (
