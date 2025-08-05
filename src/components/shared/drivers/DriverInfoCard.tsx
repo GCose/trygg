@@ -154,7 +154,7 @@ const DriverInfoCard = ({ driver }: DriverInfoCardProps) => {
       <div className={styles.two__column__section}>
         {/*==================== Documents Details Column ====================*/}
         <div className={styles.documents__column}>
-          <h3 className={styles.section__title}>Documents Details</h3>
+          <h3 className={styles.section__title}>Document Details</h3>
 
           <div className={styles.tab__content}>
             <div className={styles.tab__nav}>
@@ -162,7 +162,7 @@ const DriverInfoCard = ({ driver }: DriverInfoCardProps) => {
                 className={`${styles.nav__item} ${activeDocumentTab === 'license' ? styles.active : ''}`}
                 onClick={() => setActiveDocumentTab('license')}
               >
-                Driver Licence
+                Driver License
               </button>
             </div>
 
