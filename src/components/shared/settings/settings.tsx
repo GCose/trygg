@@ -5,14 +5,10 @@ import Image from 'next/image';
 import { User, Lock, Globe, Eye, EyeOff, Upload } from 'lucide-react';
 
 import styles from '@/src/styles/SettingsPage.module.css';
-
-type TabType = 'profile' | 'security' | 'language';
-
-interface SettingsPageComponentProps {
-  role: 'SUPER' | 'SUB';
-  defaultName: string;
-  defaultEmail: string;
-}
+import type {
+  SettingsPageComponentProps,
+  TabType,
+} from '@/types/interfaces/settings';
 
 const SettingsPageComponent = ({
   defaultName,

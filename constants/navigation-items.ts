@@ -26,6 +26,12 @@ export const subAdminNavigationItems: NavigationItem[] = [
     icon: 'Route',
   },
   {
+    id: 'reviews',
+    label: 'Reviews',
+    href: '/super-admin/reviews',
+    icon: 'StarIcon',
+  },
+  {
     id: 'settings',
     label: 'Settings',
     href: '/sub-admin/settings',
@@ -57,6 +63,12 @@ export const superAdminNavigationItems: NavigationItem[] = [
     label: 'Ride History',
     href: '/super-admin/ride-history',
     icon: 'Route',
+  },
+  {
+    id: 'reviews',
+    label: 'Reviews',
+    href: '/super-admin/reviews',
+    icon: 'StarIcon',
   },
   {
     id: 'transactions',

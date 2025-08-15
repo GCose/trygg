@@ -24,6 +24,11 @@ export const AdminPageMeta = {
     description: 'Track all Trygg rides.',
   },
 
+  reviewsPage: {
+    title: 'Trygg Admin | Reviews & Feedback',
+    description: 'View and manage reviews and feedback from users.',
+  },
+
   settingsPage: {
     title: 'Trygg Admin | Settings',
     description: 'Change your Trygg admin dashboard settings.',

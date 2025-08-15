@@ -22,10 +22,10 @@ const Error404Page = () => {
         <div className={styles.content}>
           <div className={styles.icon__wrapper}>
             <Image
-              src="/icon.png"
-              alt="Trygg Logo"
               width={80}
               height={80}
+              src="/icon.png"
+              alt="Trygg Logo"
               className={styles.logo}
             />
           </div>

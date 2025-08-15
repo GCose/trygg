@@ -1,12 +1,9 @@
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import styles from '@/src/styles/ErrorPage.module.css';
 
-{
-  /*==================== Unauthorized Access Page Component ====================*/
-}
 const Unauthorized = () => {
   const router = useRouter();
 
@@ -25,10 +22,10 @@ const Unauthorized = () => {
         <div className={styles.content}>
           <div className={styles.icon__wrapper}>
             <Image
-              src="/icon.png"
-              alt="Trygg Logo"
               width={80}
               height={80}
+              src="/icon.png"
+              alt="Trygg Logo"
               className={styles.logo}
             />
           </div>
@@ -58,6 +55,3 @@ const Unauthorized = () => {
 };
 
 export default Unauthorized;
-{
-  /*==================== End of Unauthorized Access Page Component ====================*/
-}

@@ -19,10 +19,10 @@ const Terms = () => {
         <div className={styles.header}>
           <div className={styles.logo__section}>
             <Image
-              src="/icon.png"
-              alt="Trygg Logo"
               width={60}
               height={60}
+              src="/icon.png"
+              alt="Trygg Logo"
               className={styles.logo}
             />
             <h1 className={styles.main__title}>Terms and Conditions</h1>
