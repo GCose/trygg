@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import type { NextApiRequest } from 'next';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import axios from 'axios';
@@ -84,12 +85,12 @@ const SignIn = () => {
           <div className={styles.logo__section}>
             <div className={styles.logo__placeholder}>
               <Image
-                src="/icon.png"
+                priority
                 alt="Logo"
                 width={64}
                 height={64}
+                src="/icon.png"
                 className={styles.logo__image}
-                priority
               />
             </div>
           </div>
@@ -141,9 +142,12 @@ const SignIn = () => {
             </div>
 
             <div className={styles.form__options}>
-              <a href="#" className={styles.forgot__password}>
+              <Link
+                href="/auth/forgot-password"
+                className={styles.forgot__password}
+              >
                 Forgot password?
-              </a>
+              </Link>
             </div>
 
             <button
