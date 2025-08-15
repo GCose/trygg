@@ -18,13 +18,13 @@
   grid-template-columns: auto 1fr auto;
 }
 
-/**==========================
+/**====================
  * LEFT COLUMN STYLES
- ==========================*/
+ ====================*/
 .left__column {
+  gap: 1rem;
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 2vw, 1.5rem);
   min-width: clamp(12rem, 18vw, 15rem);
 }
 
