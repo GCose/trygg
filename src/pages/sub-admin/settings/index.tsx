@@ -1,9 +1,8 @@
-import React from 'react';
-
 import type { NextApiRequest } from 'next';
 
 import { AdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import SettingsPageComponent from '@/src/components/shared/settings/settings';
 import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
 
@@ -13,7 +12,13 @@ const SettingsPage = () => {
       role="SUB"
       title="Settings"
       meta={AdminPageMeta.settingsPage}
-    />
+    >
+      <SettingsPageComponent
+        role="SUB"
+        defaultName="Sub Admin"
+        defaultEmail="subadmin@trygg.com"
+      />
+    </DashboardLayout>
   );
 };
 

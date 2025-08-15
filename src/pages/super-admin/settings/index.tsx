@@ -1,9 +1,8 @@
-import React from 'react';
-
 import type { NextApiRequest } from 'next';
 
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import SettingsPageComponent from '@/src/components/shared/settings/settings';
 import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
 
@@ -13,7 +12,13 @@ const SettingsPage = () => {
       role="SUPER"
       title="Settings"
       meta={SuperAdminPageMeta.settingsPage}
-    />
+    >
+      <SettingsPageComponent
+        role="SUPER"
+        defaultName="Super Admin"
+        defaultEmail="superadmin@trygg.com"
+      />
+    </DashboardLayout>
   );
 };
 
