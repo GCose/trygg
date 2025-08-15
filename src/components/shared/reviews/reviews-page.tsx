@@ -105,7 +105,7 @@ const ReviewsPageComponent = () => {
               <div className={styles.review__content}>
                 <p className={styles.review__text}>{review.reviewText}</p>
                 <span className={styles.driver__attribution}>
-                  -{review.driverName} (Driver)
+                  -{review.driverName}
                 </span>
               </div>
               {/*==================== End of Review Content ====================*/}
