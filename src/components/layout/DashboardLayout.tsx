@@ -175,9 +175,23 @@ const DashboardLayout = ({
 
             <div className={styles.header__right}>
               <div className={styles.admin__profile}>
+                {/*==================== Profile Picture ====================*/}
+                <div className={styles.profile__picture}>
+                  <Image
+                    width={36}
+                    height={36}
+                    alt="Admin Avatar"
+                    src="/profiles/profile-1.avif"
+                    className={styles.profile__image}
+                  />
+                </div>
+                {/*==================== End of Profile Picture ====================*/}
+
                 <div className={styles.profile__info}>
                   <span className={styles.admin__name}>Admin User</span>
-                  <span className={styles.admin__role}>Super Admin</span>
+                  <span className={styles.admin__role}>
+                    {role === 'SUPER' ? 'Super Admin' : 'Sub Admin'}
+                  </span>
                 </div>
               </div>
             </div>
