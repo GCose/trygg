@@ -110,7 +110,7 @@ const ReviewsPageComponent = () => {
               <div className={styles.review__content}>
                 <p className={styles.review__text}>{review.reviewText}</p>
                 <span className={styles.driver__attribution}>
-                  -{review.driverName}
+                  -{review.driverName} (Driver)
                 </span>
               </div>
               {/*==================== End of Review Content ====================*/}
@@ -124,7 +124,6 @@ const ReviewsPageComponent = () => {
           {/*==================== Top Drivers Header ====================*/}
           <div className={styles.top__drivers__header}>
             <h2 className={styles.top__drivers__title}>Top Drivers</h2>
-            <button className={styles.view__more__button}>View more</button>
           </div>
           {/*==================== End of Top Drivers Header ====================*/}
 
