@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import router from 'next/router';
 
 import { Star } from 'lucide-react';
 
@@ -22,6 +23,10 @@ const ReviewsPageComponent = () => {
       </div>
     );
   };
+
+  function handleClickEvent() {
+    router.push('/drivers');
+  }
 
   return (
     <div className={styles.reviews__page}>
@@ -150,7 +155,12 @@ const ReviewsPageComponent = () => {
                 {/*==================== End of Driver Info ====================*/}
 
                 {/*==================== Driver Action ====================*/}
-                <button className={styles.driver__view__more}>View more</button>
+                <button
+                  onClick={handleClickEvent}
+                  className={styles.driver__view__more}
+                >
+                  View more
+                </button>
                 {/*==================== End of Driver Action ====================*/}
               </div>
             ))}
