@@ -2,37 +2,34 @@
  * PASSENGER INFO CARD STYLES
  ===============================*/
 .passenger__info__card {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.5rem, 3vw, 2rem);
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #ffffff;
+  padding: clamp(1.5rem, 3vw, 2rem);
 }
 
-/**==============================
- * PASSENGER PROFILE SECTION
- ==============================*/
+/**=========================
+ * PASSENGER PROFILE STYLES
+ =========================*/
 .passenger__profile {
   display: flex;
   align-items: center;
-  border-radius: 1rem;
-  background: #ffffff;
   justify-content: space-between;
-  border: 0.0625rem solid #e5e7eb;
-  padding: clamp(1.25rem, 2.5vw, 1.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
 .profile__left {
+  gap: 1rem;
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 2vw, 1.25rem);
 }
 
 .passenger__avatar {
-  width: 3rem;
-  height: 3rem;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
   overflow: hidden;
   border-radius: 50%;
-  border: 0.125rem solid #e5e7eb;
 }
 
 .avatar__image {
@@ -42,45 +39,45 @@
 }
 
 .passenger__info {
+  gap: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .passenger__name {
   margin: 0;
+  font-weight: 600;
   color: #111827;
-  font-weight: 700;
-  font-size: clamp(1.125rem, 2.25vw, 1.375rem);
+  font-size: 1.125rem;
 }
 
 .status__container {
+  gap: 0.5rem;
   display: flex;
   align-items: center;
-  gap: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .status__badge {
-  font-weight: 600;
-  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
   text-transform: uppercase;
-  font-size: clamp(0.625rem, 1.25vw, 0.75rem);
-  padding: clamp(0.25rem, 0.5vw, 0.375rem) clamp(0.5rem, 1vw, 0.75rem);
 }
 
-.status__badge.active {
-  color: #166534;
-  background: #dcfce7;
+.active {
+  color: #059669;
+  background: #d1fae5;
 }
 
-.status__badge.inactive {
-  color: #991b1b;
+.inactive {
+  color: #6b7280;
+  background: #f3f4f6;
+}
+
+.suspended {
+  color: #dc2626;
   background: #fee2e2;
-}
-
-.status__badge.suspended {
-  color: #92400e;
-  background: #fef3c7;
 }
 
 .verified__badge {
@@ -109,29 +106,30 @@
   padding: clamp(0.375rem, 0.75vw, 0.5rem) clamp(0.5rem, 1vw, 0.75rem);
 }
 
-/**================================
- * PASSENGER DETAILS GRID STYLES
- ================================*/
+/**==========================
+ * PASSENGER DETAILS STYLES
+ ==========================*/
 .passenger__details__grid {
   display: grid;
-  border-radius: 1rem;
-  background: #ffffff;
-  gap: clamp(1rem, 2vw, 1.25rem);
-  border: 0.0625rem solid #e5e7eb;
-  padding: clamp(1.25rem, 2.5vw, 1.5rem);
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  grid-template-columns: repeat(3, 1fr);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
 .detail__item {
+  gap: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: clamp(0.375rem, 0.75vw, 0.5rem);
 }
 
 .detail__label {
-  color: #6b7280;
   font-weight: 500;
-  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: #6b7280;
+  font-size: 0.875rem;
 }
 
 .detail__value {
@@ -163,86 +161,115 @@
   color: #dc2626;
 }
 
-/**==============================
+.language__value {
+  display: flex;
+  color: #6b7280;
+  font-weight: 500;
+  align-items: center;
+  gap: clamp(0.25rem, 0.5vw, 0.375rem);
+}
+
+/**==========================
  * TWO COLUMN SECTION STYLES
- ==============================*/
+ ==========================*/
 .two__column__section {
   display: grid;
-  gap: clamp(1.5rem, 3vw, 2rem);
+  gap: clamp(2rem, 4vw, 3rem);
   grid-template-columns: 1fr 1fr;
 }
 
 .activity__column,
 .referral__column {
-  border-radius: 1rem;
-  background: #ffffff;
-  border: 0.0625rem solid #e5e7eb;
-  padding: clamp(1.25rem, 2.5vw, 1.5rem);
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .section__title {
-  color: #111827;
+  margin: 0;
+  font-size: 1rem;
   font-weight: 600;
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  margin: 0 0 clamp(1rem, 2vw, 1.25rem) 0;
+  color: #111827;
 }
 
-/**==============================
- * ACTIVITY SECTION STYLES
- ==============================*/
-.activity__stats {
+/**=======================
+ * TAB CONTENT STYLES
+ =======================*/
+.tab__content {
+  gap: 1.5rem;
   display: flex;
-  flex-direction: column;
-  gap: clamp(0.75rem, 1.5vw, 1rem);
 }
 
-.activity__item {
+.tab__nav {
+  gap: 0.25rem;
   display: flex;
+  min-width: 150px;
   flex-direction: column;
-  gap: clamp(0.25rem, 0.5vw, 0.375rem);
 }
 
-.activity__label {
-  color: #6b7280;
+.nav__item {
+  border: none;
+  cursor: pointer;
   font-weight: 500;
-  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: #6b7280;
+  text-align: left;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  transition: all 0.2s ease;
 }
 
-.activity__value {
-  display: flex;
+.nav__item:hover {
+  color: #374151;
+  background: #f9fafb;
+}
+
+.nav__item.active {
   color: #111827;
   font-weight: 600;
-  align-items: center;
-  gap: clamp(0.25rem, 0.5vw, 0.375rem);
-  font-size: clamp(0.875rem, 1.75vw, 1rem);
+  background: #f3f4f6;
 }
 
-/**==============================
- * REFERRAL SECTION STYLES
- ==============================*/
+/**=========================
+ * TAB DISPLAY STYLES
+ =========================*/
+.tab__display {
+  flex: 1;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.account__info,
 .referral__info {
+  gap: 1rem;
   display: flex;
   flex-direction: column;
-  gap: clamp(0.75rem, 1.5vw, 1rem);
 }
 
-.referral__item {
+.info__item {
+  gap: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: clamp(0.375rem, 0.75vw, 0.5rem);
 }
 
-.referral__label {
-  color: #6b7280;
+.info__label {
   font-weight: 500;
-  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.info__value {
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.875rem;
 }
 
 .referral__code {
   display: flex;
-  color: #fbbf24;
-  font-weight: 600;
-  align-items: center;
+  color: #92400e;
   background: #fffbeb;
   border-radius: 0.375rem;
   gap: clamp(0.375rem, 0.75vw, 0.5rem);
@@ -257,12 +284,6 @@
 .code__value {
   color: #92400e;
   font-family: monospace;
-}
-
-.referral__value {
-  color: #111827;
-  font-weight: 600;
-  font-size: clamp(0.875rem, 1.75vw, 1rem);
 }
 
 .no__referral {
@@ -280,50 +301,67 @@
 /**===================
  * BREAKPOINT STYLES
  ===================*/
+@media (max-width: 1024px) {
+  .passenger__details__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .two__column__section {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+
+  .tab__nav {
+    gap: 0.5rem;
+    overflow-x: auto;
+  }
+
+  .nav__item {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 768px) {
   .passenger__profile {
+    gap: 1rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: clamp(1rem, 2vw, 1.25rem);
-  }
-
-  .profile__left {
-    width: 100%;
-  }
-
-  .profile__right {
-    width: 100%;
-    justify-content: flex-start;
   }
 
   .passenger__details__grid {
     grid-template-columns: 1fr;
   }
 
-  .two__column__section {
-    grid-template-columns: 1fr;
+  .tab__content {
+    gap: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .passenger__info__card {
-    gap: clamp(1rem, 2vw, 1.5rem);
+  .profile__left {
+    flex-direction: column;
   }
 
-  .passenger__profile,
-  .activity__column,
-  .referral__column {
-    padding: clamp(1rem, 2vw, 1.25rem);
+  .tab__content {
+    flex-direction: column;
+  }
+
+  .tab__nav {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .passenger__info__card {
+    padding: 1rem;
   }
 
   .passenger__details__grid {
-    gap: clamp(0.75rem, 1.5vw, 1rem);
-    padding: clamp(1rem, 2vw, 1.25rem);
+    grid-template-columns: 1fr;
   }
 
-  .status__container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: clamp(0.375rem, 0.75vw, 0.5rem);
+  .account__info,
+  .referral__info {
+    padding: 1rem;
   }
 }
