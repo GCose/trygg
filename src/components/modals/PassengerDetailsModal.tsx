@@ -1,15 +1,15 @@
 import { X } from 'lucide-react';
 
-import DriverInfoCard from '@/src/components/shared/drivers/driver-info-card';
-import styles from '@/src/styles/modals/DriverDetailsModal.module.css';
-import type { DriverDetailsModalProps } from '@/types/interfaces/driver-details';
+import PassengerInfoCard from '@/src/components/shared/passengers/passenger-info-card';
+import styles from '@/src/styles/modals/PassengerDetailsModal.module.css';
+import type { PassengerDetailsModalProps } from '@/types/interfaces/passenger-details';
 
-const DriverDetailsModal = ({
+const PassengerDetailsModal = ({
   isOpen,
   onClose,
-  driver,
-}: DriverDetailsModalProps) => {
-  if (!isOpen || !driver) return null;
+  passenger,
+}: PassengerDetailsModalProps) => {
+  if (!isOpen || !passenger) return null;
 
   return (
     <>
@@ -20,7 +20,7 @@ const DriverDetailsModal = ({
           {/*==================== Modal Header ====================*/}
           <div className={styles.modal__header}>
             <div className={styles.header__left}>
-              <h2 className={styles.modal__title}>Driver Details</h2>
+              <h2 className={styles.modal__title}>Passenger Details</h2>
             </div>
             <button onClick={onClose} className={styles.close__button}>
               <X size={20} color="#6b7280" />
@@ -30,7 +30,7 @@ const DriverDetailsModal = ({
 
           {/*==================== Modal Content ====================*/}
           <div className={styles.modal__content}>
-            <DriverInfoCard driver={driver} />
+            <PassengerInfoCard passenger={passenger} />
           </div>
           {/*==================== End of Modal Content ====================*/}
         </div>
@@ -41,4 +41,4 @@ const DriverDetailsModal = ({
   );
 };
 
-export default DriverDetailsModal;
+export default PassengerDetailsModal;

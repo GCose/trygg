@@ -55,9 +55,6 @@ const PassengersPageComponent = () => {
     }).format(amount);
   };
 
-  {
-    /*==================== Passengers Table Columns ====================*/
-  }
   const passengersColumns: TableColumn[] = [
     { key: 'passengerId', label: 'Passenger ID' },
     {
@@ -117,13 +114,7 @@ const PassengersPageComponent = () => {
       ),
     },
   ];
-  {
-    /*==================== End of Passengers Table Columns ====================*/
-  }
 
-  {
-    /*==================== Filter Logic ====================*/
-  }
   const filteredPassengers = passengersData.filter(passenger => {
     const matchesSearch =
       !filters.search ||
@@ -141,13 +132,7 @@ const PassengersPageComponent = () => {
 
     return matchesSearch && matchesRating && matchesStatus;
   });
-  {
-    /*==================== End of Filter Logic ====================*/
-  }
 
-  {
-    /*==================== Pagination Logic ====================*/
-  }
   const totalEntries = filteredPassengers.length;
   const totalPages = Math.ceil(totalEntries / entriesPerPage);
   const startIndex = (currentPage - 1) * entriesPerPage;
@@ -173,9 +158,6 @@ const PassengersPageComponent = () => {
 
     return buttons;
   };
-  {
-    /*==================== End of Pagination Logic ====================*/
-  }
 
   return (
     <div className={styles.passengers__page}>
