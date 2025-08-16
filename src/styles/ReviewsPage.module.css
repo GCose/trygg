@@ -335,6 +335,10 @@
     height: calc(100vh - clamp(4.5rem, 8vw, 5rem));
   }
 
+  .top__drivers__section::-webkit-scrollbar {
+    display: none;
+  }
+
   .reviews__column {
     margin-right: calc(clamp(15rem, 20vw, 18rem) + 2rem);
     margin-left: calc(clamp(12rem, 18vw, 15rem) + 0.7rem);
