@@ -1,8 +1,12 @@
+/**=======================
+ * SUB ADMIN INTERFACES
+ =======================*/
 export interface SubAdmin {
   id: string;
   adminId: string;
   fullName: string;
   email: string;
+  phoneNumber: string;
   avatar: string;
   createdAt: string;
   status: 'ACTIVE' | 'SUSPENDED';
@@ -11,26 +15,12 @@ export interface SubAdmin {
 export interface SubAdminFormData {
   fullName: string;
   email: string;
-  password: string;
-  confirmPassword: string;
+  phoneNumber: string;
   avatar: string;
 }
 
 export interface SubAdminFormProps {
   onCreateAdmin: (data: SubAdminFormData) => void;
-}
-
-export interface SubAdminDetailsModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  admin: SubAdmin | null;
-}
-
-export interface EditSubAdminModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  admin: SubAdmin | null;
-  onUpdate: (adminId: string, data: SubAdminFormData) => void;
 }
 
 export interface DropdownProps {
@@ -42,7 +32,5 @@ export interface DropdownProps {
 }
 
 export interface ActionDropdownProps {
-  onViewDetails: () => void;
-  onEdit: () => void;
   onDelete: () => void;
 }

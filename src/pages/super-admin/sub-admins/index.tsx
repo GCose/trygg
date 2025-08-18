@@ -6,27 +6,22 @@ import Image from 'next/image';
 
 import { UserIcon } from 'lucide-react';
 
-import { subAdminData } from '@/mocks/sub-admin';
+import { subAdminData } from '@/mocks/sub-admins';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import ActionDropdown from '@/src/components/dropdowns/ActionDropdown';
 import CreateSubAdminForm from '@/src/components/forms/subAdminForm';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import DeleteConfirmModal from '@/src/components/modals/DeleteConfirmModal';
-import EditSubAdminModal from '@/src/components/modals/EditSubAdminModal';
-import SubAdminDetailsModal from '@/src/components/modals/SubAdminDetailsModal';
 import ListTable from '@/src/components/ui/ListTable';
 import styles from '@/src/styles/sub-admin/SubAdminPage.module.css';
 import type { User } from '@/types';
 import type { TableColumn } from '@/types/interfaces/admin-layout';
-import type { SubAdmin, SubAdminFormData } from '@/types/interfaces/sub-admin';
+import type { SubAdminFormData } from '@/types/interfaces/sub-admin';
 import { isLoggedIn } from '@/utils/auth';
 
 const SubAdminsPage = () => {
   const [subAdmins, setSubAdmins] = useState(subAdminData);
-  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedAdmin, setSelectedAdmin] = useState<SubAdmin | null>(null);
   const [adminToDelete, setAdminToDelete] = useState<string>('');
 
   const handleCreateAdmin = (formData: SubAdminFormData) => {
@@ -37,28 +32,13 @@ const SubAdminsPage = () => {
       adminId: newAdminId,
       fullName: formData.fullName,
       email: formData.email,
+      phoneNumber: formData.phoneNumber,
       avatar: formData.avatar,
       createdAt: new Date().toISOString().replace('T', ' ').slice(0, 19),
       status: 'ACTIVE' as const,
     };
 
     setSubAdmins(prev => [newAdmin, ...prev]);
-  };
-
-  const handleViewDetails = (adminId: string) => {
-    const admin = subAdmins.find(admin => admin.adminId === adminId);
-    if (admin) {
-      setSelectedAdmin(admin);
-      setIsDetailsModalOpen(true);
-    }
-  };
-
-  const handleEditAdmin = (adminId: string) => {
-    const admin = subAdmins.find(admin => admin.adminId === adminId);
-    if (admin) {
-      setSelectedAdmin(admin);
-      setIsEditModalOpen(true);
-    }
   };
 
   const handleDeleteClick = (adminId: string) => {
@@ -72,33 +52,6 @@ const SubAdminsPage = () => {
     setAdminToDelete('');
   };
 
-  const handleUpdateAdmin = (adminId: string, formData: SubAdminFormData) => {
-    setSubAdmins(prev =>
-      prev.map(admin =>
-        admin.adminId === adminId
-          ? {
-              ...admin,
-              fullName: formData.fullName,
-              email: formData.email,
-              avatar: formData.avatar,
-            }
-          : admin
-      )
-    );
-    setIsEditModalOpen(false);
-    setSelectedAdmin(null);
-  };
-
-  const handleCloseDetailsModal = () => {
-    setIsDetailsModalOpen(false);
-    setSelectedAdmin(null);
-  };
-
-  const handleCloseEditModal = () => {
-    setIsEditModalOpen(false);
-    setSelectedAdmin(null);
-  };
-
   const handleCloseDeleteModal = () => {
     setIsDeleteModalOpen(false);
     setAdminToDelete('');
@@ -106,40 +59,37 @@ const SubAdminsPage = () => {
 
   const formatDateTime = (dateTime: string) => {
     return `${new Date(dateTime).toLocaleDateString('en-US', {
-      year: 'numeric',
+      day: '2-digit',
       month: 'short',
-      day: 'numeric',
+      year: 'numeric',
     })} at ${new Date(dateTime).toLocaleTimeString('en-US', {
-      hour12: false,
       hour: '2-digit',
       minute: '2-digit',
+      hour12: false,
     })}`;
   };
 
-  {
-    /*==================== Sub Admin Table Columns ====================*/
-  }
   const subAdminColumns: TableColumn[] = [
     { key: 'adminId', label: 'Admin ID' },
     {
       key: 'fullName',
-      label: 'Admin',
+      label: 'Admin Name',
       render: (value, row) => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div
             style={{
               width: '2rem',
               height: '2rem',
-              flexShrink: 0,
-              overflow: 'hidden',
               borderRadius: '50%',
+              overflow: 'hidden',
+              border: '1px solid #e5e7eb',
             }}
           >
             <Image
               width={32}
               height={32}
               alt="Admin"
-              src={(row.avatar as string) || '/profiles/profile-1.avif'}
+              src={row.avatar || '/profiles/profile-1.avif'}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
@@ -148,6 +98,14 @@ const SubAdminsPage = () => {
           </span>
         </div>
       ),
+    },
+    {
+      key: 'email',
+      label: 'Email',
+    },
+    {
+      key: 'phoneNumber',
+      label: 'Phone Number',
     },
     {
       key: 'createdAt',
@@ -159,19 +117,10 @@ const SubAdminsPage = () => {
       label: 'Action',
       render: (_, row) => {
         const adminId = row.adminId as string;
-        return (
-          <ActionDropdown
-            onEdit={() => handleEditAdmin(adminId)}
-            onDelete={() => handleDeleteClick(adminId)}
-            onViewDetails={() => handleViewDetails(adminId)}
-          />
-        );
+        return <ActionDropdown onDelete={() => handleDeleteClick(adminId)} />;
       },
     },
   ];
-  {
-    /*==================== End of Sub Admin Table Columns ====================*/
-  }
 
   return (
     <DashboardLayout
@@ -205,31 +154,14 @@ const SubAdminsPage = () => {
         </div>
         {/*==================== End of Two Column Layout ====================*/}
 
-        {/*==================== Sub Admin Details Modal ====================*/}
-        <SubAdminDetailsModal
-          admin={selectedAdmin}
-          isOpen={isDetailsModalOpen}
-          onClose={handleCloseDetailsModal}
-        />
-        {/*==================== End of Sub Admin Details Modal ====================*/}
-
-        {/*==================== Edit Sub Admin Modal ====================*/}
-        <EditSubAdminModal
-          admin={selectedAdmin}
-          isOpen={isEditModalOpen}
-          onUpdate={handleUpdateAdmin}
-          onClose={handleCloseEditModal}
-        />
-        {/*==================== End of Edit Sub Admin Modal ====================*/}
-
         {/*==================== Delete Confirmation Modal ====================*/}
         <DeleteConfirmModal
           cancelText="No, Keep"
-          title="Delete Sub Admin"
-          confirmText="Yes, Delete"
+          title="Suspend Sub Admin"
+          confirmText="Yes, Suspend"
           isOpen={isDeleteModalOpen}
           onClose={handleCloseDeleteModal}
-          message="Are you sure you want to delete sub admin?"
+          message="Are you sure you want to suspend sub admin?"
           onConfirm={() => handleDeleteConfirm(adminToDelete)}
         />
         {/*==================== End of Delete Confirmation Modal ====================*/}

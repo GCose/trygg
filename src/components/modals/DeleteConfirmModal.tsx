@@ -1,4 +1,4 @@
-import { Trash2 } from 'lucide-react';
+import { PauseCircle } from 'lucide-react';
 
 import Modal from '@/src/components/ui/Modal';
 import styles from '@/src/styles/modals/DeleteConfirmModal.module.css';
@@ -24,7 +24,7 @@ const DeleteConfirmModal = ({
       <div className={styles.content}>
         {/*==================== Icon Section ====================*/}
         <div className={styles.icon__section}>
-          {icon || <Trash2 size={48} color="#fbbf24" />}
+          {icon || <PauseCircle size={48} color="#fbbf24" />}
         </div>
         {/*==================== End of Icon Section ====================*/}
 

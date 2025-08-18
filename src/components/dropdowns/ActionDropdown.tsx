@@ -7,11 +7,7 @@ import type { ActionDropdownProps } from '@/types/interfaces/sub-admin';
 
 import Dropdown from '../ui/Dropdown';
 
-const ActionDropdown = ({
-  onViewDetails,
-  onEdit,
-  onDelete,
-}: ActionDropdownProps) => {
+const ActionDropdown = ({ onDelete }: ActionDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -35,33 +31,15 @@ const ActionDropdown = ({
         </button>
       }
       isOpen={isOpen}
-      onToggle={handleToggle}
       onClose={handleClose}
+      onToggle={handleToggle}
     >
-      {/*==================== View Details Option ====================*/}
-      <button
-        onClick={() => handleAction(onViewDetails)}
-        className={styles.menu__item}
-      >
-        View Details
-      </button>
-      {/*==================== End of View Details Option ====================*/}
-
-      {/*==================== Edit Option ====================*/}
-      <button
-        onClick={() => handleAction(onEdit)}
-        className={styles.menu__item}
-      >
-        Edit
-      </button>
-      {/*==================== End of Edit Option ====================*/}
-
       {/*==================== Delete Option ====================*/}
       <button
         onClick={() => handleAction(onDelete)}
         className={`${styles.menu__item} ${styles.delete__item}`}
       >
-        Delete
+        Suspend
       </button>
       {/*==================== End of Delete Option ====================*/}
     </Dropdown>
