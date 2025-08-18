@@ -28,7 +28,7 @@ export const subAdminNavigationItems: NavigationItem[] = [
   {
     id: 'reviews',
     label: 'Reviews',
-    href: '/super-admin/reviews',
+    href: '/sub-admin/reviews',
     icon: 'StarIcon',
   },
   {
