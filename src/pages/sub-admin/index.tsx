@@ -21,60 +21,98 @@ import type { User } from '@/types';
 import type { TableColumn } from '@/types/interfaces/admin-layout';
 import { isLoggedIn } from '@/utils/auth';
 
+const passengerProfiles: Record<string, string> = {
+  'John Smith': '/profiles/profile-1.avif',
+  'Sarah Wilson': '/profiles/profile-2.avif',
+  'Emily Davis': '/profiles/profile-3.avif',
+  'Michael Chen': '/profiles/profile-4.avif',
+  'Lisa Anderson': '/profiles/profile-5.avif',
+  'Chris Martinez': '/profiles/profile-6.avif',
+  'Anna Taylor': '/profiles/profile-7.avif',
+  'Mark Thompson': '/profiles/profile-8.avif',
+  'Rachel Green': '/profiles/profile-9.avif',
+  'Tom Wilson': '/profiles/profile-10.avif',
+};
+
+const driverProfiles: Record<string, string> = {
+  'Mike Johnson': '/profiles/profile-10.avif',
+  'David Brown': '/profiles/profile-9.avif',
+  'James Miller': '/profiles/profile-8.avif',
+  'Robert Garcia': '/profiles/profile-7.avif',
+  'William Jones': '/profiles/profile-6.avif',
+  'Thomas Wilson': '/profiles/profile-5.avif',
+  'Charles Moore': '/profiles/profile-4.avif',
+  'Daniel Lee': '/profiles/profile-3.avif',
+  'Kevin White': '/profiles/profile-2.avif',
+  'Steven Clark': '/profiles/profile-1.avif',
+};
+
 const DashboardPage = () => {
   const transactionColumns: TableColumn[] = [
     { key: 'id', label: 'Driver ID' },
     {
       key: 'passenger',
       label: 'Passenger',
-      render: value => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <div
-            style={{
-              width: '2rem',
-              flexShrink: 0,
-              height: '2rem',
-              overflow: 'hidden',
-              borderRadius: '50%',
-            }}
-          >
-            <Image
-              width={32}
-              height={32}
-              alt="Passenger"
-              src="/profiles/profile-1.avif"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
+      render: (value, row) => {
+        const passengerName = value as string;
+        const profilePicture =
+          passengerProfiles[passengerName] || '/profiles/profile-1.avif';
+
+        return (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div
+              style={{
+                width: '2rem',
+                flexShrink: 0,
+                height: '2rem',
+                overflow: 'hidden',
+                borderRadius: '50%',
+              }}
+            >
+              <Image
+                width={32}
+                height={32}
+                alt="Passenger"
+                src={profilePicture}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+            <span>{passengerName}</span>
           </div>
-          <span>{value as string}</span>
-        </div>
-      ),
+        );
+      },
     },
     {
       key: 'driver',
       label: 'Driver',
-      render: value => (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <div
-            style={{
-              width: '2rem',
-              flexShrink: 0,
-              height: '2rem',
-              overflow: 'hidden',
-              borderRadius: '50%',
-            }}
-          >
-            <Image
-              width={32}
-              height={32}
-              alt="Driver"
-              src="/profiles/profile-2.avif"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
+      render: (value, row) => {
+        const driverName = value as string;
+        const profilePicture =
+          driverProfiles[driverName] || '/profiles/profile-2.avif';
+
+        return (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div
+              style={{
+                width: '2rem',
+                flexShrink: 0,
+                height: '2rem',
+                overflow: 'hidden',
+                borderRadius: '50%',
+              }}
+            >
+              <Image
+                width={32}
+                height={32}
+                alt="Driver"
+                src={profilePicture}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+            <span>{driverName}</span>
           </div>
-          <span>{value as string}</span>
-        </div>
-      ),
+        );
+      },
     },
     { key: 'amount', label: 'Amount' },
     { key: 'dateTime', label: 'Date/Time' },

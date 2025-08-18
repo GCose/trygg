@@ -11,18 +11,23 @@ import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import ActionDropdown from '@/src/components/dropdowns/ActionDropdown';
 import CreateSubAdminForm from '@/src/components/forms/subAdminForm';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import DeleteConfirmModal from '@/src/components/modals/DeleteConfirmModal';
+import DynamicAdminConfirmModal from '@/src/components/modals/DynamicAdminConfirmModal';
+import StatusBadge from '@/src/components/shared/status';
 import ListTable from '@/src/components/ui/ListTable';
 import styles from '@/src/styles/sub-admin/SubAdminPage.module.css';
 import type { User } from '@/types';
 import type { TableColumn } from '@/types/interfaces/admin-layout';
-import type { SubAdminFormData } from '@/types/interfaces/sub-admin';
+import type {
+  SubAdminFormData,
+  AdminActionState,
+  SubAdmin,
+} from '@/types/interfaces/sub-admin';
 import { isLoggedIn } from '@/utils/auth';
 
 const SubAdminsPage = () => {
   const [subAdmins, setSubAdmins] = useState(subAdminData);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [adminToDelete, setAdminToDelete] = useState<string>('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [actionState, setActionState] = useState<AdminActionState | null>(null);
 
   const handleCreateAdmin = (formData: SubAdminFormData) => {
     const newAdminId = `ADM${(subAdmins.length + 1).toString().padStart(3, '0')}`;
@@ -41,55 +46,61 @@ const SubAdminsPage = () => {
     setSubAdmins(prev => [newAdmin, ...prev]);
   };
 
-  const handleDeleteClick = (adminId: string) => {
-    setAdminToDelete(adminId);
-    setIsDeleteModalOpen(true);
+  const handleStatusChangeClick = (admin: SubAdmin) => {
+    const newActionState: AdminActionState = {
+      adminId: admin.adminId,
+      fullName: admin.fullName,
+      email: admin.email,
+      currentStatus: admin.status,
+      actionType: admin.status === 'ACTIVE' ? 'SUSPEND' : 'ACTIVATE',
+    };
+
+    setActionState(newActionState);
+    setIsModalOpen(true);
   };
 
-  const handleDeleteConfirm = (adminId: string) => {
-    setSubAdmins(prev => prev.filter(admin => admin.adminId !== adminId));
-    setIsDeleteModalOpen(false);
-    setAdminToDelete('');
+  const handleStatusChangeConfirm = () => {
+    if (!actionState) return;
+
+    setSubAdmins(prev =>
+      prev.map(admin =>
+        admin.adminId === actionState.adminId
+          ? {
+              ...admin,
+              status:
+                actionState.actionType === 'SUSPEND' ? 'SUSPENDED' : 'ACTIVE',
+            }
+          : admin
+      )
+    );
   };
 
-  const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false);
-    setAdminToDelete('');
-  };
-
-  const formatDateTime = (dateTime: string) => {
-    return `${new Date(dateTime).toLocaleDateString('en-US', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-    })} at ${new Date(dateTime).toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    })}`;
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setActionState(null);
   };
 
   const subAdminColumns: TableColumn[] = [
     { key: 'adminId', label: 'Admin ID' },
     {
       key: 'fullName',
-      label: 'Admin Name',
+      label: 'Name',
       render: (value, row) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div
             style={{
-              width: '2rem',
-              height: '2rem',
-              borderRadius: '50%',
+              width: '2.5rem',
+              height: '2.5rem',
+              flexShrink: 0,
               overflow: 'hidden',
-              border: '1px solid #e5e7eb',
+              borderRadius: '50%',
             }}
           >
             <Image
-              width={32}
-              height={32}
+              width={40}
+              height={40}
               alt="Admin"
-              src={row.avatar || '/profiles/profile-1.avif'}
+              src={(row.avatar as string) || '/profiles/profile-1.avif'}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
@@ -99,25 +110,25 @@ const SubAdminsPage = () => {
         </div>
       ),
     },
+    { key: 'email', label: 'Email' },
+    { key: 'phoneNumber', label: 'Phone' },
     {
-      key: 'email',
-      label: 'Email',
+      key: 'status',
+      label: 'Status',
+      render: value => <StatusBadge status={value as string} />,
     },
-    {
-      key: 'phoneNumber',
-      label: 'Phone Number',
-    },
-    {
-      key: 'createdAt',
-      label: 'Created Date',
-      render: value => formatDateTime(value as string),
-    },
+    { key: 'createdAt', label: 'Created' },
     {
       key: 'action',
       label: 'Action',
       render: (_, row) => {
-        const adminId = row.adminId as string;
-        return <ActionDropdown onDelete={() => handleDeleteClick(adminId)} />;
+        const admin = row as unknown as SubAdmin;
+        return (
+          <ActionDropdown
+            status={admin.status}
+            onStatusChange={() => handleStatusChangeClick(admin)}
+          />
+        );
       },
     },
   ];
@@ -154,17 +165,14 @@ const SubAdminsPage = () => {
         </div>
         {/*==================== End of Two Column Layout ====================*/}
 
-        {/*==================== Delete Confirmation Modal ====================*/}
-        <DeleteConfirmModal
-          cancelText="No, Keep"
-          title="Suspend Sub Admin"
-          confirmText="Yes, Suspend"
-          isOpen={isDeleteModalOpen}
-          onClose={handleCloseDeleteModal}
-          message="Are you sure you want to suspend sub admin?"
-          onConfirm={() => handleDeleteConfirm(adminToDelete)}
+        {/*==================== Dynamic Status Change Modal ====================*/}
+        <DynamicAdminConfirmModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          actionState={actionState}
+          onConfirm={handleStatusChangeConfirm}
         />
-        {/*==================== End of Delete Confirmation Modal ====================*/}
+        {/*==================== End of Dynamic Status Change Modal ====================*/}
       </div>
     </DashboardLayout>
   );

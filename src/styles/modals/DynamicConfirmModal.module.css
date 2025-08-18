@@ -78,6 +78,22 @@
   background: #f59e0b;
 }
 
+.activate__button {
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 0.875rem;
+  background: #059669;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.15s ease;
+}
+
+.activate__button:hover {
+  background: #047857;
+}
+
 /**====================
  * RESPONSIVE STYLES
  ====================*/
@@ -88,7 +104,8 @@
   }
 
   .cancel__button,
-  .confirm__button {
+  .confirm__button,
+  .activate__button {
     width: 100%;
   }
 }

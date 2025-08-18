@@ -78,7 +78,7 @@
 }
 
 /**====================
- * DELETE MENU ITEM
+ * SUSPEND MENU ITEM
  ====================*/
 .delete__item {
   color: #dc2626;
@@ -87,4 +87,16 @@
 .delete__item:hover {
   color: #dc2626;
   background: #fef2f2;
+}
+
+/**====================
+ * ACTIVATE MENU ITEM
+ ====================*/
+.activate__item {
+  color: #059669;
+}
+
+.activate__item:hover {
+  color: #059669;
+  background: #f0fdf4;
 }
