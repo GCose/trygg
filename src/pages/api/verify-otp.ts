@@ -31,7 +31,7 @@ export default async function handler(
       const tokenCookie = serialize('trygg_admin', JSON.stringify(cookieData), {
         httpOnly: true,
         secure: true,
-        maxAge: 60 * 60, // 1 hour (60 seconds * 60 minutes)
+        maxAge: 60 * 60 * 24 * 3, // 3 days (259,200 seconds)
         sameSite: 'strict',
         path: '/',
       });
