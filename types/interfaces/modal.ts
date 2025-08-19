@@ -31,3 +31,10 @@ export interface DeleteConfirmModalProps {
   cancelText?: string;
   icon?: React.ReactNode;
 }
+
+export interface VerificationCodeModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  email: string;
+  userId: string;
+}

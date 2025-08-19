@@ -2,23 +2,24 @@ import { useState } from 'react';
 
 import { useRouter } from 'next/router';
 
+import axios from 'axios';
 import { X, Mail } from 'lucide-react';
 
 import styles from '@/src/styles/modals/VerificationCodeModal.module.css';
-
-interface VerificationCodeModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onVerified: () => void;
-  email: string;
-}
+import type { VerificationCodeModalProps } from '@/types/interfaces/modal';
+import { getErrorMessage } from '@/utils/error';
+import { showAlert } from '@/utils/sweet-alert';
 
 const VerificationCodeModal = ({
   isOpen,
   onClose,
   email,
+  userId,
 }: VerificationCodeModalProps) => {
   const [codes, setCodes] = useState(['', '', '', '', '', '']);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [isResending, setIsResending] = useState(false);
+
   const router = useRouter();
 
   if (!isOpen) return null;
@@ -29,14 +30,77 @@ const VerificationCodeModal = ({
     const newCodes = [...codes];
     newCodes[index] = value;
     setCodes(newCodes);
+
+    if (value && index < 5) {
+      const nextInput = document.getElementById(`code-input-${index + 1}`);
+      nextInput?.focus();
+    }
   };
 
-  const handleSubmit = () => {
-    router.push('/auth/reset-password');
+  const handleSubmit = async () => {
+    const code = codes.join('');
+    if (code.length !== 6) return;
+
+    setIsVerifying(true);
+
+    try {
+      const { data } = await axios.post('/api/verify-otp', {
+        code,
+        userId,
+      });
+
+      showAlert({
+        title: 'Success!',
+        text: 'Sign in successful. Welcome back!',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+      });
+
+      if (data.role === 'SUB') {
+        router.push('/sub-admin');
+      } else if (data.role === 'SUPER') {
+        router.push('/super-admin');
+      }
+    } catch (error) {
+      const { message } = getErrorMessage(error);
+      setCodes(['', '', '', '', '', '']);
+      showAlert({
+        title: 'Verification Failed!',
+        text: message,
+        icon: 'error',
+      });
+    } finally {
+      setIsVerifying(false);
+    }
   };
 
-  const handleResendCode = () => {
+  const handleResendCode = async () => {
+    setIsResending(true);
     setCodes(['', '', '', '', '', '']);
+
+    try {
+      await axios.post('/api/request-otp', {
+        email,
+      });
+
+      showAlert({
+        title: 'Code Sent!',
+        text: 'Verification code has been resent to your email.',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+      });
+    } catch (error) {
+      const { message } = getErrorMessage(error);
+      showAlert({
+        title: 'Error!',
+        text: message,
+        icon: 'error',
+      });
+    } finally {
+      setIsResending(false);
+    }
   };
 
   return (
@@ -73,10 +137,12 @@ const VerificationCodeModal = ({
                   <input
                     key={index}
                     type="text"
+                    id={`code-input-${index}`}
                     maxLength={1}
                     value={code}
                     onChange={e => handleInputChange(index, e.target.value)}
                     className={styles.code__input}
+                    disabled={isVerifying}
                   />
                 ))}
               </div>
@@ -84,9 +150,10 @@ const VerificationCodeModal = ({
               <button
                 type="button"
                 onClick={handleSubmit}
+                disabled={isVerifying || codes.join('').length !== 6}
                 className={styles.verify__button}
               >
-                Verify Code
+                {isVerifying ? 'Verifying Code...' : 'Verify Email'}
               </button>
             </form>
 
@@ -94,9 +161,10 @@ const VerificationCodeModal = ({
               <p className={styles.resend__text}>Didn't receive the code?</p>
               <button
                 onClick={handleResendCode}
+                disabled={isResending}
                 className={styles.resend__button}
               >
-                Resend Code
+                {isResending ? 'Resending...' : 'Resend Code'}
               </button>
             </div>
           </div>
