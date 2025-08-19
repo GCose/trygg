@@ -15,7 +15,7 @@ export default async function handler(
     const { email, password } = req.body;
 
     try {
-      const { data } = await axios.post(`${BASE_URL}/admin/login`, {
+      const { data } = await axios.post(`${BASE_URL}/admin/auth`, {
         email,
         password,
       });
