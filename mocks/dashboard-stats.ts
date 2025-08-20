@@ -109,7 +109,6 @@ export const recentTransactions = [
  ==================================*/
 export const pendingDrivers = [
   {
-    id: '1',
     driverId: 'DVR051',
     profilePicture: '/profiles/profile-1.avif',
     name: 'Alex Rodriguez',
@@ -117,7 +116,6 @@ export const pendingDrivers = [
     vehicleType: 'Toyota Camry',
   },
   {
-    id: '2',
     driverId: 'DVR052',
     profilePicture: '/profiles/profile-2.avif',
     name: 'Maria Santos',
@@ -125,7 +123,6 @@ export const pendingDrivers = [
     vehicleType: 'Honda Civic',
   },
   {
-    id: '3',
     driverId: 'DVR053',
     profilePicture: '/profiles/profile-3.avif',
     name: 'Peter Kim',
@@ -133,7 +130,6 @@ export const pendingDrivers = [
     vehicleType: 'Ford Focus',
   },
   {
-    id: '4',
     driverId: 'DVR054',
     profilePicture: '/profiles/profile-4.avif',
     name: 'Jennifer Lopez',
@@ -141,7 +137,6 @@ export const pendingDrivers = [
     vehicleType: 'Nissan Altima',
   },
   {
-    id: '5',
     driverId: 'DVR055',
     profilePicture: '/profiles/profile-5.avif',
     name: 'Samuel Osei',
@@ -149,7 +144,6 @@ export const pendingDrivers = [
     vehicleType: 'Hyundai Elantra',
   },
   {
-    id: '6',
     driverId: 'DVR056',
     profilePicture: '/profiles/profile-6.avif',
     name: 'Chloe Dubois',
@@ -157,7 +151,6 @@ export const pendingDrivers = [
     vehicleType: 'Peugeot 208',
   },
   {
-    id: '7',
     driverId: 'DVR057',
     profilePicture: '/profiles/profile-7.avif',
     name: 'Liam Johnson',
@@ -165,7 +158,6 @@ export const pendingDrivers = [
     vehicleType: 'Chevrolet Malibu',
   },
   {
-    id: '8',
     driverId: 'DVR058',
     profilePicture: '/profiles/profile-8.avif',
     name: 'Fatima Diallo',
@@ -173,7 +165,6 @@ export const pendingDrivers = [
     vehicleType: 'Kia Optima',
   },
   {
-    id: '9',
     driverId: 'DVR059',
     profilePicture: '/profiles/profile-9.avif',
     name: 'Ivan Petrov',
@@ -181,7 +172,6 @@ export const pendingDrivers = [
     vehicleType: 'Skoda Octavia',
   },
   {
-    id: '10',
     driverId: 'DVR060',
     profilePicture: '/profiles/profile-10.avif',
     name: 'Nora Ahmed',
