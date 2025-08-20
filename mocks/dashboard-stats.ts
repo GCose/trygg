@@ -110,6 +110,7 @@ export const recentTransactions = [
 export const pendingDrivers = [
   {
     id: '1',
+    driverId: 'DVR051',
     profilePicture: '/profiles/profile-1.avif',
     name: 'Alex Rodriguez',
     appliedDate: '2025-01-23',
@@ -117,6 +118,7 @@ export const pendingDrivers = [
   },
   {
     id: '2',
+    driverId: 'DVR052',
     profilePicture: '/profiles/profile-2.avif',
     name: 'Maria Santos',
     appliedDate: '2025-01-23',
@@ -124,6 +126,7 @@ export const pendingDrivers = [
   },
   {
     id: '3',
+    driverId: 'DVR053',
     profilePicture: '/profiles/profile-3.avif',
     name: 'Peter Kim',
     appliedDate: '2025-01-22',
@@ -131,6 +134,7 @@ export const pendingDrivers = [
   },
   {
     id: '4',
+    driverId: 'DVR054',
     profilePicture: '/profiles/profile-4.avif',
     name: 'Jennifer Lopez',
     appliedDate: '2025-01-22',
@@ -138,6 +142,7 @@ export const pendingDrivers = [
   },
   {
     id: '5',
+    driverId: 'DVR055',
     profilePicture: '/profiles/profile-5.avif',
     name: 'Samuel Osei',
     appliedDate: '2025-01-21',
@@ -145,6 +150,7 @@ export const pendingDrivers = [
   },
   {
     id: '6',
+    driverId: 'DVR056',
     profilePicture: '/profiles/profile-6.avif',
     name: 'Chloe Dubois',
     appliedDate: '2025-01-21',
@@ -152,6 +158,7 @@ export const pendingDrivers = [
   },
   {
     id: '7',
+    driverId: 'DVR057',
     profilePicture: '/profiles/profile-7.avif',
     name: 'Liam Johnson',
     appliedDate: '2025-01-20',
@@ -159,6 +166,7 @@ export const pendingDrivers = [
   },
   {
     id: '8',
+    driverId: 'DVR058',
     profilePicture: '/profiles/profile-8.avif',
     name: 'Fatima Diallo',
     appliedDate: '2025-01-20',
@@ -166,6 +174,7 @@ export const pendingDrivers = [
   },
   {
     id: '9',
+    driverId: 'DVR059',
     profilePicture: '/profiles/profile-9.avif',
     name: 'Ivan Petrov',
     appliedDate: '2025-01-19',
@@ -173,6 +182,7 @@ export const pendingDrivers = [
   },
   {
     id: '10',
+    driverId: 'DVR060',
     profilePicture: '/profiles/profile-10.avif',
     name: 'Nora Ahmed',
     appliedDate: '2025-01-19',

@@ -124,6 +124,7 @@ const DashboardPageComponent = () => {
   ];
 
   const pendingDriverColumns: TableColumn[] = [
+    { key: 'driverId', label: 'Driver ID' },
     {
       key: 'name',
       label: 'Driver',
