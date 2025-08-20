@@ -47,10 +47,6 @@ const DriverApplicationStatsWidget = ({
             <span className={styles.breakdown__text}>Rejected</span>
           </div>
         </div>
-
-        <div className={styles.view__details}>
-          <span>View all applications →</span>
-        </div>
       </div>
       {/*==================== End of Content ====================*/}
     </div>

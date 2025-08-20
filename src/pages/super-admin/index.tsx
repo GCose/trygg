@@ -126,13 +126,7 @@ const DashboardPage = () => {
     { key: 'amount', label: 'Amount' },
     { key: 'dateTime', label: 'Date/Time' },
   ];
-  {
-    /*==================== End of Transaction Columns ====================*/
-  }
 
-  {
-    /*==================== Pending Driver Columns ====================*/
-  }
   const pendingDriverColumns: TableColumn[] = [
     {
       key: 'name',
@@ -175,9 +169,6 @@ const DashboardPage = () => {
       ),
     },
   ];
-  {
-    /*==================== End of Pending Driver Columns ====================*/
-  }
 
   return (
     <DashboardLayout

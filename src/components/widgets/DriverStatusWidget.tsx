@@ -1,4 +1,4 @@
-import { Users, Clock } from 'lucide-react';
+import { Users } from 'lucide-react';
 
 import styles from '@/src/styles/widgets/DriverStatus.module.css';
 import type { DriverStatusWidgetProps } from '@/types/interfaces/widgets';
@@ -34,11 +34,6 @@ const DriverStatusWidget = ({ data }: DriverStatusWidgetProps) => {
               {data.recentOffline} offline &lt;2hrs
             </span>
           </div>
-        </div>
-
-        <div className={styles.view__details}>
-          <Clock size={14} color="#6b7280" />
-          <span>View offline drivers →</span>
         </div>
       </div>
       {/*==================== End of Content ====================*/}

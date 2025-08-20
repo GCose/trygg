@@ -1,4 +1,4 @@
-import { AlertTriangle, FileText } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 
 import styles from '@/src/styles/widgets/AlertsSummary.module.css';
 import type { AlertsSummaryWidgetProps } from '@/types/interfaces/widgets';
@@ -34,11 +34,6 @@ const AlertsSummaryWidget = ({ data }: AlertsSummaryWidgetProps) => {
               {data.warningAlerts} Warning (≤30 days)
             </span>
           </div>
-        </div>
-
-        <div className={styles.view__details}>
-          <FileText size={14} color="#6b7280" />
-          <span>View all alerts →</span>
         </div>
       </div>
       {/*==================== End of Content ====================*/}

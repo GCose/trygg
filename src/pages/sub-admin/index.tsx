@@ -4,16 +4,27 @@ import type { NextApiRequest } from 'next';
 
 import Image from 'next/image';
 
-import { ArrowLeftRight } from 'lucide-react';
+import { ArrowLeftRight, Clock } from 'lucide-react';
 
 import { monthlyRevenueData } from '@/mocks/chart-data';
-import { dashboardStats, recentTransactions } from '@/mocks/dashboard-stats';
-import { topDriverData, driverStatusData } from '@/mocks/widgets-data';
+import {
+  dashboardStats,
+  pendingDrivers,
+  recentTransactions,
+} from '@/mocks/dashboard-stats';
+import {
+  topDriverData,
+  driverStatusData,
+  alertsSummaryData,
+  driverApplicationStatsData,
+} from '@/mocks/widgets-data';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import RevenueChart from '@/src/components/charts/RevenueChart';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import ListTable from '@/src/components/ui/ListTable';
 import StatsCard from '@/src/components/ui/StatsCard';
+import AlertsSummaryWidget from '@/src/components/widgets/AlertsSummaryWidget';
+import DriverApplicationStatsWidget from '@/src/components/widgets/DriverApplicationStatsWidget';
 import DriverStatusWidget from '@/src/components/widgets/DriverStatusWidget';
 import TopDriverWidget from '@/src/components/widgets/TopDriverWidget';
 import styles from '@/src/styles/dashboard/DashboardPage.module.css';
@@ -118,6 +129,49 @@ const DashboardPage = () => {
     { key: 'dateTime', label: 'Date/Time' },
   ];
 
+  const pendingDriverColumns: TableColumn[] = [
+    {
+      key: 'name',
+      label: 'Driver',
+      render: (value, row) => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div
+            style={{
+              flexShrink: 0,
+              width: '2.5rem',
+              height: '2.5rem',
+              overflow: 'hidden',
+              borderRadius: '50%',
+            }}
+          >
+            <Image
+              width={40}
+              height={40}
+              alt="Driver"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              src={(row.profilePicture as string) || '/profiles/profile-1.avif'}
+            />
+          </div>
+          <span style={{ fontWeight: 500, color: '#111827' }}>
+            {value as string}
+          </span>
+        </div>
+      ),
+    },
+    { key: 'vehicleType', label: 'Vehicle' },
+    { key: 'appliedDate', label: 'Applied' },
+    {
+      key: 'action',
+      label: 'Action',
+      render: () => (
+        <div className={styles.action__buttons}>
+          <button className={styles.approve__btn}>Approve</button>
+          <button className={styles.reject__btn}>Reject</button>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <DashboardLayout
       role="SUB"
@@ -179,6 +233,39 @@ const DashboardPage = () => {
           </div>
         </div>
         {/*==================== End of Row 3: Recent Transactions ====================*/}
+
+        {/*==================== Row 4: Stats Widgets Left, Pending Applications Right ====================*/}
+        <div className={styles.final__row}>
+          {/*==================== Stats Widgets ====================*/}
+          <div className={styles.stats__widgets}>
+            {/*==================== Document Alerts Widget ====================*/}
+            <div className={styles.widget}>
+              <AlertsSummaryWidget data={alertsSummaryData} />
+            </div>
+            {/*==================== End of Document Alerts Widget ====================*/}
+
+            {/*==================== Driver Application Stats Widget ====================*/}
+            <div className={styles.widget}>
+              <DriverApplicationStatsWidget data={driverApplicationStatsData} />
+            </div>
+            {/*==================== End of Driver Application Stats Widget ====================*/}
+          </div>
+          {/*==================== End of Stats Widgets ====================*/}
+
+          {/*==================== Pending Applications Section ====================*/}
+          <div className={styles.pending__section}>
+            <div className={styles.table__with__pending__icon}>
+              <Clock size={20} color="#fbbf24" />
+              <ListTable
+                data={pendingDrivers}
+                columns={pendingDriverColumns}
+                title="Pending Driver Applications"
+              />
+            </div>
+          </div>
+          {/*==================== End of Pending Applications Section ====================*/}
+        </div>
+        {/*==================== End of Row 4 ====================*/}
       </div>
     </DashboardLayout>
   );

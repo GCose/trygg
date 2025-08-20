@@ -61,10 +61,6 @@ const TopDriverWidget = ({ data }: TopDriverWidgetProps) => {
             <span className={styles.rides__label}>rides completed</span>
           </div>
         </div>
-
-        <div className={styles.view__all}>
-          <span>View all rankings →</span>
-        </div>
       </div>
       {/*==================== End of Content ====================*/}
     </div>
