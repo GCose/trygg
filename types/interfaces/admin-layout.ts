@@ -18,10 +18,6 @@ export interface StatsCardProps {
   title: string;
   value: string | number;
   icon: string;
-  trend?: {
-    value: number;
-    isPositive: boolean;
-  };
 }
 
 export interface TableColumn {
