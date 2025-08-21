@@ -27,19 +27,6 @@ const PassengerFilters = ({
         {/*==================== Filter Dropdowns ====================*/}
         <div className={styles.filters__group}>
           <select
-            value={filters.rating}
-            onChange={e => onFilterChange('rating', e.target.value)}
-            className={styles.filter__select}
-          >
-            <option value="">Ratings</option>
-            <option value="5">5 Stars</option>
-            <option value="4">4+ Stars</option>
-            <option value="3">3+ Stars</option>
-            <option value="2">2+ Stars</option>
-            <option value="1">1+ Stars</option>
-          </select>
-
-          <select
             value={filters.status}
             onChange={e => onFilterChange('status', e.target.value)}
             className={styles.filter__select}

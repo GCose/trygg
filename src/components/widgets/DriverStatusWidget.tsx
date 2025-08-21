@@ -19,22 +19,6 @@ const DriverStatusWidget = ({ data }: DriverStatusWidgetProps) => {
           <span className={styles.count}>{data.totalOffline}</span>
           <span className={styles.label}>Drivers Offline</span>
         </div>
-
-        <div className={styles.breakdown}>
-          <div className={styles.breakdown__item}>
-            <div className={styles.indicator__critical} />
-            <span className={styles.breakdown__text}>
-              {data.criticalOffline} offline &gt;2hrs
-            </span>
-          </div>
-
-          <div className={styles.breakdown__item}>
-            <div className={styles.indicator__warning} />
-            <span className={styles.breakdown__text}>
-              {data.recentOffline} offline &lt;2hrs
-            </span>
-          </div>
-        </div>
       </div>
       {/*==================== End of Content ====================*/}
     </div>
