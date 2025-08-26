@@ -4,7 +4,7 @@ import type { NextApiRequest } from 'next';
 
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
-import PassengersSkeleton from '@/src/components/shared/passengers/passenger-skeleton';
+import PassengersSkeleton from '@/src/components/shared/passengers/passengers-skeleton';
 import PassengersPageComponent from '@/src/components/shared/passengers/passengers';
 import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';

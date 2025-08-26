@@ -1,24 +1,37 @@
+import { useState, useEffect } from 'react';
+
 import type { NextApiRequest } from 'next';
 
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import RideHistoryPageComponent from '@/src/components/shared/ride-history/ride-history';
+import RideHistorySkeleton from '@/src/components/shared/ride-history/ride-history-skeleton';
 import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
 
-const rideHistoryPage = () => {
+const RideHistoryPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <DashboardLayout
       role="SUPER"
       title="Ride History"
       meta={SuperAdminPageMeta.rideHistoryPage}
     >
-      <RideHistoryPageComponent />
+      {isLoading ? <RideHistorySkeleton /> : <RideHistoryPageComponent />}
     </DashboardLayout>
   );
 };
 
-export default rideHistoryPage;
+export default RideHistoryPage;
 
 export const getServerSideProps = async ({ req }: { req: NextApiRequest }) => {
   const userData = isLoggedIn(req);
