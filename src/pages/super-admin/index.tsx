@@ -5,7 +5,7 @@ import type { NextApiRequest } from 'next';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import DashboardPageComponent from '@/src/components/shared/dashboard/dashboard-page-component';
-import DashboardSkeleton from '@/src/components/shared/dashboard/dashboard-skeleton';
+import DashboardSkeleton from '@/src/components/shared/dashboard/dashboard-page-skeleton';
 import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
 

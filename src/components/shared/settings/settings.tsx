@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { User, Lock, Globe, Eye, EyeOff, Upload } from 'lucide-react';
 
-import styles from '@/src/styles/SettingsPage.module.css';
+import styles from '@/src/styles/settings/SettingsPage.module.css';
 import type {
   SettingsPageComponentProps,
   TabType,

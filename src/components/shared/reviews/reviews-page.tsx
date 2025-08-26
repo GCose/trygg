@@ -4,7 +4,7 @@ import router from 'next/router';
 import { Star } from 'lucide-react';
 
 import { reviewsPageData } from '@/mocks/reviews-data';
-import styles from '@/src/styles/ReviewsPage.module.css';
+import styles from '@/src/styles/reviews/ReviewsPage.module.css';
 
 const ReviewsPageComponent = () => {
   const { overallRating, reviews, topDrivers } = reviewsPageData;
@@ -14,10 +14,10 @@ const ReviewsPageComponent = () => {
       <div className={styles.star__rating}>
         {[1, 2, 3, 4, 5].map(star => (
           <Star
-            key={star}
             size={16}
-            className={`${styles.star} ${star <= rating ? styles.filled : ''}`}
+            key={star}
             fill={star <= rating ? 'currentColor' : 'none'}
+            className={`${styles.star} ${star <= rating ? styles.filled : ''}`}
           />
         ))}
       </div>

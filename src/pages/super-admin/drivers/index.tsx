@@ -5,7 +5,7 @@ import type { NextApiRequest } from 'next';
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import DriversPageComponent from '@/src/components/shared/drivers/drivers';
-import DriversSkeleton from '@/src/components/shared/drivers/drivers-skeleton';
+import DriversSkeleton from '@/src/components/shared/drivers/drivers-page-skeleton';
 import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
 
