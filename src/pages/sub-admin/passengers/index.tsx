@@ -1,19 +1,32 @@
+import { useState, useEffect } from 'react';
+
 import type { NextApiRequest } from 'next';
 
 import { AdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
+import PassengersSkeleton from '@/src/components/shared/passengers/passenger-skeleton';
 import PassengersPageComponent from '@/src/components/shared/passengers/passengers';
 import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
 
 const PassengersPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <DashboardLayout
       role="SUB"
       title="Passengers"
       meta={AdminPageMeta.passengersPage}
     >
-      <PassengersPageComponent />
+      {isLoading ? <PassengersSkeleton /> : <PassengersPageComponent />}
     </DashboardLayout>
   );
 };

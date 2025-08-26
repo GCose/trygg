@@ -1,19 +1,32 @@
+import { useState, useEffect } from 'react';
+
 import type { NextApiRequest } from 'next';
 
 import { SuperAdminPageMeta } from '@/pageMeta/meta';
 import DashboardLayout from '@/src/components/layout/DashboardLayout';
 import DashboardPageComponent from '@/src/components/shared/dashboard/dashboard-page-component';
+import DashboardSkeleton from '@/src/components/shared/dashboard/dashboard-skeleton';
 import type { User } from '@/types';
 import { isLoggedIn } from '@/utils/auth';
 
 const DashboardPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <DashboardLayout
       role="SUB"
       title="Dashboard"
       meta={SuperAdminPageMeta.dashboardPage}
     >
-      <DashboardPageComponent />
+      {isLoading ? <DashboardSkeleton /> : <DashboardPageComponent />}
     </DashboardLayout>
   );
 };
