@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Image from 'next/image';
 
 import { Star } from 'lucide-react';
@@ -8,9 +6,6 @@ import styles from '@/src/styles/drivers/DriverInfoCard.module.css';
 import type { DriverInfoCardProps } from '@/types/interfaces/driver-details';
 
 const DriverInfoCard = ({ driver }: DriverInfoCardProps) => {
-  const [activeDocumentTab, setActiveDocumentTab] = useState('license');
-  const [activeVehicleTab, setActiveVehicleTab] = useState('image');
-
   const renderStarRating = (rating: number) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -30,59 +25,6 @@ const DriverInfoCard = ({ driver }: DriverInfoCardProps) => {
     }
 
     return <div className={styles.rating__stars}>{stars}</div>;
-  };
-
-  const renderVehicleContent = () => {
-    switch (activeVehicleTab) {
-      case 'image':
-        return (
-          <div className={styles.vehicle__image__container}>
-            <Image
-              width={200}
-              height={150}
-              alt="Vehicle"
-              src={driver.vehicle.image}
-              className={styles.vehicle__image}
-            />
-          </div>
-        );
-      case 'brand':
-        return (
-          <div className={styles.vehicle__info}>
-            <span className={styles.vehicle__label}>Brand</span>
-            <span className={styles.vehicle__value}>
-              {driver.vehicle.brand}
-            </span>
-          </div>
-        );
-      case 'model':
-        return (
-          <div className={styles.vehicle__info}>
-            <span className={styles.vehicle__label}>Model</span>
-            <span className={styles.vehicle__value}>
-              {driver.vehicle.model}
-            </span>
-          </div>
-        );
-      case 'year':
-        return (
-          <div className={styles.vehicle__info}>
-            <span className={styles.vehicle__label}>Year</span>
-            <span className={styles.vehicle__value}>{driver.vehicle.year}</span>
-          </div>
-        );
-      case 'color':
-        return (
-          <div className={styles.vehicle__info}>
-            <span className={styles.vehicle__label}>Color</span>
-            <span className={styles.vehicle__value}>
-              {driver.vehicle.color}
-            </span>
-          </div>
-        );
-      default:
-        return null;
-    }
   };
 
   return (
@@ -152,75 +94,54 @@ const DriverInfoCard = ({ driver }: DriverInfoCardProps) => {
 
       {/*==================== Two Column Section ====================*/}
       <div className={styles.two__column__section}>
-        {/*==================== Documents Details Column ====================*/}
-        <div className={styles.documents__column}>
-          <h3 className={styles.section__title}>Document Details</h3>
+        {/*==================== Driver License Column ====================*/}
+        <div className={styles.license__column}>
+          <h3 className={styles.section__title}>Driver License</h3>
 
-          <div className={styles.tab__content}>
-            <div className={styles.tab__nav}>
-              <button
-                className={`${styles.nav__item} ${activeDocumentTab === 'license' ? styles.active : ''}`}
-                onClick={() => setActiveDocumentTab('license')}
-              >
-                Driver License
-              </button>
-            </div>
-
-            <div className={styles.tab__display}>
-              <div className={styles.document__image__container}>
-                <Image
-                  width={200}
-                  height={150}
-                  src={driver.licenseImage}
-                  alt="Driver License"
-                  className={styles.document__image}
-                />
-                <span className={styles.document__filename}>License.jpg</span>
-              </div>
-            </div>
+          <div className={styles.license__display}>
+            <Image
+              width={400}
+              height={250}
+              src={driver.licenseImage}
+              alt="Driver License"
+              className={styles.license__image}
+            />
           </div>
         </div>
-        {/*==================== End of Documents Details Column ====================*/}
+        {/*==================== End of Driver License Column ====================*/}
 
         {/*==================== Vehicle Details Column ====================*/}
         <div className={styles.vehicle__column}>
           <h3 className={styles.section__title}>Vehicle Details</h3>
 
-          <div className={styles.tab__content}>
-            <div className={styles.tab__nav}>
-              <button
-                className={`${styles.nav__item} ${activeVehicleTab === 'image' ? styles.active : ''}`}
-                onClick={() => setActiveVehicleTab('image')}
-              >
-                Image
-              </button>
-              <button
-                className={`${styles.nav__item} ${activeVehicleTab === 'brand' ? styles.active : ''}`}
-                onClick={() => setActiveVehicleTab('brand')}
-              >
-                Brand
-              </button>
-              <button
-                className={`${styles.nav__item} ${activeVehicleTab === 'model' ? styles.active : ''}`}
-                onClick={() => setActiveVehicleTab('model')}
-              >
-                Model
-              </button>
-              <button
-                className={`${styles.nav__item} ${activeVehicleTab === 'year' ? styles.active : ''}`}
-                onClick={() => setActiveVehicleTab('year')}
-              >
-                Year
-              </button>
-              <button
-                className={`${styles.nav__item} ${activeVehicleTab === 'color' ? styles.active : ''}`}
-                onClick={() => setActiveVehicleTab('color')}
-              >
-                Color
-              </button>
+          <div className={styles.vehicle__details__grid}>
+            <div className={styles.vehicle__info}>
+              <span className={styles.vehicle__label}>Brand</span>
+              <span className={styles.vehicle__value}>
+                {driver.vehicle.brand}
+              </span>
             </div>
 
-            <div className={styles.tab__display}>{renderVehicleContent()}</div>
+            <div className={styles.vehicle__info}>
+              <span className={styles.vehicle__label}>Model</span>
+              <span className={styles.vehicle__value}>
+                {driver.vehicle.model}
+              </span>
+            </div>
+
+            <div className={styles.vehicle__info}>
+              <span className={styles.vehicle__label}>Year</span>
+              <span className={styles.vehicle__value}>
+                {driver.vehicle.year}
+              </span>
+            </div>
+
+            <div className={styles.vehicle__info}>
+              <span className={styles.vehicle__label}>Color</span>
+              <span className={styles.vehicle__value}>
+                {driver.vehicle.color}
+              </span>
+            </div>
           </div>
         </div>
         {/*==================== End of Vehicle Details Column ====================*/}

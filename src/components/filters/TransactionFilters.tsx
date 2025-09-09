@@ -58,6 +58,16 @@ const TransactionFilters = ({
             />
           </div>
 
+          <div className={styles.date__wrapper}>
+            <input
+              type="date"
+              placeholder="To Date"
+              value={filters.dateFrom}
+              className={styles.date__input}
+              onChange={e => onFilterChange('dateTo', e.target.value)}
+            />
+          </div>
+
           <button onClick={onResetFilters} className={styles.reset__button}>
             Reset Filters
           </button>
